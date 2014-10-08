@@ -14,7 +14,7 @@ angular.module('members').config(['$stateProvider',
 			templateUrl: 'modules/members/views/create-member.client.view.html'
 		}).
 		state('viewMember', {
-			url: '/members/:memberId',
+			url: '/members/:memberFullName',
 			templateUrl: 'modules/members/views/view-member.client.view.html'
 		}).
 		state('editMember', {
