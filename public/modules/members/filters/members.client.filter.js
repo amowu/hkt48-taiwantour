@@ -22,4 +22,10 @@ angular.module('members').filter('getMemberIdByFullName', [
       return null;
     };
   }
+]).filter('getSmallThumbnail', [
+  function() {
+    return function(imgurUrl) {
+      return (imgurUrl.slice(0, 27) + 't' + imgurUrl.slice(27));
+    };
+  }
 ]);

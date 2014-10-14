@@ -25,7 +25,9 @@
     <p data-ng-bind="relationship.imgurl"></p>
   </div>
   <hr>
-  <div data-ng-repeat="image in images">
-    <p data-ng-bind="image.imgurl"></p>
+  <div deckgrid class="deckgrid" source="images">
+    <div class="photo-wrapper">
+      <img src="" data-ng-src="{{ card.imgurl }}">
+    </div>
   </div>
 </section>

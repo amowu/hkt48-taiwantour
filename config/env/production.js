@@ -22,7 +22,8 @@ module.exports = {
 				'public/lib/tabletop/src/tabletop.js',
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/slick-carousel/slick/slick.min.js',
-				'public/lib/angular-slick/dist/slick.min.js'
+				'public/lib/angular-slick/dist/slick.min.js',
+				'public/lib/angular-deckgrid/angular-deckgrid.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

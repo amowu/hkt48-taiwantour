@@ -30,7 +30,8 @@ module.exports = {
 				'public/lib/tabletop/src/tabletop.js',
 				'public/lib/jquery/dist/jquery.js',
 				'public/lib/slick-carousel/slick/slick.js',
-				'public/lib/angular-slick/dist/slick.js'
+				'public/lib/angular-slick/dist/slick.js',
+				'public/lib/angular-deckgrid/angular-deckgrid.js'
 			]
 		},
 		css: [
