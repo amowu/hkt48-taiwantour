@@ -28,6 +28,9 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
             console.log(tabletop.sheets('image').all());
             $scope.$apply(function() {
               $scope.member = tabletop.sheets('member').all()[0];
+              $scope.keywords = tabletop.sheets('keyword').all();
+              $scope.relationships = tabletop.sheets('relationship').all();
+              $scope.images = tabletop.sheets('image').all();
             });
           }
         });

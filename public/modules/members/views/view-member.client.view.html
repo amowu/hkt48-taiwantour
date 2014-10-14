@@ -1,13 +1,29 @@
 <section data-ng-controller="MembersController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="member.firstname"></h1>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="member.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="member.user.displayName"></span>
-		</em>
-	</small>
+  <p data-ng-bind="member.firstnameen"></p>
+  <p data-ng-bind="member.lastnameen"></p>
+  <p data-ng-bind="member.firstname"></p>
+  <p data-ng-bind="member.lastname"></p>
+  <p data-ng-bind="member.nickname"></p>
+  <p data-ng-bind="member.birthday"></p>
+  <p data-ng-bind="member.interest"></p>
+  <p data-ng-bind="member.expert"></p>
+  <p data-ng-bind="member.charmingpoint"></p>
+  <p data-ng-bind="member.googleplusurl"></p>
+  <p data-ng-bind="member.description"></p>
+  <hr>
+  <div data-ng-repeat="keyword in keywords">
+    <p data-ng-bind="keyword.title"></p>
+    <p data-ng-bind="keyword.content"></p>
+    <p data-ng-bind="keyword.imgurl"></p>
+  </div>
+  <hr>
+  <div data-ng-repeat="relationship in relationships">
+    <p data-ng-bind="relationship.keyword"></p>
+    <p data-ng-bind="relationship.content"></p>
+    <p data-ng-bind="relationship.imgurl"></p>
+  </div>
+  <hr>
+  <div data-ng-repeat="image in images">
+    <p data-ng-bind="image.imgurl"></p>
+  </div>
 </section>
