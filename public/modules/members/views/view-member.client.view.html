@@ -11,11 +11,13 @@
   <p data-ng-bind="member.googleplusurl"></p>
   <p data-ng-bind="member.description"></p>
   <hr>
-  <div data-ng-repeat="keyword in keywords">
-    <p data-ng-bind="keyword.title"></p>
-    <p data-ng-bind="keyword.content"></p>
-    <p data-ng-bind="keyword.imgurl"></p>
-  </div>
+  <slick init-onload=true data="keywords" dots="true">
+    <div data-ng-repeat="keyword in keywords">
+      <p data-ng-bind="keyword.title"></p>
+      <p data-ng-bind="keyword.content"></p>
+      <p data-ng-bind="keyword.imgurl"></p>
+    </div>
+  </slick>
   <hr>
   <div data-ng-repeat="relationship in relationships">
     <p data-ng-bind="relationship.keyword"></p>

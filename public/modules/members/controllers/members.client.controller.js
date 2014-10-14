@@ -1,8 +1,8 @@
 'use strict';
 
 // Members controller
-angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication', 'Members',
-  function($scope, $filter, $http, $stateParams, $location, Authentication, Members) {
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication', 
+  function($scope, $filter, $http, $stateParams, $location, Authentication) {
     $scope.authentication = Authentication;
 
     // Find a list of Members
