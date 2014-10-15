@@ -1,17 +1,17 @@
 .content {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 .undecorated-link:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+  display: none !important;
 }
 .ng-invalid.ng-dirty{
-    border-color:#FA787E;
+  border-color:#FA787E;
 }
 .ng-valid.ng-dirty{
-    border-color:#78FA89;
+  border-color:#78FA89;
 }
 
 .mfp-with-zoom .mfp-container,
@@ -26,13 +26,25 @@
 }
 
 .mfp-with-zoom.mfp-ready .mfp-container {
-    opacity: 1;
+  opacity: 1;
 }
 .mfp-with-zoom.mfp-ready.mfp-bg {
-    opacity: 0.8;
+  opacity: 0.8;
 }
-
 .mfp-with-zoom.mfp-removing .mfp-container, 
 .mfp-with-zoom.mfp-removing.mfp-bg {
   opacity: 0;
+}
+
+.animation-fade {
+    opacity:0;
+}
+.animation-faded {
+    opacity:1;
+}
+.animation-faded {
+  -webkit-transition: opacity 1s linear .2s;
+  -moz-transition: opacity 1s linear .2s;
+  -o-transition: opacity 1s linear .2s;
+  transition: opacity 1s linear .2s;
 }
