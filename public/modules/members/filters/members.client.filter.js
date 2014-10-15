@@ -28,7 +28,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       if (imgurUrl === undefined) {
         return null;
       } else {
-        return (imgurUrl.slice(0, 27) + 'm' + imgurUrl.slice(27));
+        return (imgurUrl.slice(0, 26) + 'm' + imgurUrl.slice(26));
       }
     };
   }
