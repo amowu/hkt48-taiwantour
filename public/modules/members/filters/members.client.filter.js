@@ -22,10 +22,14 @@ angular.module('members').filter('getMemberIdByFullName', [
       return null;
     };
   }
-]).filter('getSmallThumbnail', [
+]).filter('thumbnail', [
   function() {
     return function(imgurUrl) {
-      return (imgurUrl.slice(0, 27) + 't' + imgurUrl.slice(27));
+      if (imgurUrl === undefined) {
+        return null;
+      } else {
+        return (imgurUrl.slice(0, 27) + 'm' + imgurUrl.slice(27));
+      }
     };
   }
 ]);

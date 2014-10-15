@@ -25,9 +25,11 @@
     <p data-ng-bind="relationship.imgurl"></p>
   </div>
   <hr>
-  <div deckgrid class="deckgrid" source="images">
-    <div class="photo-wrapper">
-      <img src="" data-ng-src="{{ card.imgurl }}">
-    </div>
+  <div deckgrid magnific-popup class="deckgrid gallery" source="images">
+    <a data-ng-href="{{ card.imgurl }}" title="{{ card.description }}">
+      <div>
+        <img data-ng-src="{{ card.imgurl | thumbnail }}">
+      </div>
+    </a>
   </div>
 </section>

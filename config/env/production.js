@@ -7,7 +7,8 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-				'public/lib/slick-carousel/slick/slick.css'
+				'public/lib/slick-carousel/slick/slick.css',
+				'public/lib/magnific-popup/dist/magnific-popup.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -23,7 +24,8 @@ module.exports = {
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/slick-carousel/slick/slick.min.js',
 				'public/lib/angular-slick/dist/slick.min.js',
-				'public/lib/angular-deckgrid/angular-deckgrid.js'
+				'public/lib/angular-deckgrid/angular-deckgrid.js',
+				'public/lib/magnific-popup/dist/jquery.magnific-popup.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',
