@@ -25,11 +25,16 @@
     <p data-ng-bind="relationship.imgurl"></p>
   </div>
   <hr>
-
+  <!-- <ul class="photos">
+    <li data-ng-repeat="image in images" class="photo">
+      <img bn-lazy-src="{{ image.imgurl | thumbnail }}">
+    </li>
+  </ul> -->
   <div deckgrid magnific-popup class="deckgrid gallery" source="images">
     <a data-ng-href="{{ card.imgurl }}" title="{{ card.description }}">
       <div>
-        <img imageloaded class="animation-fade" data-loadedclass="animation-faded" data-ng-src="{{ card.imgurl | thumbnail }}">
+        <!-- <img data-imageload class="animation-fade" data-loadedclass="animation-faded" data-ng-src="{{ card.imgurl | thumbnail }}"> -->
+        <img data-ng-src="{{ card.imgurl | thumbnail }}">
       </div>
     </a>
   </div>
