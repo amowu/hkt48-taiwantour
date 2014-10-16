@@ -37,10 +37,10 @@
 }
 
 .animation-fade {
-    opacity:0;
+  opacity:0;
 }
 .animation-faded {
-    opacity:1;
+  opacity:1;
 }
 .animation-faded {
   -webkit-transition: opacity 1s linear .2s;
