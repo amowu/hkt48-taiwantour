@@ -19,6 +19,7 @@ module.exports = {
 				'public/lib/magnific-popup/dist/magnific-popup.css'
 			],
 			js: [
+				'public/lib/jquery/dist/jquery.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-cookies/angular-cookies.js',
@@ -29,7 +30,6 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/tabletop/src/tabletop.js',
-				'public/lib/jquery/dist/jquery.js',
 				'public/lib/slick-carousel/slick/slick.js',
 				'public/lib/angular-slick/dist/slick.js',
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
