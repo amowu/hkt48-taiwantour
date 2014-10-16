@@ -14,6 +14,7 @@
   border-color:#78FA89;
 }
 
+/* magnific-popup */
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
@@ -24,7 +25,6 @@
   -o-transition: all 0.3s ease-out; 
   transition: all 0.3s ease-out;
 }
-
 .mfp-with-zoom.mfp-ready .mfp-container {
   opacity: 1;
 }
@@ -36,6 +36,7 @@
   opacity: 0;
 }
 
+/* image load */
 .animation-fade {
   opacity:0;
 }
