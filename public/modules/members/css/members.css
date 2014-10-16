@@ -5,10 +5,18 @@
   visibility: hidden;
 }
 
+/* deckgrid */
 .deckgrid .column {
   float: left;
 }
-
 .deckgrid .column-1-4 {
   width: 25%;
+}
+
+/* d3 */
+.node {
+}
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
 }

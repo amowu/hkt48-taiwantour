@@ -33,7 +33,8 @@ module.exports = {
 				'public/lib/slick-carousel/slick/slick.js',
 				'public/lib/angular-slick/dist/slick.js',
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
-				'public/lib/magnific-popup/dist/jquery.magnific-popup.js'
+				'public/lib/magnific-popup/dist/jquery.magnific-popup.js',
+				'public/lib/d3/d3.js'
 			]
 		},
 		css: [

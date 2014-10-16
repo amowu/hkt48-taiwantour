@@ -19,10 +19,39 @@
     </div>
   </slick>
   <hr>
-  <div data-ng-repeat="relationship in relationships">
+  <!-- <div data-ng-repeat="relationship in relationships">
     <p data-ng-bind="relationship.keyword"></p>
     <p data-ng-bind="relationship.content"></p>
     <p data-ng-bind="relationship.imgurl"></p>
+  </div> -->
+  <div>
+    <svg ng-attr-width="{{ width }}"
+         ng-attr-height="{{ height }}">
+      <line ng-repeat="link in links"
+            class="link"
+            ng-attr-x1="{{ link.source.x }}"
+            ng-attr-y1="{{ link.source.y }}"
+            ng-attr-x2="{{ link.target.x }}"
+            ng-attr-y2="{{ link.target.y }}">
+      </line>
+      <!-- <circle ng-repeat="node in nodes"
+              class="node"
+              r="5"
+              ng-attr-fill="{{ node.color }}"
+              ng-attr-cx="{{ node.x }}"
+              ng-attr-cy="{{ node.y }}">
+        <title>{{node.name}}</title>
+      </circle> -->
+      <g ng-repeat="node in nodes"
+         class="node">
+        <image xlink:href="https://github.com/favicon.ico"
+               x="{{ node.x }}"
+               y="{{ node.y }}"
+               width="16"
+               height="16">
+        </image>
+      </g>
+    </svg>
   </div>
   <hr>
   <!-- <ul class="photos">

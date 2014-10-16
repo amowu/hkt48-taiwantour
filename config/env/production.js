@@ -25,7 +25,8 @@ module.exports = {
 				'public/lib/slick-carousel/slick/slick.min.js',
 				'public/lib/angular-slick/dist/slick.min.js',
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
-				'public/lib/magnific-popup/dist/jquery.magnific-popup.min.js'
+				'public/lib/magnific-popup/dist/jquery.magnific-popup.min.js',
+				'public/lib/d3/d3.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

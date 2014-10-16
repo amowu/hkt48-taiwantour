@@ -31,6 +31,32 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.keywords = tabletop.sheets('keyword').all();
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = tabletop.sheets('image').all();
+
+              // TODO: d3 test code
+              $scope.width = 500;
+              $scope.height = 500;
+              $scope.nodes = [
+                {"name":"Myriel","group":1},
+                {"name":"Napoleon","group":1},
+                {"name":"Mlle.Baptistine","group":1},
+                {"name":"Mme.Magloire","group":1}
+              ];
+              $scope.links = [
+                {"source":1,"target":0,"value":1},
+                {"source":2,"target":0,"value":8},
+                {"source":3,"target":0,"value":10}
+              ];
+              var force = d3.layout.force()
+                .nodes($scope.nodes)
+                .links($scope.links)
+                .charge(-120)
+                .linkDistance(30)
+                .size([$scope.width, $scope.height])
+                .on('tick', function() {
+                  $scope.$apply();
+                })
+                .start();
+
             });
           }
         });
