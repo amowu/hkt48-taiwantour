@@ -34,20 +34,13 @@
             ng-attr-x2="{{ link.target.x }}"
             ng-attr-y2="{{ link.target.y }}">
       </line>
-      <!-- <circle ng-repeat="node in nodes"
-              class="node"
-              r="5"
-              ng-attr-fill="{{ node.color }}"
-              ng-attr-cx="{{ node.x }}"
-              ng-attr-cy="{{ node.y }}">
-        <title>{{node.name}}</title>
-      </circle> -->
       <g ng-repeat="node in nodes"
          class="node">
         <clipPath id="cut-off-bottom">
           <circle ng-attr-cx="{{ node.x }}" ng-attr-cy="{{ node.y }}" r="60" />
         </clipPath>
-        <image xlink:href="/modules/members/img/120/0012_120.jpg"
+        <image xlink:href=""
+               ng-xlink-href="{{ node.imgsize120 }}"
                ng-x="{{ node.x - 60 }}"
                ng-y="{{ node.y - 75 }}"
                width="120"
@@ -55,7 +48,7 @@
         </image>
         <text ng-x="{{ node.x }}"
               ng-y="{{ node.y + 75 }}"
-              text-anchor="middle">宮脇 咲良</text>
+              text-anchor="middle">{{ node.firstname }} {{ node.lastname }}</text>
       </g>
     </svg>
   </div>

@@ -6,7 +6,15 @@ angular.forEach(['x', 'y', 'width', 'height'], function(name) {
     return function(scope, element, attrs) {
       attrs.$observe(ngName, function(value) {
         attrs.$set(name, value);
-      })
-    }
+      });
+    };
   });
+});
+
+angular.module('core').directive('ngXlinkHref', function() {
+  return function(scope, element, attrs) {
+    attrs.$observe('ngXlinkHref', function(value) {
+      attrs.$set('xlink:href', value);
+    });
+  };
 });
