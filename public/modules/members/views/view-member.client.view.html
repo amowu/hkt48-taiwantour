@@ -44,12 +44,18 @@
       </circle> -->
       <g ng-repeat="node in nodes"
          class="node">
-        <image xlink:href="https://github.com/favicon.ico"
-               x="{{ node.x }}"
-               y="{{ node.y }}"
-               width="16"
-               height="16">
+        <clipPath id="cut-off-bottom">
+          <circle ng-attr-cx="{{ node.x }}" ng-attr-cy="{{ node.y }}" r="60" />
+        </clipPath>
+        <image xlink:href="/modules/members/img/120/0012_120.jpg"
+               ng-x="{{ node.x - 60 }}"
+               ng-y="{{ node.y - 75 }}"
+               width="120"
+               height="150" clip-path="url(#cut-off-bottom)">
         </image>
+        <text ng-x="{{ node.x }}"
+              ng-y="{{ node.y + 75 }}"
+              text-anchor="middle">宮脇 咲良</text>
       </g>
     </svg>
   </div>

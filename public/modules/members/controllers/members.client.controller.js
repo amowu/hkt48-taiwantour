@@ -33,24 +33,38 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.images = tabletop.sheets('image').all();
 
               // TODO: d3 test code
-              $scope.width = 500;
-              $scope.height = 500;
+              $scope.width = 800;
+              $scope.height = 600;
               $scope.nodes = [
-                {"name":"Myriel","group":1},
-                {"name":"Napoleon","group":1},
-                {"name":"Mlle.Baptistine","group":1},
-                {"name":"Mme.Magloire","group":1}
+                {"name":"Sakura","img":'/modules/members/img/120/0012_120.jpg'},
+                {"name":"Haruka","img":'/modules/members/img/120/0004_120.jpg'},
+                {"name":"Aoi.Baptistine","img":'/modules/members/img/120/0014_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'},
+                {"name":"Rino","img":'/modules/members/img/120/0022_120.jpg'}
               ];
               $scope.links = [
                 {"source":1,"target":0,"value":1},
                 {"source":2,"target":0,"value":8},
-                {"source":3,"target":0,"value":10}
+                {"source":3,"target":0,"value":10},
+                {"source":4,"target":0,"value":10},
+                {"source":5,"target":0,"value":10},
+                {"source":6,"target":0,"value":10},
+                {"source":7,"target":0,"value":10},
+                {"source":8,"target":0,"value":10},
+                {"source":9,"target":0,"value":10},
+                {"source":10,"target":0,"value":10}
               ];
               var force = d3.layout.force()
                 .nodes($scope.nodes)
                 .links($scope.links)
-                .charge(-120)
-                .linkDistance(30)
+                .charge(-1000)
+                .linkDistance(200)
                 .size([$scope.width, $scope.height])
                 .on('tick', function() {
                   $scope.$apply();
