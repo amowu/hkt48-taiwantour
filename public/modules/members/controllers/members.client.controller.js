@@ -34,6 +34,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
 
               // TODO: d3 test code
               var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
+              $scope.details = forceData.details;
               $scope.nodes = forceData.nodes;
               $scope.links = forceData.links;
               $scope.width = 800;

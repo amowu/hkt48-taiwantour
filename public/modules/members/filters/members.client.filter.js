@@ -53,7 +53,7 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getForceData', ['$filter',
   function($filter) {
     return function(relationships, members, sourceMemberId) {
-      var data = {'nodes':[], 'links':[]};
+      var data = {'nodes':[], 'links':[], 'details':[]};
       // Step 1: First add source member into nodes.
       var sourceMember = $filter('getMemberById')(members, sourceMemberId);
       sourceMember.imgsize120 = $filter('getImgSize120')(sourceMemberId);
@@ -66,21 +66,30 @@ angular.module('members').filter('getMemberIdByFullName', [
         var targetMember = $filter('getMemberById')(members, targetMemberId);
         targetMember.imgsize120 = $filter('getImgSize120')(relationships[i].targetmemberid);
         data.nodes.push(targetMember);
-        // Add to links.
+        
+        // Add links.
         var link = {
           'source': 0,
           'target': i + 1,
           'memberid': relationships[i].memberid,
           'targetmemberid': relationships[i].targetmemberid,
-          'relationshipdirection': relationships[i].relationshipdirection,
-          'keyword': relationships[i].keyword,
-          'content': relationships[i].content,
-          'introduction': relationships[i].introduction,
-          //'introductionmember': $filter('getMemberById')(members, relationships[i].introductionmemberid),
-          'introductiondate': relationships[i].introductiondate,
-          'imgurl': relationships[i].imgurl
+          'relationshipdirection': relationships[i].relationshipdirection
         };
         data.links.push(link);
+        
+        // Add details.
+        if (parseInt(relationships[i].group) >= data.details.length) {
+          var detail = {
+            'group': relationships[i].group,
+            'keyword': relationships[i].keyword,
+            'content': relationships[i].content,
+            'introduction': relationships[i].introduction,
+            //'introductionmember': $filter('getMemberById')(members, relationships[i].introductionmemberid),
+            'introductiondate': relationships[i].introductiondate,          
+            'imgurl': relationships[i].imgurl
+          };
+          data.details.push(detail);
+        }
       }
 
       return data;

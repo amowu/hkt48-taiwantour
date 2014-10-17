@@ -11,19 +11,16 @@
   <p data-ng-bind="member.googleplusurl"></p>
   <p data-ng-bind="member.description"></p>
   <hr>
-  <slick init-onload=true data="keywords" dots="true">
-    <div data-ng-repeat="keyword in keywords">
+  <slick init-onload="true" data="keywords" dots="true">
+    <div magnific-popup data-ng-repeat="keyword in keywords">
       <p data-ng-bind="keyword.title"></p>
+      <a data-ng-href="{{ keyword.imgurl }}" title="{{ keyword.content }}">
+        <img data-ng-src="{{ keyword.imgurl | thumbnail }}">
+      </a>
       <p data-ng-bind="keyword.content"></p>
-      <p data-ng-bind="keyword.imgurl"></p>
     </div>
   </slick>
   <hr>
-  <!-- <div data-ng-repeat="relationship in relationships">
-    <p data-ng-bind="relationship.keyword"></p>
-    <p data-ng-bind="relationship.content"></p>
-    <p data-ng-bind="relationship.imgurl"></p>
-  </div> -->
   <div>
     <svg ng-attr-width="{{ width }}"
          ng-attr-height="{{ height }}">
@@ -44,7 +41,7 @@
                ng-x="{{ node.x - 60 }}"
                ng-y="{{ node.y - 75 }}"
                width="120"
-               height="150" clip-path="url(#cut-off-bottom)">
+               height="150" clip-path="url(#cut-off-bottom)" tooltip-placement="right" tooltip="On the Right!">
         </image>
         <text ng-x="{{ node.x }}"
               ng-y="{{ node.y + 75 }}"
@@ -52,6 +49,15 @@
       </g>
     </svg>
   </div>
+  <slick init-onload="true" data="details" dots="true" arrows="false">
+    <div magnific-popup data-ng-repeat="detail in details">
+      <p data-ng-bind="detail.keyword"></p>
+      <a data-ng-href="{{ detail.imgurl }}" title="{{ detail.content }}">
+        <img data-ng-src="{{ detail.imgurl | thumbnail }}">
+      </a>
+      <p data-ng-bind="detail.content"></p>
+    </div>
+  </slick>
   <hr>
   <!-- <ul class="photos">
     <li data-ng-repeat="image in images" class="photo">
