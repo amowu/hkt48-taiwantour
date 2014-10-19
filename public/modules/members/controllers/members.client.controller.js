@@ -42,8 +42,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.onTargetMemberHover = function($event) {
                 var targetMemberId = angular.element($event.target).scope().node.memberid;
                 var group = $filter('getGroupByTartgetMemberId')($scope.links, targetMemberId);
-                console.log('group: '+group);
-                //$scope.currentGroup = group;
+                $scope.currentGroup = group;
               };
               var force = d3.layout.force()
                 .nodes($scope.nodes)

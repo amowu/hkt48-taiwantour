@@ -16,7 +16,7 @@
            ng-model="foo"
            ng-model-options="{ getterSetter: true }" />
   </form> -->
-  <slick init-onload="true" data="keywords" dots="true" current-index="currentGroup">
+  <slick init-onload="true" data="keywords" dots="true">
     <div magnific-popup data-ng-repeat="keyword in keywords">
       <p data-ng-bind="keyword.title"></p>
       <a data-ng-href="{{ keyword.imgurl }}" title="{{ keyword.content }}">
@@ -55,7 +55,7 @@
       </g>
     </svg>
   </div>
-  <slick init-onload="true" data="details" dots="true" arrows="false">
+  <slick init-onload="true" data="details" dots="true" arrows="false" current-index="currentGroup">
     <div magnific-popup data-ng-repeat="detail in details">
       <p data-ng-bind="detail.keyword"></p>
       <a data-ng-href="{{ detail.imgurl }}" title="{{ detail.content }}">
