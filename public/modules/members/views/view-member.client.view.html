@@ -11,7 +11,12 @@
   <p data-ng-bind="member.googleplusurl"></p>
   <p data-ng-bind="member.description"></p>
   <hr>
-  <slick init-onload="true" data="keywords" dots="true">
+  <!-- <form>
+    <input type="text"
+           ng-model="foo"
+           ng-model-options="{ getterSetter: true }" />
+  </form> -->
+  <slick init-onload="true" data="keywords" dots="true" current-index="currentGroup">
     <div magnific-popup data-ng-repeat="keyword in keywords">
       <p data-ng-bind="keyword.title"></p>
       <a data-ng-href="{{ keyword.imgurl }}" title="{{ keyword.content }}">
@@ -41,7 +46,8 @@
                ng-x="{{ node.x - 60 }}"
                ng-y="{{ node.y - 75 }}"
                width="120"
-               height="150" clip-path="url(#cut-off-bottom)" tooltip-placement="right" tooltip="On the Right!">
+               height="150" clip-path="url(#cut-off-bottom)"
+               ng-mouseover="onTargetMemberHover($event)">
         </image>
         <text ng-x="{{ node.x }}"
               ng-y="{{ node.y + 75 }}"

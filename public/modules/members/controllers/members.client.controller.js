@@ -1,7 +1,7 @@
 'use strict';
 
 // Members controller
-angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication', 
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication',
   function($scope, $filter, $http, $stateParams, $location, Authentication) {
     $scope.authentication = Authentication;
 
@@ -31,14 +31,20 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.keywords = tabletop.sheets('keyword').all();
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
-
               // TODO: d3 test code
               var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
               $scope.details = forceData.details;
               $scope.nodes = forceData.nodes;
               $scope.links = forceData.links;
               $scope.width = 800;
-              $scope.height = 600;              
+              $scope.height = 600;
+              $scope.currentGroup = 0;
+              $scope.onTargetMemberHover = function($event) {
+                var targetMemberId = angular.element($event.target).scope().node.memberid;
+                var group = $filter('getGroupByTartgetMemberId')($scope.links, targetMemberId);
+                console.log('group: '+group);
+                //$scope.currentGroup = group;
+              };
               var force = d3.layout.force()
                 .nodes($scope.nodes)
                 .links($scope.links)
@@ -49,7 +55,6 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
                   $scope.$apply();
                 })
                 .start();
-
             });
           }
         });

@@ -66,17 +66,18 @@ angular.module('members').filter('getMemberIdByFullName', [
         var targetMember = $filter('getMemberById')(members, targetMemberId);
         targetMember.imgsize120 = $filter('getImgSize120')(relationships[i].targetmemberid);
         data.nodes.push(targetMember);
-        
+
         // Add links.
         var link = {
           'source': 0,
           'target': i + 1,
           'memberid': relationships[i].memberid,
           'targetmemberid': relationships[i].targetmemberid,
-          'relationshipdirection': relationships[i].relationshipdirection
+          'relationshipdirection': relationships[i].relationshipdirection,
+          'group': relationships[i].group
         };
         data.links.push(link);
-        
+
         // Add details.
         if (parseInt(relationships[i].group) >= data.details.length) {
           var detail = {
@@ -85,7 +86,7 @@ angular.module('members').filter('getMemberIdByFullName', [
             'content': relationships[i].content,
             'introduction': relationships[i].introduction,
             //'introductionmember': $filter('getMemberById')(members, relationships[i].introductionmemberid),
-            'introductiondate': relationships[i].introductiondate,          
+            'introductiondate': relationships[i].introductiondate,
             'imgurl': relationships[i].imgurl
           };
           data.details.push(detail);
@@ -93,6 +94,18 @@ angular.module('members').filter('getMemberIdByFullName', [
       }
 
       return data;
+    };
+  }
+]).filter('getGroupByTartgetMemberId', [
+  function() {
+    return function(links, targetMemberId) {
+      var i=0, len=links.length;
+      for (; i<len; i++) {
+        if (links[i].targetmemberid == targetMemberId) {
+          return links[i].group;
+        }
+      }
+      return 0;
     };
   }
 ]);
