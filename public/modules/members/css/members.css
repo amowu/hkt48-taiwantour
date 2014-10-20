@@ -16,6 +16,9 @@
 /* d3 */
 .node {
 }
+.node image {
+  cursor: pointer;
+}
 .node text {
   pointer-events: none;
   font: 15px sans-serif;
