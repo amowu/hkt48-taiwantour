@@ -1,4 +1,5 @@
-<section data-ng-controller="MembersController" data-ng-init="findOne()">
+<section data-ng-controller="MembersController" 
+         data-ng-init="findOne()">
   <p data-ng-bind="member.firstnameen"></p>
   <p data-ng-bind="member.lastnameen"></p>
   <p data-ng-bind="member.firstname"></p>
@@ -11,15 +12,14 @@
   <p data-ng-bind="member.googleplusurl"></p>
   <p data-ng-bind="member.description"></p>
   <hr>
-  <!-- <form>
-    <input type="text"
-           ng-model="foo"
-           ng-model-options="{ getterSetter: true }" />
-  </form> -->
-  <slick init-onload="true" data="keywords" dots="true">
-    <div magnific-popup data-ng-repeat="keyword in keywords">
+  <slick init-onload="true"
+         data="keywords"
+         dots="true">
+    <div magnific-popup 
+         data-ng-repeat="keyword in keywords">
       <p data-ng-bind="keyword.title"></p>
-      <a data-ng-href="{{ keyword.imgurl }}" title="{{ keyword.content }}">
+      <a data-ng-href="{{ keyword.imgurl }}" 
+         title="{{ keyword.content }}">
         <img data-ng-src="{{ keyword.imgurl | thumbnail }}">
       </a>
       <p data-ng-bind="keyword.content"></p>
@@ -27,27 +27,31 @@
   </slick>
   <hr>
   <div>
-    <svg ng-attr-width="{{ width }}"
-         ng-attr-height="{{ height }}">
-      <line ng-repeat="link in links"
+    <svg ng-attr-width="{{ svgWidth }}"
+         ng-attr-height="{{ svgHeight }}">
+      <line ng-repeat="link in d3Links"
             class="link"
             ng-attr-x1="{{ link.source.x }}"
             ng-attr-y1="{{ link.source.y }}"
             ng-attr-x2="{{ link.target.x }}"
             ng-attr-y2="{{ link.target.y }}">
       </line>
-      <g ng-repeat="node in nodes"
+      <g ng-repeat="node in d3Nodes"
          class="node">
         <clipPath id="cut-off-bottom">
-          <circle ng-attr-cx="{{ node.x }}" ng-attr-cy="{{ node.y }}" r="60" />
+          <circle ng-attr-cx="{{ node.x }}"
+                  ng-attr-cy="{{ node.y }}"
+                  r="60" />
         </clipPath>
         <image xlink:href=""
                ng-xlink-href="{{ node.imgsize120 }}"
                ng-x="{{ node.x - 60 }}"
                ng-y="{{ node.y - 75 }}"
                width="120"
-               height="150" clip-path="url(#cut-off-bottom)"
-               ng-mouseover="onTargetMemberHover($event)">
+               height="150"
+               clip-path="url(#cut-off-bottom)"
+               ng-mouseover="onTargetMemberHover($event)"
+               ng-click="onTargetMemberClick($event)">
         </image>
         <text ng-x="{{ node.x }}"
               ng-y="{{ node.y + 75 }}"
@@ -55,10 +59,16 @@
       </g>
     </svg>
   </div>
-  <slick init-onload="true" data="details" dots="true" arrows="false" current-index="currentGroup">
-    <div magnific-popup data-ng-repeat="detail in details">
+  <slick init-onload="true"
+         data="details"
+         dots="true"
+         arrows="false"
+         current-index="currentGroup">
+    <div magnific-popup
+         data-ng-repeat="detail in details">
       <p data-ng-bind="detail.keyword"></p>
-      <a data-ng-href="{{ detail.imgurl }}" title="{{ detail.content }}">
+      <a data-ng-href="{{ detail.imgurl }}"
+         title="{{ detail.content }}">
         <img data-ng-src="{{ detail.imgurl | thumbnail }}">
       </a>
       <p data-ng-bind="detail.content"></p>
@@ -70,8 +80,12 @@
       <img bn-lazy-src="{{ image.imgurl | thumbnail }}">
     </li>
   </ul> -->
-  <div deckgrid magnific-popup class="deckgrid gallery" source="images">
-    <a data-ng-href="{{ card.imgurl }}" title="{{ card.description }}">
+  <div deckgrid
+       magnific-popup
+       class="deckgrid gallery"
+       source="images">
+    <a data-ng-href="{{ card.imgurl }}"
+       title="{{ card.description }}">
       <div>
         <!-- <img data-imageload class="animation-fade" data-loadedclass="animation-faded" data-ng-src="{{ card.imgurl | thumbnail }}"> -->
         <img data-ng-src="{{ card.imgurl | thumbnail }}">
