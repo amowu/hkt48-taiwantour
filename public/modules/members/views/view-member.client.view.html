@@ -1,32 +1,37 @@
 <section data-ng-controller="MembersController" 
          data-ng-init="findOne()">
-  <p data-ng-bind="member.firstnameen"></p>
-  <p data-ng-bind="member.lastnameen"></p>
-  <p data-ng-bind="member.firstname"></p>
-  <p data-ng-bind="member.lastname"></p>
-  <p data-ng-bind="member.nickname"></p>
-  <p data-ng-bind="member.birthday"></p>
-  <p data-ng-bind="member.interest"></p>
-  <p data-ng-bind="member.expert"></p>
-  <p data-ng-bind="member.charmingpoint"></p>
-  <p data-ng-bind="member.googleplusurl"></p>
-  <p data-ng-bind="member.description"></p>
+  <section id="member">
+    <img data-ng-src="{{ member.imgSize320 }}">
+    <p data-ng-bind="member.firstnameen"></p>
+    <p data-ng-bind="member.lastnameen"></p>
+    <p data-ng-bind="member.firstname"></p>
+    <p data-ng-bind="member.lastname"></p>
+    <p data-ng-bind="member.nickname"></p>
+    <p data-ng-bind="member.birthday"></p>
+    <p data-ng-bind="member.interest"></p>
+    <p data-ng-bind="member.expert"></p>
+    <p data-ng-bind="member.charmingpoint"></p>
+    <p data-ng-bind="member.googleplusurl"></p>
+    <p ng-bind-html="member.description"></p>
+  </section>
   <hr>
-  <slick init-onload="true"
-         data="keywords"
-         dots="true">
-    <div magnific-popup 
-         data-ng-repeat="keyword in keywords">
-      <p data-ng-bind="keyword.title"></p>
-      <a data-ng-href="{{ keyword.imgurl }}" 
-         title="{{ keyword.content }}">
-        <img data-ng-src="{{ keyword.imgurl | thumbnail }}">
-      </a>
-      <p data-ng-bind="keyword.content"></p>
-    </div>
-  </slick>
+  <section id="keywords">
+    <slick init-onload="true"
+           data="keywords"
+           dots="true">
+      <div magnific-popup 
+           data-ng-repeat="keyword in keywords">
+        <p data-ng-bind="keyword.title"></p>
+        <a data-ng-href="{{ keyword.imgurl }}" 
+           title="{{ keyword.content }}">
+          <img data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
+        </a>
+        <p ng-bind-html="keyword.content"></p>
+      </div>
+    </slick>
+  </section>
   <hr>
-  <div>
+  <section id="relationships">
     <svg ng-attr-width="{{ svgWidth }}"
          ng-attr-height="{{ svgHeight }}">
       <line ng-repeat="link in d3Links"
@@ -58,38 +63,40 @@
               text-anchor="middle">{{ node.firstname }} {{ node.lastname }}</text>
       </g>
     </svg>
-  </div>
-  <slick init-onload="true"
-         data="details"
-         dots="true"
-         arrows="false"
-         current-index="currentGroup">
-    <div magnific-popup
-         data-ng-repeat="detail in details">
-      <p data-ng-bind="detail.keyword"></p>
-      <a data-ng-href="{{ detail.imgurl }}"
-         title="{{ detail.content }}">
-        <img data-ng-src="{{ detail.imgurl | thumbnail }}">
-      </a>
-      <p data-ng-bind="detail.content"></p>
-    </div>
-  </slick>
-  <hr>
-  <!-- <ul class="photos">
-    <li data-ng-repeat="image in images" class="photo">
-      <img bn-lazy-src="{{ image.imgurl | thumbnail }}">
-    </li>
-  </ul> -->
-  <div deckgrid
-       magnific-popup
-       class="deckgrid gallery"
-       source="images">
-    <a data-ng-href="{{ card.imgurl }}"
-       title="{{ card.description }}">
-      <div>
-        <!-- <img data-imageload class="animation-fade" data-loadedclass="animation-faded" data-ng-src="{{ card.imgurl | thumbnail }}"> -->
-        <img data-ng-src="{{ card.imgurl | thumbnail }}">
+    <slick init-onload="true"
+           data="details"
+           dots="true"
+           arrows="false"
+           current-index="currentGroup">
+      <div magnific-popup
+           data-ng-repeat="detail in details">
+        <p data-ng-bind="detail.keyword"></p>
+        <a data-ng-href="{{ detail.imgurl }}"
+           title="{{ detail.content }}">
+          <img data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
+        </a>
+        <p ng-bind-html="detail.content"></p>
       </div>
-    </a>
-  </div>
+    </slick>
+  </section>
+  <hr>
+  <section id="images">
+    <!-- <ul class="photos">
+      <li data-ng-repeat="image in images" class="photo">
+        <img bn-lazy-src="{{ image.imgurl | thumbnail }}">
+      </li>
+    </ul> -->
+    <div deckgrid
+         magnific-popup
+         class="deckgrid gallery"
+         source="images">
+      <a data-ng-href="{{ card.imgurl }}"
+         title="{{ card.description }}">
+        <div>
+          <!-- <img data-imageload class="animation-fade" data-loadedclass="animation-faded" data-ng-src="{{ card.imgurl | thumbnail }}"> -->
+          <img data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+        </div>
+      </a>
+    </div>
+  </section>
 </section>

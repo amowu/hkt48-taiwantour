@@ -36,18 +36,18 @@ angular.module('members').filter('getMemberIdByFullName', [
   }
 ]).filter('thumbnail', [
   function() {
-    return function(imgurUrl) {
+    return function(imgurUrl, size) {
       if (imgurUrl === undefined) {
         return null;
       } else {
-        return (imgurUrl.slice(0, 26) + 'm' + imgurUrl.slice(26));
+        return (imgurUrl.slice(0, 26) + size + imgurUrl.slice(26));
       }
     };
   }
-]).filter('getImgSize120', [
+]).filter('getImgSize', [
   function() {
-    return function(memberId) {
-      return '/modules/members/img/120/{0}_120.jpg'.replace('{0}', ('0000' + memberId).slice(-4));
+    return function(memberId, size) {
+      return '/modules/members/img/{1}/{0}_{1}.jpg'.replace('{0}', ('0000' + memberId).slice(-4)).replace(new RegExp('{1}'.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), size);
     };
   }
 ]).filter('getForceData', ['$filter',
@@ -56,7 +56,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       var data = {'nodes':[], 'links':[], 'details':[]};
       // Step 1: First add source member into nodes.
       var sourceMember = $filter('getMemberById')(members, sourceMemberId);
-      sourceMember.imgsize120 = $filter('getImgSize120')(sourceMemberId);
+      sourceMember.imgsize120 = $filter('getImgSize')(sourceMemberId, 120);
       data.nodes.push(sourceMember);
       // Step 2: Add all target member into nodes and links queue.
       var i=0, len=relationships.length;
@@ -64,7 +64,7 @@ angular.module('members').filter('getMemberIdByFullName', [
         // Add target member into nodes.
         var targetMemberId = relationships[i].targetmemberid;
         var targetMember = $filter('getMemberById')(members, targetMemberId);
-        targetMember.imgsize120 = $filter('getImgSize120')(relationships[i].targetmemberid);
+        targetMember.imgsize120 = $filter('getImgSize')(relationships[i].targetmemberid, 120);
         data.nodes.push(targetMember);
 
         // Add links.
