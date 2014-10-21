@@ -65,7 +65,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.d3Links = forceData.links;
               $scope.details = forceData.details;
               $scope.currentGroup = 0;
-              $scope.svgWidth = 800;
+              $scope.svgWidth = 555;
               $scope.svgHeight = 600;
               $scope.onTargetMemberHover = function($event) {
                 var targetMemberId = angular.element($event.target).scope().node.memberid;

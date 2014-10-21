@@ -79,13 +79,14 @@ angular.module('members').filter('getMemberIdByFullName', [
         data.links.push(link);
 
         // Add details.
+        var introductionMember = $filter('getMemberById')(members, relationships[i].introductionmemberid);
         if (parseInt(relationships[i].group) >= data.details.length) {
           var detail = {
             'group': relationships[i].group,
             'keyword': relationships[i].keyword,
             'content': relationships[i].content,
             'introduction': relationships[i].introduction,
-            //'introductionmember': $filter('getMemberById')(members, relationships[i].introductionmemberid),
+            'introductionmembername': introductionMember.firstname + ' ' + introductionMember.lastname,
             'introductiondate': relationships[i].introductiondate,
             'imgurl': relationships[i].imgurl
           };
