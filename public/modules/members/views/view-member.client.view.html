@@ -28,8 +28,10 @@
         <p data-ng-bind="member.lastname"></p>
         <span class="label label-default">{{ member.generation | getGeneration }}</span>
         <span class="label label-default">{{ member.team | getTeam }}</span>
-        <span class="label label-default">{{ member.concurrent | getTeam }} 兼任</span>
-        <span class="label label-default">{{ member.job | getJob }}</span>
+        <span class="label label-default"
+              ng-show="member.concurrent">{{ member.concurrent | getTeam }} 兼任</span>
+        <span class="label label-default"
+              ng-show="member.job">{{ member.job | getJob }}</span>
         <dl class="dl-horizontal">
           <dt>暱稱</dt>
           <dd data-ng-bind="member.nickname"></dd>
@@ -40,6 +42,8 @@
           <dd data-ng-bind="member.bloodtype"></dd>
           <dt>出生地</dt>
           <dd data-ng-bind="member.birthplace"></dd>
+          <dt>身高</dt>
+          <dd data-ng-bind="member.height + 'cm'"></dd>
           <dt>興趣</dt>
           <dd data-ng-bind="member.interest"></dd>
           <dt>特技</dt>
@@ -47,11 +51,11 @@
           <dt>魅力點</dt>
           <dd data-ng-bind="member.charmingpoint"></dd>
         </dl>
-        <p data-ng-bind="member.officialblogurl"></p>
-        <p data-ng-bind="member.ameblourl"></p>
-        <p data-ng-bind="member.twitterurl"></p>
-        <p data-ng-bind="member.googleplusurl"></p>
-        <p data-ng-bind="member.nanagogourl"></p>
+        <p ng-show="member.officialblogurl" data-ng-bind="member.officialblogurl"></p>
+        <p ng-show="member.ameblourl" data-ng-bind="member.ameblourl"></p>
+        <p ng-show="member.twitterurl" data-ng-bind="member.twitterurl"></p>
+        <p ng-show="member.googleplusurl" data-ng-bind="member.googleplusurl"></p>
+        <p ng-show="member.nanagogourl" data-ng-bind="member.nanagogourl"></p>
         <p ng-bind-html="member.description"></p>
       </div>
     </div>
@@ -150,12 +154,16 @@
     <div deckgrid
          magnific-popup
          class="deckgrid gallery"
-         source="images">
+         source="images">   
       <a data-ng-href="{{ card.imgurl }}"
          title="{{ card.description }}">
-        <div>
-          <!-- <img data-imageload class="animation-fade" data-loadedclass="animation-faded" data-ng-src="{{ card.imgurl | thumbnail }}"> -->
-          <img data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+        <div class="photo">
+          <div class="photo-wrapper fade">
+            <img imageload
+                 class="animation-fade"
+                 data-loadedclass="animation-faded"
+                 data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+          </div>
         </div>
       </a>
     </div>
