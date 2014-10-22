@@ -58,7 +58,13 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
               // Initialize member module.
-              $scope.member.imgSize320 = $filter('getImgSize')($scope.member.memberid, 320);
+              $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
+              $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
+              $scope.member.img2011120 = $filter('getImgURL')($scope.member.memberid, 120, 2011);
+              $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);
+              $scope.member.img2012120 = $filter('getImgURL')($scope.member.memberid, 120, 2012);
+              $scope.member.img2013320 = $filter('getImgURL')($scope.member.memberid, 320, 2013);
+              $scope.member.img2013120 = $filter('getImgURL')($scope.member.memberid, 120, 2013);
               // Initialize D3 module.
               var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
               $scope.d3Nodes = forceData.nodes;

@@ -3,16 +3,33 @@
   <section id="member">
     <div class="row">
       <div class="col-md-6 col-md-push-6">
-        <img imageload
-             class="animation-fade center-block img-responsive"
-             data-loadedclass="animation-faded"
-             data-ng-src="{{ member.imgSize320 }}">
+        <div magnific-popup>
+          <a data-ng-href="{{ member.img2014320 }}" title="2014">
+            <img imageload
+                 class="animation-fade center-block img-responsive"
+                 data-loadedclass="animation-faded"
+                 data-ng-src="{{ member.img2014320 }}">
+          </a>
+          <a data-ng-href="{{ member.img2011320 }}" title="2011">
+            <img data-ng-src="{{ member.img2011120 }}">
+          </a>
+          <a data-ng-href="{{ member.img2012320 }}" title="2012">
+            <img data-ng-src="{{ member.img2012120 }}">
+          </a>
+          <a data-ng-href="{{ member.img2013320 }}" title="2013">
+            <img data-ng-src="{{ member.img2013120 }}">
+          </a>
+        </div>
       </div>
       <div class="col-md-6 col-md-pull-6">
         <p data-ng-bind="member.firstnameen"></p>
         <p data-ng-bind="member.lastnameen"></p>
         <p data-ng-bind="member.firstname"></p>
         <p data-ng-bind="member.lastname"></p>
+        <span class="label label-default">{{ member.generation | getGeneration }}</span>
+        <span class="label label-default">{{ member.team | getTeam }}</span>
+        <span class="label label-default">{{ member.concurrent | getTeam }} 兼任</span>
+        <span class="label label-default">{{ member.job | getJob }}</span>
         <dl class="dl-horizontal">
           <dt>暱稱</dt>
           <dd data-ng-bind="member.nickname"></dd>
@@ -20,7 +37,7 @@
           <dt>生日</dt>
           <dd data-ng-bind="member.birthday"></dd>
           <dt>血型</dt>
-          <dd data-ng-bind=""></dd>
+          <dd data-ng-bind="member.bloodtype"></dd>
           <dt>出生地</dt>
           <dd data-ng-bind="member.birthplace"></dd>
           <dt>興趣</dt>
@@ -30,20 +47,23 @@
           <dt>魅力點</dt>
           <dd data-ng-bind="member.charmingpoint"></dd>
         </dl>
-        <p data-ng-bind="member.team"></p>
-        <p data-ng-bind="member.generation"></p>
+        <p data-ng-bind="member.officialblogurl"></p>
+        <p data-ng-bind="member.ameblourl"></p>
+        <p data-ng-bind="member.twitterurl"></p>
         <p data-ng-bind="member.googleplusurl"></p>
+        <p data-ng-bind="member.nanagogourl"></p>
         <p ng-bind-html="member.description"></p>
       </div>
     </div>
   </section>
   <hr>
   <section id="keywords">
-    <slick init-onload="true"
+    <slick magnific-popup
+           init-onload="true"
            data="keywords"
-           dots="true">
-      <div magnific-popup 
-           data-ng-repeat="keyword in keywords">
+           dots="true"
+           autoplay="true">
+      <div data-ng-repeat="keyword in keywords">
         <div class="row">
           <div class="col-md-6">
             <a data-ng-href="{{ keyword.imgurl }}" 
@@ -81,7 +101,7 @@
                       r="60" />
             </clipPath>
             <image xlink:href=""
-                   ng-xlink-href="{{ node.imgsize120 }}"
+                   ng-xlink-href="{{ node.img2014120 }}"
                    ng-x="{{ node.x - 60 }}"
                    ng-y="{{ node.y - 75 }}"
                    width="120"
@@ -97,13 +117,13 @@
         </svg>
       </div>
       <div class="col-md-6">
-        <slick init-onload="true"
+        <slick magnific-popup
+               init-onload="true"
                data="details"
                dots="true"
                arrows="false"
                current-index="currentGroup">
-          <div magnific-popup
-               data-ng-repeat="detail in details">
+          <div data-ng-repeat="detail in details">
             <a data-ng-href="{{ detail.imgurl }}"
                title="{{ detail.content }}">
               <img class="img-responsive"
@@ -113,7 +133,7 @@
             <p ng-bind-html="detail.content"></p>
             <blockquote>
               <p data-ng-bind="detail.introduction"></p>
-              <footer data-ng-bind="detail.introductionmembername"></footer>
+              <footer data-ng-bind="detail.introductionsource"></footer>
             </blockquote>
           </div>
         </slick>

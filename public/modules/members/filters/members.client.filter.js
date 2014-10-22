@@ -44,10 +44,84 @@ angular.module('members').filter('getMemberIdByFullName', [
       }
     };
   }
-]).filter('getImgSize', [
+]).filter('getImgURL', [
   function() {
-    return function(memberId, size) {
-      return '/modules/members/img/{1}/{0}_{1}.jpg'.replace('{0}', ('0000' + memberId).slice(-4)).replace(new RegExp('{1}'.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), size);
+    return function(memberId, size, year) {
+      size = size || 320;
+      year = year || 2014;
+      var regexp = function(str) {
+        return new RegExp(str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
+      };
+      return '/modules/members/img/{2}/{1}/{0}_{1}_{2}.jpg'
+        .replace('{0}', ('0000' + memberId).slice(-4))
+        .replace(regexp('{1}'), size)
+        .replace(regexp('{2}'), year);
+    };
+  }
+]).filter('getGeneration', [
+  function() {
+    return function(generation) {
+      if (generation == 4) {
+        return 'AKB48 三期生';
+      } else if (generation == 6) {
+        return 'AKB48 五期生';
+      } else if (generation == 16) {
+        return 'SKE48 四期生';
+      } else if (generation == 20) {
+        return 'HKT48 一期生';
+      } else if (generation == 25) {
+        return 'HKT48 二期生';
+      } else if (generation == 29) {
+        return 'HKT48 三期生';
+      } else if (generation == 30) {
+        return '選秀生';
+      } else {
+        return '';
+      }
+    };
+  }
+]).filter('getTeam', [
+  function() {
+    return function(team) {
+      if (team == 23) {
+        return 'AKB48 Team A';
+      } else if (team == 24) {
+        return 'AKB48 Team K';
+      } else if (team == 25) {
+        return 'AKB48 Team B';
+      } else if (team == 27) {
+        return 'SKE48 Team S';
+      } else if (team == 29) {
+        return 'SKE48 Team E';
+      } else if (team == 30) {
+        return 'NMB48 Team N';
+      } else if (team == 33) {
+        return 'Team H';
+      } else if (team == 34) {
+        return 'Team KIV';
+      } else if (team == 35) {
+        return '研究生';
+      } else {
+        return '';
+      }
+    };
+  }
+]).filter('getJob', [
+  function() {
+    return function(job) {
+      if (job == 1) {
+        return 'HKT48 劇場支配人兼務';
+      } else if (job == 2) {
+        return 'Team H 隊長';
+      } else if (job == 3) {
+        return 'Team KIV 隊長';
+      } else if (job == 4) {
+        return 'Team H 副隊長';
+      } else if (job == 5) {
+        return 'Team KIV 副隊長';
+      } else {
+        return '';
+      }
     };
   }
 ]).filter('getForceData', ['$filter',
@@ -56,7 +130,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       var data = {'nodes':[], 'links':[], 'details':[]};
       // Step 1: First add source member into nodes.
       var sourceMember = $filter('getMemberById')(members, sourceMemberId);
-      sourceMember.imgsize120 = $filter('getImgSize')(sourceMemberId, 120);
+      sourceMember.img2014120 = $filter('getImgURL')(sourceMemberId, 120, 2014);
       data.nodes.push(sourceMember);
       // Step 2: Add all target member into nodes and links queue.
       var i=0, len=relationships.length;
@@ -64,7 +138,7 @@ angular.module('members').filter('getMemberIdByFullName', [
         // Add target member into nodes.
         var targetMemberId = relationships[i].targetmemberid;
         var targetMember = $filter('getMemberById')(members, targetMemberId);
-        targetMember.imgsize120 = $filter('getImgSize')(relationships[i].targetmemberid, 120);
+        targetMember.img2014120 = $filter('getImgURL')(relationships[i].targetmemberid, 120, 2014);
         data.nodes.push(targetMember);
 
         // Add links.
@@ -86,8 +160,7 @@ angular.module('members').filter('getMemberIdByFullName', [
             'keyword': relationships[i].keyword,
             'content': relationships[i].content,
             'introduction': relationships[i].introduction,
-            'introductionmembername': introductionMember.firstname + ' ' + introductionMember.lastname,
-            'introductiondate': relationships[i].introductiondate,
+            'introductionsource': introductionMember.firstname + ' ' + introductionMember.lastname + ' ' + relationships[i].introductiondate,
             'imgurl': relationships[i].imgurl
           };
           data.details.push(detail);
