@@ -1,171 +1,206 @@
 <section data-ng-controller="MembersController" 
          data-ng-init="findOne()">
   <section id="member">
-    <div class="row">
-      <div class="col-md-6 col-md-push-6">
-        <div magnific-popup>
-          <a data-ng-href="{{ member.img2014320 }}" title="2014">
-            <img imageload
-                 class="animation-fade center-block img-responsive"
-                 data-loadedclass="animation-faded"
-                 data-ng-src="{{ member.img2014320 }}">
-          </a>
-          <a data-ng-href="{{ member.img2011320 }}" title="2011">
-            <img data-ng-src="{{ member.img2011120 }}">
-          </a>
-          <a data-ng-href="{{ member.img2012320 }}" title="2012">
-            <img data-ng-src="{{ member.img2012120 }}">
-          </a>
-          <a data-ng-href="{{ member.img2013320 }}" title="2013">
-            <img data-ng-src="{{ member.img2013120 }}">
-          </a>
-        </div>
-      </div>
-      <div class="col-md-6 col-md-pull-6">
-        <p data-ng-bind="member.firstnameen"></p>
-        <p data-ng-bind="member.lastnameen"></p>
-        <p data-ng-bind="member.firstname"></p>
-        <p data-ng-bind="member.lastname"></p>
-        <span class="label label-default">{{ member.generation | getGeneration }}</span>
-        <span class="label label-default">{{ member.team | getTeam }}</span>
-        <span class="label label-default"
-              ng-show="member.concurrent">{{ member.concurrent | getTeam }} 兼任</span>
-        <span class="label label-default"
-              ng-show="member.job">{{ member.job | getJob }}</span>
-        <dl class="dl-horizontal">
-          <dt>暱稱</dt>
-          <dd data-ng-bind="member.nickname"></dd>
-          <dd data-ng-bind="member.nickname"></dd>
-          <dt>生日</dt>
-          <dd data-ng-bind="member.birthday"></dd>
-          <dt>血型</dt>
-          <dd data-ng-bind="member.bloodtype"></dd>
-          <dt>出生地</dt>
-          <dd data-ng-bind="member.birthplace"></dd>
-          <dt>身高</dt>
-          <dd data-ng-bind="member.height + 'cm'"></dd>
-          <dt>興趣</dt>
-          <dd data-ng-bind="member.interest"></dd>
-          <dt>特技</dt>
-          <dd data-ng-bind="member.expert"></dd>
-          <dt>魅力點</dt>
-          <dd data-ng-bind="member.charmingpoint"></dd>
-        </dl>
-        <p ng-show="member.officialblogurl" data-ng-bind="member.officialblogurl"></p>
-        <p ng-show="member.ameblourl" data-ng-bind="member.ameblourl"></p>
-        <p ng-show="member.twitterurl" data-ng-bind="member.twitterurl"></p>
-        <p ng-show="member.googleplusurl" data-ng-bind="member.googleplusurl"></p>
-        <p ng-show="member.nanagogourl" data-ng-bind="member.nanagogourl"></p>
-        <p ng-bind-html="member.description"></p>
-      </div>
-    </div>
-  </section>
-  <hr>
-  <section id="keywords">
-    <slick magnific-popup
-           init-onload="true"
-           data="keywords"
-           dots="true"
-           autoplay="true">
-      <div data-ng-repeat="keyword in keywords">
+    <div style="height:300px;background:url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');background-size:cover;">
+      <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <a data-ng-href="{{ keyword.imgurl }}" 
-               title="{{ keyword.content }}">
-              <img class="img-responsive"
-                   data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
-            </a>
-          </div>
-          <div class="col-md-6">
-            <p data-ng-bind="keyword.title"></p>
-            <p ng-bind-html="keyword.content"></p>
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            <h1>{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen }} {{ member.lastnameen }}</small></h1>
           </div>
         </div>
       </div>
-    </slick>
-  </section>
-  <hr>
-  <section id="relationships">
-    <div class="row">
-      <div class="col-md-6">
-        <svg ng-attr-width="{{ svgWidth }}"
-             ng-attr-height="{{ svgHeight }}">
-          <line ng-repeat="link in d3Links"
-                class="link"
-                ng-attr-x1="{{ link.source.x }}"
-                ng-attr-y1="{{ link.source.y }}"
-                ng-attr-x2="{{ link.target.x }}"
-                ng-attr-y2="{{ link.target.y }}">
-          </line>
-          <g ng-repeat="node in d3Nodes"
-             class="node">
-            <clipPath id="cut-off-bottom">
-              <circle ng-attr-cx="{{ node.x }}"
-                      ng-attr-cy="{{ node.y }}"
-                      r="60" />
-            </clipPath>
-            <image xlink:href=""
-                   ng-xlink-href="{{ node.img2014120 }}"
-                   ng-x="{{ node.x - 60 }}"
-                   ng-y="{{ node.y - 75 }}"
-                   width="120"
-                   height="150"
-                   clip-path="url(#cut-off-bottom)"
-                   ng-mouseover="onTargetMemberHover($event)"
-                   ng-click="onTargetMemberClick($event)">
-            </image>
-            <text ng-x="{{ node.x }}"
-                  ng-y="{{ node.y + 75 }}"
-                  text-anchor="middle">{{ node.firstname }} {{ node.lastname }}</text>
-          </g>
-        </svg>
-      </div>
-      <div class="col-md-6">
-        <slick magnific-popup
-               init-onload="true"
-               data="details"
-               dots="true"
-               arrows="false"
-               current-index="currentGroup">
-          <div data-ng-repeat="detail in details">
-            <a data-ng-href="{{ detail.imgurl }}"
-               title="{{ detail.content }}">
-              <img class="img-responsive"
-                   data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
-            </a>
-            <p data-ng-bind="detail.keyword"></p>
-            <p ng-bind-html="detail.content"></p>
-            <blockquote>
-              <p data-ng-bind="detail.introduction"></p>
-              <footer data-ng-bind="detail.introductionsource"></footer>
-            </blockquote>
+    </div>
+    <div style="background-color:#fff;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img style="margin-top:-160px;border-style: solid;border-width: 10px;border-color: white;background-color: white;" class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+            <dl class="dl-horizontal">
+              <dt>暱稱</dt>
+              <dd data-ng-repeat="nickname in member.nicknames.split(';')"
+                  data-ng-bind="nickname"></dd>
+              <dt>生日</dt>
+              <dd data-ng-bind="member.birthday"></dd>
+              <dt>血型</dt>
+              <dd data-ng-bind="member.bloodtype"></dd>
+              <dt>出生地</dt>
+              <dd data-ng-bind="member.birthplace"></dd>
+              <dt>身高</dt>
+              <dd data-ng-bind="member.height + 'cm'"></dd>
+              <dt>興趣</dt>
+              <dd data-ng-bind="member.interest"></dd>
+              <dt>特技</dt>
+              <dd data-ng-bind="member.expert"></dd>
+              <dt>魅力點</dt>
+              <dd data-ng-bind="member.charmingpoint"></dd>
+            </dl>
           </div>
-        </slick>
+          <div class="col-md-8">
+            <h4>
+              <span class="label label-default">{{ member.generation | getGeneration }}</span>
+              <span class="label label-default">{{ member.team | getTeam }}</span>
+              <span class="label label-default"
+                    ng-show="member.concurrent">{{ member.concurrent | getTeam }} 兼任</span>
+              <span class="label label-default"
+                    ng-show="member.job">{{ member.job | getJob }}</span>
+            </h4>
+            <article>
+              <p ng-bind-html="member.description"></p>
+              <a ng-show="member.officialblogurl" data-ng-href="{{ member.officialblogurl }}" class="icon icon-official" target="_blank"></a>
+              <a ng-show="member.ameblourl" data-ng-href="{{ member.ameblourl }}" class="icon icon-ameblo" target="_blank"></a>
+              <a ng-show="member.twitterurl" data-ng-href="{{ member.twitterurl }}" class="icon icon-twitter" target="_blank"></a>
+              <a ng-show="member.googleplusurl" data-ng-href="{{ member.googleplusurl }}" class="icon icon-google" target="_blank"></a>
+              <a ng-show="member.nanagogourl" data-ng-href="{{ member.nanagogourl }}" class="icon icon-nanagogo" target="_blank"></a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quote">
+      <div class="container">
+        <h2>“{{ member.catchphrase }}”</h2>
+        <p class="lead text-right" data-ng-bind="member.credit"></p>
+      </div>
+    </div>
+<!--       <div class="row">
+        <div class="col-md-6 col-md-push-6">
+          <div magnific-popup>
+            <a data-ng-href="{{ member.img2014320 }}" title="2014">
+              <img class="img-circle"
+                   data-ng-src="{{ member.img2014320s }}">
+            </a>
+            <a data-ng-href="{{ member.img2011320 }}" title="2011">
+              <img data-ng-src="{{ member.img2011120 }}">
+            </a>
+            <a data-ng-href="{{ member.img2012320 }}" title="2012">
+              <img data-ng-src="{{ member.img2012120 }}">
+            </a>
+            <a data-ng-href="{{ member.img2013320 }}" title="2013">
+              <img data-ng-src="{{ member.img2013120 }}">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-pull-6">
+          
+          
+          
+          
+          
+        </div>
+      </div> -->
+    </div>
+  </section>
+  <section id="keywords">
+    <div class="container">
+      <slick magnific-popup
+             init-onload="true"
+             data="keywords"
+             dots="true"
+             autoplay="true"
+             autoplay-speed="10000"
+             pause-on-dots-hover="true">
+        <div data-ng-repeat="keyword in keywords">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="text-center" data-ng-bind="keyword.title"></h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <article ng-bind-html="keyword.content"></article>
+            </div>
+            <div class="col-md-6">
+              <a data-ng-href="{{ keyword.imgurl }}" 
+                 title="{{ keyword.content }}">
+                <img class="img-responsive"
+                     data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
+              </a>
+            </div>
+          </div>
+        </div>
+      </slick>
+    </div>
+  </section>
+  <section id="relationships">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <slick magnific-popup
+                 init-onload="true"
+                 data="details"
+                 dots="false"
+                 arrows="false"
+                 current-index="currentGroup">
+            <div data-ng-repeat="detail in details">
+              <h1 class="text-center" data-ng-bind="detail.keyword"></h1>
+              <a data-ng-href="{{ detail.imgurl }}"
+                 title="{{ detail.content }}">
+                <img class="img-responsive"
+                     data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
+              </a>
+              <article ng-bind-html="detail.content"></article>
+              <blockquote>
+                <p data-ng-bind="detail.introduction"></p>
+                <footer data-ng-bind="detail.introductionsource"></footer>
+              </blockquote>
+            </div>
+          </slick>
+        </div>
+        <div class="col-md-6">
+          <svg ng-attr-width="{{ svgWidth }}"
+               ng-attr-height="{{ svgHeight }}">
+            <line ng-repeat="link in d3Links"
+                  class="link"
+                  ng-attr-x1="{{ link.source.x }}"
+                  ng-attr-y1="{{ link.source.y }}"
+                  ng-attr-x2="{{ link.target.x }}"
+                  ng-attr-y2="{{ link.target.y }}">
+            </line>
+            <g ng-repeat="node in d3Nodes"
+               class="node">
+              <clipPath id="cut-off-bottom">
+                <circle ng-attr-cx="{{ node.x }}"
+                        ng-attr-cy="{{ node.y }}"
+                        r="60" />
+              </clipPath>
+              <image xlink:href=""
+                     ng-xlink-href="{{ node.img2014120 }}"
+                     ng-x="{{ node.x - 60 }}"
+                     ng-y="{{ node.y - 75 }}"
+                     width="120"
+                     height="150"
+                     clip-path="url(#cut-off-bottom)"
+                     ng-mouseover="onTargetMemberHover($event)"
+                     ng-click="onTargetMemberClick($event)">
+              </image>
+              <text ng-x="{{ node.x }}"
+                    ng-y="{{ node.y + 75 }}"
+                    text-anchor="middle">{{ node.firstname }} {{ node.lastname }}</text>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
-  <hr>
   <section id="images">
-    <!-- <ul class="photos">
-      <li data-ng-repeat="image in images" class="photo">
-        <img bn-lazy-src="{{ image.imgurl | thumbnail }}">
-      </li>
-    </ul> -->
-    <div deckgrid
-         magnific-popup
-         class="deckgrid gallery"
-         source="images">   
-      <a data-ng-href="{{ card.imgurl }}"
-         title="{{ card.description }}">
-        <div class="photo">
-          <div class="photo-wrapper fade">
-            <img imageload
-                 class="animation-fade"
-                 data-loadedclass="animation-faded"
-                 data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+    <div class="container">
+      <div deckgrid
+           magnific-popup
+           class="deckgrid gallery"
+           source="images">   
+        <a data-ng-href="{{ card.imgurl }}"
+           title="{{ card.description }}">
+          <div class="photo">
+            <div class="photo-wrapper fade">
+              <img imageload
+                   class="animation-fade"
+                   data-loadedclass="animation-faded"
+                   data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
   </section>
 </section>

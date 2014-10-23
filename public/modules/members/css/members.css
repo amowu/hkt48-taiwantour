@@ -1,3 +1,118 @@
+body {
+  background-color: #000;
+}
+
+#member .container {
+  height: 100%;
+}
+#member .container .row {
+  height: 100%;
+}
+#member .container .row .col-md-8 {
+  height: 100%;
+}
+#member .container .row h1 {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  font-size: 63px;
+}
+#member .container .row h1 small {
+  font-style: 65%;
+  color: #777;
+}
+#member .container .row dl {
+  margin-top: 30px;
+}
+#member .container .row dl dt {
+  color: #494749;
+}
+#member .container .row dl dd {
+  color: #393e42;
+}
+#member .container .row article {
+  line-height: 1.5;
+}
+#member .container .row article:first-letter {
+  display: block;
+  font-size: 200%;
+  overflow: visible;
+  /*float: left;*/
+  position: relative;
+  color: #EC4D68;
+  font-weight: bold;
+}
+#member .container .row article .icon {
+  width: 32px;
+  height: 32px;
+  display:inline-block;
+  border: none;
+  transition: all 0.1s ease;
+}
+#member .container .row article .icon:hover {
+  border-radius: 50%;
+}
+#member .container .row article .icon-official {
+  background: url('/modules/members/img/icon.png') 0px 0px;
+}
+#member .container .row article .icon-ameblo {
+  background: url('/modules/members/img/icon.png') -32px 0px;
+}
+#member .container .row article .icon-twitter {
+  background: url('/modules/members/img/icon.png') -64px 0px;
+}
+#member .container .row article .icon-google {
+  background: url('/modules/members/img/icon.png') -96px 0px;
+}
+#member .container .row article .icon-nanagogo {
+  background: url('/modules/members/img/icon.png') -128px 0px;
+}
+#member .quote {
+  background-color: #616365;
+  color: #fff;
+  padding: 40px 15px 0px 15px;
+  text-align: center;
+}
+
+#keywords {
+  background-color: #393e42;
+  padding-bottom: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: #32373b;
+  border-bottom-width: 5px;
+}
+#keywords .container .row h1 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+#keywords .container .row article {
+  color: #fff;
+  line-height: 1.5;
+}
+#keywords .container .row article:first-letter {
+  display: block;
+  font-size: 200%;
+  overflow: visible;
+  position: relative;
+  color: #fff;
+  font-weight: bold;
+}
+
+#relationships {
+  /*background: #F1C926 url('/modules/members/img/bg.png') repeat right top;*/
+  background-color: #F1C926;
+}
+#relationships .container .row article {
+  line-height: 1.5;
+}
+#relationships .container .row article:first-letter {
+  display: block;
+  font-size: 200%;
+  overflow: visible;
+  position: relative;
+  font-weight: bold;
+}
+
 /* d3 */
 .node {
 }

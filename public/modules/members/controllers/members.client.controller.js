@@ -59,6 +59,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
               // Initialize member module.
               $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
+              $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
               $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
               $scope.member.img2011120 = $filter('getImgURL')($scope.member.memberid, 120, 2011);
               $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);

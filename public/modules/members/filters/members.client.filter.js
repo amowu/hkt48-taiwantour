@@ -46,16 +46,18 @@ angular.module('members').filter('getMemberIdByFullName', [
   }
 ]).filter('getImgURL', [
   function() {
-    return function(memberId, size, year) {
+    return function(memberId, size, year, isSquare) {
       size = size || 320;
       year = year || 2014;
+      isSquare = isSquare || false;
       var regexp = function(str) {
         return new RegExp(str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
       };
-      return '/modules/members/img/{2}/{1}/{0}_{1}_{2}.jpg'
+      return '/modules/members/img/{2}/{1}{3}/{0}_{1}{3}_{2}.jpg'
         .replace('{0}', ('0000' + memberId).slice(-4))
         .replace(regexp('{1}'), size)
-        .replace(regexp('{2}'), year);
+        .replace(regexp('{2}'), year)
+        .replace(regexp('{3}'), isSquare? 's' : '');
     };
   }
 ]).filter('getGeneration', [
