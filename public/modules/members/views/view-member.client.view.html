@@ -1,7 +1,7 @@
 <section data-ng-controller="MembersController" 
          data-ng-init="findOne()">
   <section id="member">
-    <div style="height:300px;background:url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');background-size:cover;">
+    <div class="cover">
       <div class="container">
         <div class="row">
           <div class="col-md-4"></div>
@@ -11,11 +11,11 @@
         </div>
       </div>
     </div>
-    <div style="background-color:#fff;">
+    <div class="info">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <img style="margin-top:-160px;border-style: solid;border-width: 10px;border-color: white;background-color: white;" class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+            <img class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
             <dl class="dl-horizontal">
               <dt>暱稱</dt>
               <dd data-ng-repeat="nickname in member.nicknames.split(';')"
@@ -62,33 +62,6 @@
         <h2>“{{ member.catchphrase }}”</h2>
         <p class="lead text-right" data-ng-bind="member.credit"></p>
       </div>
-    </div>
-<!--       <div class="row">
-        <div class="col-md-6 col-md-push-6">
-          <div magnific-popup>
-            <a data-ng-href="{{ member.img2014320 }}" title="2014">
-              <img class="img-circle"
-                   data-ng-src="{{ member.img2014320s }}">
-            </a>
-            <a data-ng-href="{{ member.img2011320 }}" title="2011">
-              <img data-ng-src="{{ member.img2011120 }}">
-            </a>
-            <a data-ng-href="{{ member.img2012320 }}" title="2012">
-              <img data-ng-src="{{ member.img2012120 }}">
-            </a>
-            <a data-ng-href="{{ member.img2013320 }}" title="2013">
-              <img data-ng-src="{{ member.img2013120 }}">
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6 col-md-pull-6">
-          
-          
-          
-          
-          
-        </div>
-      </div> -->
     </div>
   </section>
   <section id="keywords">

@@ -1,3 +1,18 @@
+#member .cover {
+  height: 300px;
+  background: url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');
+  background-size: cover;
+}
+#member .info {
+  background-color:#fff;
+}
+#member .info .container .row img {
+  margin-top: -160px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: white;
+  background-color: white;
+}
 #member .container {
   height: 100%;
 }
