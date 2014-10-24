@@ -125,6 +125,18 @@
   </section>
   <section id="relationships">
     <div class="container">
+      <slick init-onload="true"
+             data="details"
+             dots="false"
+             arrows="false"
+             infinite="false"
+             draggable="false"
+             current-index="currentGroup">
+        <div data-ng-repeat="detail in details">
+          <h1 class="text-center"
+            data-ng-bind="detail.keyword"></h1>
+        </div>
+      </slick>
       <div class="row">
         <div class="col-md-6">
           <slick magnific-popup
@@ -133,9 +145,9 @@
                  dots="false"
                  arrows="false"
                  infinite="false"
+                 draggable="false"
                  current-index="currentGroup">
             <div data-ng-repeat="detail in details">
-              <h1 class="text-center" data-ng-bind="detail.keyword"></h1>
               <a data-ng-href="{{ detail.imgurl }}"
                  title="{{ detail.content }}">
                 <img class="img-responsive"

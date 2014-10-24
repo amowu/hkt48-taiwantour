@@ -103,8 +103,11 @@
   border-bottom-color: #d2a245;
   border-bottom-width: 5px;
 }
-#relationships .container .row h1 {
-  color: #1B1A1A;
+#relationships .container .slick-slider{
+  margin-bottom: 0px;
+}
+#relationships .container h1 {
+  color: #393e42;
   margin-bottom: 20px;
 }
 #relationships .container .row a {
