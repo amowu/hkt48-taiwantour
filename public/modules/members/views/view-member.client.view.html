@@ -98,7 +98,8 @@
              data="keywords"
              dots="true"
              autoplay="true"
-             autoplay-speed="10000"
+             infinite="false"
+             autoplay-speed="6000"
              pause-on-dots-hover="true">
         <div data-ng-repeat="keyword in keywords">
           <div class="row">
@@ -131,6 +132,7 @@
                  data="details"
                  dots="false"
                  arrows="false"
+                 infinite="false"
                  current-index="currentGroup">
             <div data-ng-repeat="detail in details">
               <h1 class="text-center" data-ng-bind="detail.keyword"></h1>
@@ -202,5 +204,11 @@
         </a>
       </div>
     </div>
+    <div class="container footer">
+      <img class="img-responsive" src="/modules/members/img/footer.png">
+    </div>
+  </section>
+  <section id="footer">
+    
   </section>
 </section>
