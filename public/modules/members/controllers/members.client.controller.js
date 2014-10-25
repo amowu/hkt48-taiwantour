@@ -1,0 +1,103 @@
+'use strict';
+
+// Members controller
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication',
+  function($scope, $filter, $http, $stateParams, $location, Authentication) {
+    $scope.authentication = Authentication;
+
+    // Find a list of Members.
+    $scope.find = function() {
+      $http.get('modules/members/members.json').success(function(data) {
+        $scope.members = data;
+      });
+    };
+
+    // Find existing Member.
+    $scope.findOne = function() {
+      
+      // Initialize.
+      $scope.members = null; // All members data.
+      $scope.keywords = null; // Current member's keywords array.
+      $scope.relationships = null; // Current member's relationships array.
+      $scope.details = null; // Current member's relationship details array.
+      $scope.d3Nodes = null; // Current member's relationship nodes array for d3.
+      $scope.d3Links = null; // Current member's relationship links array for d3.
+      $scope.currentGroup = 0; // Current selected member's relationship detail group number.
+      $scope.svgWidth = 0; // d3 svg canvas width.
+      $scope.svgHeight = 0; // d3 svg canvas height.
+      $scope.onTargetMemberHover = null; // Current member's target relationship member mouseover event.
+      $scope.onTargetMemberClick = null; // Current member's target relationship member mouseclick event.
+      $scope.images = null; // Currnt member's images array.
+
+      // Get all members data.
+      //
+      // Why need to get all members data?
+      // Because URL route use member fullname not member id,
+      // so I need to get all members data for find member object use.
+      $http.get('modules/members/members.json').error(function(data, status, headers, config) {
+        // Called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log('HTTP get members.json error.');
+        console.log(data);
+      }).success(function(members) {
+        // Find member object by fullname.
+        var member = $filter('getMemberIdByFullName')(members, $stateParams.memberFullName);
+        // Use tabletop to get member's data on google spreadsheet.
+        Tabletop.init({
+          key: '1MlbQ8V-O2Q3vGmquuzqUV4whqtlTpzkKF6VFNTgsYx4', // Key for google spreadsheet.
+          query: 'memberid = ' + member.memberid, // Query by Member ID cloumn.
+          callback: function(data, tabletop) {
+            // Callback data will return four array:
+            // 1. Current member array = tabletop.sheets('member')
+            // 2. Current member's keywords array = tabletop.sheets('keyword')
+            // 3. Current member's relationships array = tabletop.sheets('relationship')
+            // 4. Current member's images array = tabletop.sheets('image')
+            $scope.$apply(function() {
+              $scope.member = tabletop.sheets('member').all()[0];
+              $scope.keywords = tabletop.sheets('keyword').all();
+              $scope.relationships = tabletop.sheets('relationship').all();
+              $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
+              // Initialize member module.
+              $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
+              $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
+              $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
+              $scope.member.img2011120 = $filter('getImgURL')($scope.member.memberid, 120, 2011);
+              $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);
+              $scope.member.img2012120 = $filter('getImgURL')($scope.member.memberid, 120, 2012);
+              $scope.member.img2013320 = $filter('getImgURL')($scope.member.memberid, 320, 2013);
+              $scope.member.img2013120 = $filter('getImgURL')($scope.member.memberid, 120, 2013);
+              // Initialize D3 module.
+              var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
+              $scope.d3Nodes = forceData.nodes;
+              $scope.d3Links = forceData.links;
+              $scope.details = forceData.details;
+              $scope.currentGroup = 0;
+              $scope.svgWidth = 555;
+              $scope.svgHeight = 600;
+              $scope.onTargetMemberHover = function($event) {
+                var targetMemberId = angular.element($event.target).scope().node.memberid;
+                var group = $filter('getGroupByTartgetMemberId')($scope.d3Links, targetMemberId);
+                $scope.currentGroup = group;
+              };
+              $scope.onTargetMemberClick = function($event) {
+                var member = angular.element($event.target).scope().node;
+                var fullName = member.firstnameen + '-' + member.lastnameen;
+                $location.path('members/' + fullName);
+              };
+              var force = d3.layout.force()
+                .nodes($scope.d3Nodes)
+                .links($scope.d3Links)
+                .charge(-1000)
+                .linkDistance(200)
+                .size([$scope.svgWidth, $scope.svgHeight])
+                .on('tick', function() {
+                  $scope.$apply();
+                })
+                .start();
+            });
+          }
+        });
+      });
+    };
+  }
+]);

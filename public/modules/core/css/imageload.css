@@ -1,0 +1,12 @@
+.animation-fade {
+  opacity:0;
+}
+.animation-faded {
+  opacity:1;
+}
+.animation-faded {
+  -webkit-transition: opacity 1s linear .2s;
+  -moz-transition: opacity 1s linear .2s;
+  -o-transition: opacity 1s linear .2s;
+  transition: opacity 1s linear .2s;
+}

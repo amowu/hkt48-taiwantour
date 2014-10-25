@@ -1,0 +1,294 @@
+#member .cover {
+  height: 300px;
+  background: url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');
+  background-size: cover;
+}
+#member .info {
+  background-color:#fff;
+}
+#member .info .container .row img {
+  margin-top: -160px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: white;
+  background-color: white;
+}
+#member .container {
+  height: 100%;
+}
+#member .container .row {
+  height: 100%;
+}
+#member .container .row .col-md-8 {
+  height: 100%;
+}
+#member .container .row h1 {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  font-size: 63px;
+}
+#member .container .row h1 small {
+  font-style: 65%;
+  color: #777;
+}
+#member .container .row dl {
+  margin-top: 30px;
+}
+#member .container .row dl dt {
+  color: #494749;
+}
+#member .container .row dl dd {
+  color: #393e42;
+}
+#member .container .row article {
+  line-height: 1.5;
+}
+#member .container .row article:first-letter {
+  display: block;
+  font-size: 200%;
+  overflow: visible;
+  /*float: left;*/
+  position: relative;
+  color: #EC4D68;
+  font-weight: bold;
+}
+#member .container .row article .icon {
+  width: 32px;
+  height: 32px;
+  display:inline-block;
+  border: none;
+  transition: all 0.1s ease;
+}
+#member .container .row article .icon:hover {
+  border-radius: 50%;
+}
+#member .container .row article .icon-official {
+  background: url('/modules/members/img/icon.png') 0px 0px;
+}
+#member .container .row article .icon-ameblo {
+  background: url('/modules/members/img/icon.png') -32px 0px;
+}
+#member .container .row article .icon-twitter {
+  background: url('/modules/members/img/icon.png') -64px 0px;
+}
+#member .container .row article .icon-google {
+  background: url('/modules/members/img/icon.png') -96px 0px;
+}
+#member .container .row article .icon-nanagogo {
+  background: url('/modules/members/img/icon.png') -128px 0px;
+}
+#member .quote {
+  background-color: #616365;
+  color: #fff;
+  padding: 40px 15px 0px 15px;
+  text-align: center;
+}
+
+#keywords {
+  background-color: #393e42;
+  padding-bottom: 20px;
+  /*border-bottom-style: solid;
+  border-bottom-color: #32373b;
+  border-bottom-width: 5px;*/
+}
+#keywords .container .row h1 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+#keywords .container .row article {
+  color: #fff;
+  line-height: 1.5;
+}
+#keywords .container .row article:first-letter {
+  display: block;
+  font-size: 200%;
+  overflow: visible;
+  position: relative;
+  color: #fff;
+  font-weight: bold;
+}
+#keywords .container .row a {
+  cursor: zoom-in;
+}
+
+#relationships {
+  background: #EBB64E url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
+  border-bottom-style: solid;
+  border-bottom-color: #d2a245;
+  border-bottom-width: 5px;
+}
+#relationships .container .slick-slider{
+  margin-bottom: 0px;
+}
+#relationships .container h1 {
+  color: #393e42;
+  margin-bottom: 20px;
+}
+#relationships .container .row a {
+  cursor: zoom-in;
+}
+#relationships .container .row article {
+  line-height: 1.5;
+  color: #1B1A1A;
+}
+#relationships .container .row article:first-letter {
+  display: block;
+  font-size: 200%;
+  overflow: visible;
+  position: relative;
+  font-weight: bold;
+}
+#relationships .container .row blockquote {
+  border-left: 5px solid #B17E4F;
+  color: #4E3811;
+}
+#relationships .container .row blockquote footer {
+  color: #886643;
+}
+
+#images {
+  min-height: 700px;
+  background: #1f1f1f url('/modules/members/img/LightEffects.png') no-repeat center top;
+}
+#images .container {
+  padding-top: 200px;
+}
+#images .container h1 {
+  font-size: 63px;
+  margin-bottom: 60px;
+  color: #EEE;
+  text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+}
+#images .footer {
+  padding-top: 200px;
+  padding-bottom: 50px;
+  background: url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
+}
+
+#footer {
+  min-height: 300px;
+  border-top-style: solid;
+  border-top-color: #d496a2;
+  border-top-width: 5px;
+  background: #EDA8B6 url('/modules/members/img/LightEffects3.png') no-repeat center top;
+}
+
+/* d3 */
+.node {
+}
+.node image {
+  cursor: pointer;
+}
+.node text {
+  pointer-events: none;
+}
+.link {
+  stroke: #654842;
+  stroke-width: 1px;
+}
+
+/* deckgrid */
+.deckgrid {
+}
+.deckgrid .column {
+  float: left;
+}
+.deckgrid .column .photo {
+  /*background:#fff url(images/spinner.gif) center 30px no-repeat;*/
+  /*border: 1px solid rgba(0, 0, 0, .15);*/
+  /*border-radius: 10px;*/
+  margin: 0 10px 10px 0;
+  position: relative;
+}
+.deckgrid .column.size-1-5 {
+  width: 228px;
+}
+.deckgrid .column.size-1-4 {
+  width: 235px;
+}
+.deckgrid .column.size-1-3 {
+  width: 240px;
+}
+.deckgrid .column.size-1-2 {
+  width: 295px;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+.deckgrid[deckgrid]::before {
+  content: '2 .column.size-1-2';
+  font-size: 0;
+  visibility: hidden;
+}
+.deckgrid .column .photo {
+  /*background: #000 url(images/spinner.gif) center 30px no-repeat;*/
+}
+.deckgrid .column .photo .fade {
+  opacity: 1;
+}
+.deckgrid .column .photo .fade:hover {
+  opacity: 0.75;
+}
+.deckgrid .column .photo .photo-wrapper {
+  max-width: 295px;
+  overflow: hidden;
+  border-radius: 3px;
+  cursor: zoom-in;
+}
+.deckgrid .column .photo .photo-wrapper img {
+  min-width: 295px;
+  max-width: 295px;
+  height: auto;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .deckgrid[deckgrid]::before {
+    content: '3 .column.size-1-3';
+  }
+  .deckgrid .column .photo .photo-wrapper {
+    max-width: 240px;
+  }
+  .deckgrid .column .photo .photo-wrapper img {
+    min-width: 240px;
+    max-width: 240px;
+  }
+  .deckgrid .column.size-1-3 {
+    width: 240px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .deckgrid[deckgrid]::before {
+    content: '4 .column.size-1-4';
+  }
+  .deckgrid .column .photo .photo-wrapper {
+    max-width: 235px;
+  }
+  .deckgrid .column .photo .photo-wrapper img {
+    min-width: 235px;
+    max-width: 235px;
+  }
+  .deckgrid .column.size-1-4 {
+    width: 235px;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .deckgrid[deckgrid]::before {
+    content: '5 .column.size-1-5';
+  }
+  .deckgrid .column .photo .photo-wrapper {
+    max-width: 228px;
+  }
+  .deckgrid .column .photo .photo-wrapper img {
+    min-width: 228px;
+    max-width: 228px;
+  }
+  .deckgrid .column.size-1-5 {
+    width: 228px;
+  }
+}
