@@ -45,6 +45,14 @@
   transition-duration: 0s;
 }
 
+#members .container .row .member {
+  min-height: 200px;
+}
+#members .container .row .member a p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #member .cover {
   height: 300px;
   background: url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');
@@ -128,8 +136,11 @@
 #member .quote {
   background-color: #616365;
   color: #fff;
-  padding: 40px 15px 0px 15px;
+  padding: 15px 15px 0px 15px;
   text-align: center;
+}
+#member .quote .container h2 {
+  line-height: 1.5;
 }
 
 #keywords {

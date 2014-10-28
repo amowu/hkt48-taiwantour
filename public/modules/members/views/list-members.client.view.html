@@ -1,4 +1,4 @@
-<section data-ng-controller="MembersController" data-ng-init="find()">
+<section id="members" data-ng-controller="MembersController" data-ng-init="find()">
   <div class="container">
     <div class="row">
       <div class="btn-group">
@@ -14,35 +14,25 @@
     <div class="row">
       <div class=""
            data-ng-repeat="member in members | orderBy:[orderProp,'memberid']:canReverse(orderProp) | groupBy:[orderProp]">
-        <div class="col-md-12"
+        <div class="col-xs-12"
              ng-show="member.groupByCHANGED">
-          <div ng-show="orderProp === 'team'">
-            <h2>{{ member[orderProp] | getTeam }}</h2>
-          </div>
-          <div ng-show="orderProp === 'generation'">
-            <h2>{{ member[orderProp] | getGeneration }}</h2>
-          </div>
-          <div ng-show="orderProp === 'year'">
-            <h2>{{ member[orderProp] }}歲</h2>
-          </div>
-          <div ng-show="orderProp === 'zodiacsignorder'">
-            <h2>{{ member.zodiacsign }} {{ member.zodiacsignsymbol }}</h2>
-          </div>
-          <div ng-show="orderProp === 'bloodtype'">
-            <h2>{{ member[orderProp] | getBloodType }}</h2>
-          </div>
-          <div ng-show="orderProp === 'birthplace'">
-            <h2>{{ member[orderProp] | getJapanPlace }}</h2>
-          </div>
-          <div ng-show="orderProp === 'height'">
-            <h2>{{ member[orderProp] }}cm</h2>
+          <div class="page-header">
+            <h1 ng-show="orderProp === 'team'">{{ member[orderProp] | getTeam }}</h1>
+            <h1 ng-show="orderProp === 'generation'">{{ member[orderProp] | getGeneration }} <small>{{ member[orderProp] | getGenerationDate | date:'yyyy年M月d日' }}</small></h1>
+            <h1 ng-show="orderProp === 'year'">{{ member[orderProp] }}歲</h1>
+            <h1 ng-show="orderProp === 'zodiacsignorder'">{{ member.zodiacsign }} {{ member.zodiacsignsymbol }}</h1>
+            <h1 ng-show="orderProp === 'bloodtype'">{{ member[orderProp] | getBloodType }}</h1>
+            <h1 ng-show="orderProp === 'birthplace'">{{ member[orderProp] | getJapanPlace }} <small>{{ member[orderProp] | getJapanZone }}</small></h1>
+            <h1 ng-show="orderProp === 'height'">{{ member[orderProp] }}cm</h1>
           </div>
         </div>
-        <div class="col-md-2">
-          <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}">
+        <div class="member col-xs-6 col-sm-3 col-md-2">
+          <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}" tooltip-html-unsafe="{{ member.catchphrase }}">
             <img class="img-circle center-block"
                  data-ng-src="{{ member.memberid | getImgURL:120:2014:true }}">
             <h4 class="text-center">{{ member.firstname }} {{ member.lastname }}</h4>
+            <p ng-show="member.job" class="text-muted text-center"><small>{{ member.job | getJob }}</small></p>
+            <p ng-show="member.concurrent" class="text-muted text-center"><small>{{ member.concurrent | getTeam }} 兼任</small></p>
           </a>
         </div>
       </div>

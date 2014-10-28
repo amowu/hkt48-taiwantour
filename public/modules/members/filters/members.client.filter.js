@@ -82,6 +82,28 @@ angular.module('members').filter('getMemberIdByFullName', [
       }
     };
   }
+]).filter('getGenerationDate', [
+  function() {
+    return function(generation) {
+      if (generation == 4) {
+        return 1165075200000;
+      } else if (generation == 6) {
+        return 1191600000000;
+      } else if (generation == 16) {
+        return 1283270400000;
+      } else if (generation == 20) {
+        return 1309449600000;
+      } else if (generation == 25) {
+        return 1346428800000;
+      } else if (generation == 29) {
+        return 1383235200000;
+      } else if (generation == 30) {
+        return 1384012800000;
+      } else {
+        return '';
+      }
+    };
+  }
 ]).filter('getTeam', [
   function() {
     return function(team) {
@@ -316,5 +338,21 @@ angular.module('members').filter('getMemberIdByFullName', [
       else if (place == 46) { return '鹿兒島縣'; }
       else { return '不明'; }
     }
+  }
+]).filter('getJapanZone', [
+  function () {
+    return function(place) {
+      var placeNum = parseInt(place);
+      if ( 1 == placeNum ) { return '北海道地方'; }
+      if ( 1 <= placeNum && placeNum < 8 ) { return '東北地方'; }
+      if ( 8 <= placeNum && placeNum < 15 ) { return '關東地方'; }
+      if ( 15 <= placeNum && placeNum < 24 ) { return '中部地方'; }
+      if ( 24 <= placeNum && placeNum < 31 ) { return '近畿地方'; }
+      if ( 31 <= placeNum && placeNum < 36 ) { return '中國地方'; }
+      if ( 36 <= placeNum && placeNum < 40 ) { return '四國地方'; }
+      if ( 40 <= placeNum && placeNum < 47 ) { return '九州地方'; }
+      if ( 47 == placeNum ) { return '沖繩地方'; }
+      return '海外';
+    };
   }
 ]);
