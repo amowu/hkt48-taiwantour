@@ -21,11 +21,11 @@
               <dd data-ng-repeat="nickname in member.nicknames.split(';')"
                   data-ng-bind="nickname"></dd>
               <dt>生日</dt>
-              <dd data-ng-bind="member.birthday"></dd>
+              <dd>{{ member.birthday | date:'yyyy年M月d日' }} <span class="badge">{{ member.birthday | getAge }}</span> <span class="badge">{{ member.zodiacsignsymbol }}</span></dd>
               <dt>血型</dt>
-              <dd data-ng-bind="member.bloodtype"></dd>
+              <dd>{{ member.bloodtype | getBloodType }}</dd>
               <dt>出生地</dt>
-              <dd data-ng-bind="member.birthplace"></dd>
+              <dd>{{ member.birthplace | getJapanPlace }}</dd>
               <dt>身高</dt>
               <dd data-ng-bind="member.height + 'cm'"></dd>
               <dt>興趣</dt>
@@ -72,7 +72,7 @@
              dots="true"
              autoplay="true"
              infinite="false"
-             autoplay-speed="6000"
+             autoplay-speed="10000"
              pause-on-dots-hover="true">
         <div data-ng-repeat="keyword in keywords">
           <div class="row">
@@ -197,3 +197,6 @@
     
   </section>
 </section>
+    <!-- <div class="alert alert-warning text-center" data-ng-hide="!members.$resolved || members.length">
+      No Members yet, why don't you <a href="/#!/members/create">create one</a>?
+    </div> -->

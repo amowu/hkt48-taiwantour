@@ -7,7 +7,19 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
 
     // Find a list of Members.
     $scope.find = function() {
+
+      $scope.canReverse = function(orderProp) {
+        return !!~['year','height'].indexOf(orderProp);
+      };
+
       $http.get('modules/members/members.json').success(function(data) {
+        $scope.orderProp = 'team';
+        angular.forEach(data, function(member) {
+          member.year = $filter('getAge')(member.birthday);
+          member.zodiacsign = $filter('getZodiacSign')(member.birthday)[1];
+          member.zodiacsignsymbol = $filter('getZodiacSign')(member.birthday)[3];
+          member.zodiacsignorder = $filter('getZodiacSign')(member.birthday)[2];
+        });
         $scope.members = data;
       });
     };
@@ -58,6 +70,8 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
               // Initialize member module.
+              $scope.member.zodiacsign = $filter('getZodiacSign')($scope.member.birthday)[1];
+              $scope.member.zodiacsignsymbol = $filter('getZodiacSign')($scope.member.birthday)[3];
               $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
               $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
               $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);

@@ -76,7 +76,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       } else if (generation == 29) {
         return 'HKT48 三期生';
       } else if (generation == 30) {
-        return '選秀生';
+        return 'HKT48 選秀生';
       } else {
         return '';
       }
@@ -183,5 +183,138 @@ angular.module('members').filter('getMemberIdByFullName', [
       }
       return 0;
     };
+  }
+]).filter('groupBy', ['$parse', 
+  function($parse) {
+    /**
+     * groupBy
+     *
+     * Define when a group break occurs in a list of items
+     *
+     * @param {array}  the list of items
+     * @param {String} then name of the field in the item from the list to group by
+     * @returns {array} the list of items with an added field name named with "_new" appended to the group by field name
+     *
+     * @example 
+     * <div ng-repeat="item in MyList  | groupBy:'groupfield'" >
+     * <h2 ng-if="item.groupfield_CHANGED">{{item.groupfield}}</h2>
+     *
+     * Typically you'll want to include Angular's orderBy filter first
+     */
+    return function(list, groupBy) {
+
+      var filtered = [];
+      var prevItem = null;
+      var groupChanged = false;
+      // this is a new field which is added to each item where we append "CHANGED"
+      // to indicate a field change in the list
+      // was var newFiled = groupBy + 'CHANGED';
+      var newFiled = 'groupByCHANGED';
+
+      angular.forEach(list, function(item) {
+        
+        groupChanged = false;
+
+        // if not the first item
+        if (prevItem !== null) {
+
+          // check if any of the group by field changed
+
+          // force group_by into Array
+          groupBy = angular.isArray(groupBy) ? groupBy : [groupBy];
+
+          //check each group by parameter
+          for (var i=0, len=groupBy.length; i<len; i++) {
+            if ($parse(groupBy[i])(prevItem) !== $parse(groupBy[i])(item)) {
+              groupChanged = true;
+            }
+          }
+        } else {
+
+          // otherwise we have the first item in the list which is new
+          groupChanged = true;
+        }
+
+        // if the group changed, then add a new field to the item
+        // to indicate this
+        if (groupChanged) {
+          item[newFiled] = true;
+        } else {
+          item[newFiled] = false;
+        }
+
+        filtered.push(item);
+        prevItem = item;
+      });
+
+      return filtered;
+    };
+  }
+]).filter('getAge', [
+  function() {
+    return function(birthday) {
+      return Math.floor(((new Date()).getTime() - birthday) / (1000 * 60 * 60 * 24 * 365));
+    };
+  }
+]).filter('getZodiacSign', [
+  function() {
+    return function(birthday) {
+      var date = new Date(parseInt(birthday));
+ 
+      var dateStr = +[date.getMonth() + 1, ('0' + date.getDate()).slice(-2)].join(''), signs = [
+        [120, '摩羯座', 10, '♑'],
+        [219, '寶瓶座', 11, '♒'],
+        [320, '雙魚座', 12, '♓'],
+        [420, '白羊座', 1, '♈'],
+        [521, '金牛座', 2, '♉'],
+        [621, '雙子座', 3, '♊'],
+        [722, '巨蟹座', 4, '♋'],
+        [822, '獅子座', 5, '♌'],
+        [923, '室女座', 6, '♍'],
+        [1023, '天秤座', 7, '♎'],
+        [1122, '天蠍座', 8, '♏'],
+        [1221, '人馬座', 9, '♐'],
+        [1231, '摩羯座', 10, '♑']
+      ];
+
+      for (var index in signs) {
+        var item = signs[index];
+        if (dateStr <= item[0]) return item;
+      }
+    };
+  }
+]).filter('getBloodType', [
+  function () {
+    return function(bloodType) {
+      if (bloodType == 1) {
+        return 'A';
+      } else if (bloodType == 2) {
+        return 'B';
+      } else if (bloodType == 3) {
+        return 'AB';
+      } else if (bloodType == 4) {
+        return 'O';
+      } else {
+        return '不明';
+      }
+    };
+  }
+]).filter('getJapanPlace', [
+  function () {
+    return function(place) {
+      if (place == 11) { return '埼玉縣'; }
+      else if (place == 13) { return '東京都'; }
+      else if (place == 23) { return '愛知縣'; }
+      else if (place == 35) { return '山口縣'; }
+      else if (place == 38) { return '愛媛縣'; }
+      else if (place == 40) { return '福岡縣'; }
+      else if (place == 41) { return '佐賀縣'; }
+      else if (place == 42) { return '長崎縣'; }
+      else if (place == 43) { return '熊本縣'; }
+      else if (place == 44) { return '大分縣'; }
+      else if (place == 45) { return '宮崎縣'; }
+      else if (place == 46) { return '鹿兒島縣'; }
+      else { return '不明'; }
+    }
   }
 ]);

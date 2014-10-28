@@ -1,24 +1,51 @@
 <section data-ng-controller="MembersController" data-ng-init="find()">
-  <div class="page-header">
-    <h1>Members</h1>
+  <div class="container">
+    <div class="row">
+      <div class="btn-group">
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'team'">隊伍</label>
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'generation'">期數</label>
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'year'">年齡</label>
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'zodiacsignorder'">星座</label>
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'bloodtype'">血型</label>
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'birthplace'">出生地</label>
+        <label class="btn btn-default" ng-model="orderProp" btn-radio="'height'">身高</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class=""
+           data-ng-repeat="member in members | orderBy:[orderProp,'memberid']:canReverse(orderProp) | groupBy:[orderProp]">
+        <div class="col-md-12"
+             ng-show="member.groupByCHANGED">
+          <div ng-show="orderProp === 'team'">
+            <h2>{{ member[orderProp] | getTeam }}</h2>
+          </div>
+          <div ng-show="orderProp === 'generation'">
+            <h2>{{ member[orderProp] | getGeneration }}</h2>
+          </div>
+          <div ng-show="orderProp === 'year'">
+            <h2>{{ member[orderProp] }}歲</h2>
+          </div>
+          <div ng-show="orderProp === 'zodiacsignorder'">
+            <h2>{{ member.zodiacsign }} {{ member.zodiacsignsymbol }}</h2>
+          </div>
+          <div ng-show="orderProp === 'bloodtype'">
+            <h2>{{ member[orderProp] | getBloodType }}</h2>
+          </div>
+          <div ng-show="orderProp === 'birthplace'">
+            <h2>{{ member[orderProp] | getJapanPlace }}</h2>
+          </div>
+          <div ng-show="orderProp === 'height'">
+            <h2>{{ member[orderProp] }}cm</h2>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}">
+            <img class="img-circle center-block"
+                 data-ng-src="{{ member.memberid | getImgURL:120:2014:true }}">
+            <h4 class="text-center">{{ member.firstname }} {{ member.lastname }}</h4>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="list-group">
-    <a data-ng-repeat="member in members" data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}" class="list-group-item">
-      <small class="list-group-item-text">
-        <span data-ng-bind="member.lastname"></span>
-      </small>
-    </a>
-    <!-- <a data-ng-repeat="member in members" data-ng-href="#!/members/{{member._id}}" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="member.created | date:'medium'"></span>
-        by
-        <span data-ng-bind="member.user.displayName"></span>
-      </small>
-    <h4 class="list-group-item-heading" data-ng-bind="member.name"></h4>
-    </a> -->
-  </div>
-  <!-- <div class="alert alert-warning text-center" data-ng-hide="!members.$resolved || members.length">
-    No Members yet, why don't you <a href="/#!/members/create">create one</a>?
-  </div> -->
 </section>
