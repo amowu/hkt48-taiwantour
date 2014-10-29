@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-            <h1>{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen }} {{ member.lastnameen }}</small></h1>
+            <h1>{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen | capitalize }} {{ member.lastnameen | capitalize }}</small></h1>
           </div>
         </div>
       </div>
@@ -14,8 +14,18 @@
     <div class="info">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <img class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+          <div magnific-popup
+               class="col-md-4">
+            <a class="photo-link"
+               data-ng-href="{{ member.img2014320 }}" 
+               title="2014"
+               tooltip-placement="right"
+               tooltip-html-unsafe="{{ member.tooltip }}">
+              <img class="photo center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+            </a>
+            <a ng-show="member.img2013320" data-ng-href="{{ member.img2013320 }}" title="2013"></a>
+            <a ng-show="member.img2012320" data-ng-href="{{ member.img2012320 }}" title="2012"></a>
+            <a ng-show="member.img2011320" data-ng-href="{{ member.img2011320 }}" title="2011"></a>
             <dl class="dl-horizontal">
               <dt>暱稱</dt>
               <dd data-ng-repeat="nickname in member.nicknames.split(';')"
@@ -60,40 +70,42 @@
     <div class="quote">
       <div class="container">
         <h2 ng-bind-html="member.catchphrase"></h2>
-        <p class="lead text-right" data-ng-bind="member.credit"></p>
+        <p class="lead text-right">written by {{ member.credit }}</p>
       </div>
     </div>
   </section>
   <section id="keywords">
     <div class="container">
-      <slick magnific-popup
-             init-onload="true"
-             data="keywords"
-             dots="true"
-             autoplay="true"
-             infinite="false"
-             autoplay-speed="10000"
-             pause-on-dots-hover="true">
-        <div data-ng-repeat="keyword in keywords">
-          <div class="row">
-            <div class="col-md-12">
-              <h1 class="text-center" data-ng-bind="keyword.title"></h1>
+      <div magnific-popup
+           zoom-enabled="true">
+        <slick init-onload="true"
+               data="keywords"
+               dots="true"
+               autoplay="true"
+               infinite="false"
+               autoplay-speed="10000"
+               pause-on-dots-hover="true">
+          <div data-ng-repeat="keyword in keywords">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="text-center" data-ng-bind="keyword.title"></h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <article ng-bind-html="keyword.content"></article>
+              </div>
+              <div class="col-md-6">
+                <a data-ng-href="{{ keyword.imgurl }}" 
+                   title="{{ keyword.content }}">
+                  <img class="img-responsive"
+                       data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
+                </a>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <article ng-bind-html="keyword.content"></article>
-            </div>
-            <div class="col-md-6">
-              <a data-ng-href="{{ keyword.imgurl }}" 
-                 title="{{ keyword.content }}">
-                <img class="img-responsive"
-                     data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
-              </a>
-            </div>
-          </div>
-        </div>
-      </slick>
+        </slick>
+      </div>
     </div>
   </section>
   <section id="relationships">
@@ -112,27 +124,29 @@
       </slick>
       <div class="row">
         <div class="col-md-6">
-          <slick magnific-popup
-                 init-onload="true"
-                 data="details"
-                 dots="false"
-                 arrows="false"
-                 infinite="false"
-                 draggable="false"
-                 current-index="currentGroup">
-            <div data-ng-repeat="detail in details">
-              <a data-ng-href="{{ detail.imgurl }}"
-                 title="{{ detail.content }}">
-                <img class="img-responsive"
-                     data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
-              </a>
-              <article ng-bind-html="detail.content"></article>
-              <blockquote>
-                <p data-ng-bind="detail.introduction"></p>
-                <footer data-ng-bind="detail.introductionsource"></footer>
-              </blockquote>
-            </div>
-          </slick>
+          <div magnific-popup
+               zoom-enabled="true">
+            <slick init-onload="true"
+                   data="details"
+                   dots="false"
+                   arrows="false"
+                   infinite="false"
+                   draggable="false"
+                   current-index="currentGroup">
+              <div data-ng-repeat="detail in details">
+                <a data-ng-href="{{ detail.imgurl }}"
+                   title="{{ detail.content }}">
+                  <img class="img-responsive"
+                       data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
+                </a>
+                <article ng-bind-html="detail.content"></article>
+                <blockquote>
+                  <p data-ng-bind="detail.introduction"></p>
+                  <footer data-ng-bind="detail.introductionsource"></footer>
+                </blockquote>
+              </div>
+            </slick>
+          </div>
         </div>
         <div class="col-md-6">
           <svg ng-attr-width="{{ svgWidth }}"
@@ -172,21 +186,23 @@
   </section>
   <section id="images">
     <div class="container">
-      <div deckgrid
-           magnific-popup
-           class="deckgrid gallery"
-           source="images">   
-        <a data-ng-href="{{ card.imgurl }}"
-           title="{{ card.description }}">
-          <div class="photo">
-            <div class="photo-wrapper fade">
-              <img imageload
-                   class="animation-fade"
-                   data-loadedclass="animation-faded"
-                   data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+      <div magnific-popup
+           zoom-enabled="true">
+        <div deckgrid
+             class="deckgrid gallery"
+             source="images">   
+          <a data-ng-href="{{ card.imgurl }}"
+             title="{{ card.description }}">
+            <div class="photo">
+              <div class="photo-wrapper fade">
+                <img imageload
+                     class="animation-fade"
+                     data-loadedclass="animation-faded"
+                     data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
     <div class="container footer">
