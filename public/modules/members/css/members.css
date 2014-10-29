@@ -61,12 +61,38 @@
 #member .info {
   background-color:#fff;
 }
-#member .info .container .row img {
+#member .info .container .row a.photo-link {
+  cursor: zoom-in;
+}
+#member .info .container .row .photo {
   margin-top: -160px;
   border-style: solid;
   border-width: 10px;
   border-color: white;
   background-color: white;
+}
+#member .info .container .row .tooltip.in {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+#member .info .container .row .tooltip ul {
+  margin: 0;
+  padding: 0; 
+  overflow: hidden;
+  white-space: nowrap;
+}
+#member .info .container .row .tooltip ul li {
+  display: inline;
+  padding-right: 10px;
+}
+#member .info .container .row .tooltip ul li div {
+  display: inline-block;
+}
+#member .info .container .row .tooltip-inner {
+  max-width: 400px;
+  padding: 10px;
+  padding-bottom: 0px;
+  background-color: rgba(0,0,0,0.9);
 }
 #member .container {
   height: 100%;

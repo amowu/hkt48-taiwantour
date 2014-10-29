@@ -73,13 +73,17 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.member.zodiacsign = $filter('getZodiacSign')($scope.member.birthday)[1];
               $scope.member.zodiacsignsymbol = $filter('getZodiacSign')($scope.member.birthday)[3];
               $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
-              $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
-              $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
-              $scope.member.img2011120 = $filter('getImgURL')($scope.member.memberid, 120, 2011);
-              $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);
-              $scope.member.img2012120 = $filter('getImgURL')($scope.member.memberid, 120, 2012);
               $scope.member.img2013320 = $filter('getImgURL')($scope.member.memberid, 320, 2013);
-              $scope.member.img2013120 = $filter('getImgURL')($scope.member.memberid, 120, 2013);
+              $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);
+              $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
+              $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
+              $scope.member.img2013120s = $filter('getImgURL')($scope.member.memberid, 120, 2013, true);
+              $scope.member.img2012120s = $filter('getImgURL')($scope.member.memberid, 120, 2012, true);
+              $scope.member.img2011120s = $filter('getImgURL')($scope.member.memberid, 120, 2011, true);
+
+              // TODO:
+              $scope.member.tooltip = "<ul><li><div><img class='img-circle' src='"+$scope.member.img2013120s+"'><p class='text-center'>2013</p></div></li><li><div><img class='img-circle' src='"+$scope.member.img2012120s+"'><p class='text-center'>2012</p></div></li><li><div><img class='img-circle' src='"+$scope.member.img2011120s+"'><p class='text-center'>2011</p></div></li></ul>";
+
               // Initialize D3 module.
               var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
               $scope.d3Nodes = forceData.nodes;
