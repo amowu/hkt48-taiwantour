@@ -16,22 +16,24 @@
         <div class="row">
           <div magnific-popup
                class="col-md-4">
-            <a class="photo-link"
-               data-ng-href="{{ member.img2014320 }}" 
-               title="2014"
-               tooltip-placement="right"
-               tooltip-html-unsafe="{{ member.tooltip }}">
-              <img class="photo center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
-            </a>
-            <a ng-show="member.img2013320" data-ng-href="{{ member.img2013320 }}" title="2013"></a>
-            <a ng-show="member.img2012320" data-ng-href="{{ member.img2012320 }}" title="2012"></a>
-            <a ng-show="member.img2011320" data-ng-href="{{ member.img2011320 }}" title="2011"></a>
+            <div class="photo-wrapper">
+              <a class="photo-link"
+                 data-ng-href="{{ member.img2014320 }}" 
+                 title="2014"
+                 tooltip-placement="right"
+                 tooltip-html-unsafe="{{ member.tooltip }}">
+                <img class="photo center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+              </a>
+              <a data-ng-href="{{ member.img2013320 }}" title="2013"></a>
+              <a data-ng-href="{{ member.img2012320 }}" title="2012"></a>
+              <a data-ng-href="{{ member.img2011320 }}" title="2011"></a>
+            </div>
             <dl class="dl-horizontal">
               <dt>暱稱</dt>
               <dd data-ng-repeat="nickname in member.nicknames.split(';')"
                   data-ng-bind="nickname"></dd>
               <dt>生日</dt>
-              <dd>{{ member.birthday | date:'yyyy年M月d日' }} <span class="badge">{{ member.birthday | getAge }}</span> <span class="badge">{{ member.zodiacsignsymbol }}</span></dd>
+              <dd>{{ member.birthday | date:'yyyy年M月d日' }} ({{ member.birthday | getAge }}) <span class="badge" tooltip="{{ member.zodiacsign }}">{{ member.zodiacsignsymbol }}</span></dd>
               <dt>血型</dt>
               <dd>{{ member.bloodtype | getBloodType }}</dd>
               <dt>出生地</dt>
@@ -57,11 +59,38 @@
             </h4>
             <article>
               <p ng-bind-html="member.description"></p>
-              <a ng-show="member.officialblogurl" data-ng-href="{{ member.officialblogurl }}" class="icon icon-official" target="_blank"></a>
-              <a ng-show="member.ameblourl" data-ng-href="{{ member.ameblourl }}" class="icon icon-ameblo" target="_blank"></a>
-              <a ng-show="member.twitterurl" data-ng-href="{{ member.twitterurl }}" class="icon icon-twitter" target="_blank"></a>
-              <a ng-show="member.googleplusurl" data-ng-href="{{ member.googleplusurl }}" class="icon icon-google" target="_blank"></a>
-              <a ng-show="member.nanagogourl" data-ng-href="{{ member.nanagogourl }}" class="icon icon-nanagogo" target="_blank"></a>
+              <ul>
+                <li ng-show="member.officialblogurl">
+                  <a data-ng-href="{{ member.officialblogurl }}"
+                     class="icon icon-official"
+                     target="_blank"
+                     tooltip="AKB48官方部落格"></a>
+                </li>
+                <li ng-show="member.ameblourl">
+                  <a data-ng-href="{{ member.ameblourl }}"
+                     class="icon icon-ameblo"
+                     target="_blank"
+                     tooltip="Ameblo"></a>
+                </li>
+                <li ng-show="member.twitterurl">
+                  <a data-ng-href="{{ member.twitterurl }}"
+                     class="icon icon-twitter"
+                     target="_blank"
+                     tooltip="Twitter"></a>
+                </li>
+                <li ng-show="member.googleplusurl">
+                  <a data-ng-href="{{ member.googleplusurl }}"
+                     class="icon icon-google"
+                     target="_blank"
+                     tooltip="Google+"></a>
+                </li>
+                <li ng-show="member.nanagogourl">
+                  <a data-ng-href="{{ member.nanagogourl }}"
+                     class="icon icon-nanagogo"
+                     target="_blank"
+                     tooltip="755"></a>
+                </li>
+              </ul>
             </article>
           </div>
         </div>
@@ -70,7 +99,7 @@
     <div class="quote">
       <div class="container">
         <h2 ng-bind-html="member.catchphrase"></h2>
-        <p class="lead text-right">written by {{ member.credit }}</p>
+        <p class="lead text-right"><span class="text-mute">written by</span> {{ member.credit }}</p>
       </div>
     </div>
   </section>
@@ -81,7 +110,7 @@
         <slick init-onload="true"
                data="keywords"
                dots="true"
-               autoplay="true"
+               autoplay="false"
                infinite="false"
                autoplay-speed="10000"
                pause-on-dots-hover="true">

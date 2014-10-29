@@ -80,10 +80,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.member.img2013120s = $filter('getImgURL')($scope.member.memberid, 120, 2013, true);
               $scope.member.img2012120s = $filter('getImgURL')($scope.member.memberid, 120, 2012, true);
               $scope.member.img2011120s = $filter('getImgURL')($scope.member.memberid, 120, 2011, true);
-
-              // TODO:
-              $scope.member.tooltip = "<ul><li><div><img class='img-circle' src='"+$scope.member.img2013120s+"'><p class='text-center'>2013</p></div></li><li><div><img class='img-circle' src='"+$scope.member.img2012120s+"'><p class='text-center'>2012</p></div></li><li><div><img class='img-circle' src='"+$scope.member.img2011120s+"'><p class='text-center'>2011</p></div></li></ul>";
-
+              $scope.member.tooltip = $filter('getHistoryTooltipTemplate')($scope.member.memberid, $scope.member.generation);
               // Initialize D3 module.
               var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
               $scope.d3Nodes = forceData.nodes;

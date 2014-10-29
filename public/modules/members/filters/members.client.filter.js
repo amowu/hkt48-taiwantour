@@ -365,4 +365,44 @@ angular.module('members').filter('getMemberIdByFullName', [
       }
     };
   }
+]).filter('getHistoryTooltipTemplate', ['$filter',
+  function($filter) {
+    return function(memberId, generation) {
+
+      var li = "<li><div><img class='img-circle' src='{0}'><p class='text-center'>{1}</p></div></li>";
+
+      var regexp = function(str) {
+        return new RegExp(str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
+      };
+      var template = function(year) {
+        var url = $filter('getImgURL')(memberId, 120, year, true);
+        return li.replace(regexp('{0}'), url).replace(regexp('{1}'), year);
+      };
+
+      var generationDate = new Date($filter('getGenerationDate')(generation));
+      var generationYear = generationDate.getFullYear();
+
+      var ul = '<ul><div>';
+      if (generationYear === 2006 ||
+          generationYear === 2007) {
+        ul += template(2013);
+        ul += template(2012);
+      }
+      if (generationYear === 2013) {
+        ul += template(2013);
+      }
+      if (generationYear === 2012) {
+        ul += template(2013);
+        ul += template(2012);
+      }
+      if (generationYear === 2011) {
+        ul += template(2013);
+        ul += template(2012);
+        ul += template(2011);
+      }
+      ul += '</div></ul>';
+
+      return ul;
+    };
+  }
 ]);
