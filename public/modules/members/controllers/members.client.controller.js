@@ -16,6 +16,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
         $scope.orderProp = 'team';
         angular.forEach(data, function(member) {
           member.year = $filter('getAge')(member.birthday);
+          member.catchphrase = member.catchphrase.replace('{0}', member.year);
           member.zodiacsign = $filter('getZodiacSign')(member.birthday)[1];
           member.zodiacsignsymbol = $filter('getZodiacSign')(member.birthday)[3];
           member.zodiacsignorder = $filter('getZodiacSign')(member.birthday)[2];
@@ -70,6 +71,8 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
               // Initialize member module.
+              $scope.member.year = $filter('getAge')($scope.member.birthday);
+              $scope.member.catchphrase = $scope.member.catchphrase.replace('{0}', $scope.member.year);
               $scope.member.zodiacsign = $filter('getZodiacSign')($scope.member.birthday)[1];
               $scope.member.zodiacsignsymbol = $filter('getZodiacSign')($scope.member.birthday)[3];
               $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
@@ -88,7 +91,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.details = forceData.details;
               $scope.currentGroup = 0;
               $scope.svgWidth = 555;
-              $scope.svgHeight = 600;
+              $scope.svgHeight = 555;
               $scope.onTargetMemberHover = function($event) {
                 var targetMemberId = angular.element($event.target).scope().node.memberid;
                 var group = $filter('getGroupByTartgetMemberId')($scope.d3Links, targetMemberId);

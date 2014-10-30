@@ -33,7 +33,7 @@
               <dd data-ng-repeat="nickname in member.nicknames.split(';')"
                   data-ng-bind="nickname"></dd>
               <dt>生日</dt>
-              <dd>{{ member.birthday | date:'yyyy年M月d日' }} ({{ member.birthday | getAge }}) <span class="badge" tooltip="{{ member.zodiacsign }}">{{ member.zodiacsignsymbol }}</span></dd>
+              <dd>{{ member.birthday | date:'yyyy年M月d日' }} ({{ member.year }}) <span class="badge" tooltip="{{ member.zodiacsign }}">{{ member.zodiacsignsymbol }}</span></dd>
               <dt>血型</dt>
               <dd>{{ member.bloodtype | getBloodType }}</dd>
               <dt>出生地</dt>
@@ -98,7 +98,7 @@
     </div>
     <div class="quote">
       <div class="container">
-        <h2 ng-bind-html="member.catchphrase"></h2>
+        <h2>“<span ng-bind-html="member.catchphrase"></span>”</h2>
         <p class="lead text-right"><span class="text-mute">written by</span> {{ member.credit }}</p>
       </div>
     </div>
@@ -110,7 +110,7 @@
         <slick init-onload="true"
                data="keywords"
                dots="true"
-               autoplay="false"
+               autoplay="true"
                infinite="false"
                autoplay-speed="10000"
                pause-on-dots-hover="true">
@@ -139,22 +139,9 @@
   </section>
   <section id="relationships">
     <div class="container">
-      <slick init-onload="true"
-             data="details"
-             dots="false"
-             arrows="false"
-             infinite="false"
-             draggable="false"
-             current-index="currentGroup">
-        <div data-ng-repeat="detail in details">
-          <h1 class="text-center"
-            data-ng-bind="detail.keyword"></h1>
-        </div>
-      </slick>
       <div class="row">
         <div class="col-md-6">
-          <div magnific-popup
-               zoom-enabled="true">
+          <div magnific-popup>
             <slick init-onload="true"
                    data="details"
                    dots="false"
@@ -163,16 +150,23 @@
                    draggable="false"
                    current-index="currentGroup">
               <div data-ng-repeat="detail in details">
-                <a data-ng-href="{{ detail.imgurl }}"
+                <a class="photo-link"
+                   data-ng-href="{{ detail.imgurl }}"
                    title="{{ detail.content }}">
-                  <img class="img-responsive"
-                       data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
+                  <div class="photo" ng-style="{'background-image':'url({{ detail.imgurl | thumbnail:'l' }})'}">
+                    <div class="photo-title">
+                      <h1 class="text-center"
+                          data-ng-bind="detail.keyword"></h1>
+                    </div>
+                    <div class="photo-description">
+                      <article ng-bind-html="detail.content"></article>
+                      <blockquote>
+                        <p data-ng-bind="detail.introduction"></p>
+                        <footer class="text-right" data-ng-bind="detail.introductionsource"></footer>
+                      </blockquote>
+                    </div>
+                  </div>
                 </a>
-                <article ng-bind-html="detail.content"></article>
-                <blockquote>
-                  <p data-ng-bind="detail.introduction"></p>
-                  <footer data-ng-bind="detail.introductionsource"></footer>
-                </blockquote>
               </div>
             </slick>
           </div>
@@ -217,7 +211,7 @@
     <div class="container">
       <div magnific-popup
            zoom-enabled="true">
-        <div deckgrid
+         <div deckgrid
              class="deckgrid gallery"
              source="images">   
           <a data-ng-href="{{ card.imgurl }}"
@@ -234,12 +228,17 @@
         </div>
       </div>
     </div>
-    <div class="container footer">
-      <img class="img-responsive" src="/modules/members/img/footer.png">
-    </div>
+    
   </section>
   <section id="footer">
-    
+    <div class="logo">
+      <div class="container">
+        <img class="img-responsive" src="/modules/members/img/footer.png">
+      </div>
+    </div>
+    <footer>
+      
+    </footer>
   </section>
 </section>
     <!-- <div class="alert alert-warning text-center" data-ng-hide="!members.$resolved || members.length">
