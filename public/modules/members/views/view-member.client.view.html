@@ -1,5 +1,6 @@
 <section data-ng-controller="MembersController" 
          data-ng-init="findOne()">
+  <div ng-show="isLoading" class="loading">Loading&#8230;</div>
   <section id="member">
     <div class="cover">
       <div class="container">
@@ -103,7 +104,7 @@
       </div>
     </div>
   </section>
-  <section id="keywords">
+  <section id="keywords" data-ng-show="keywords.length">
     <div class="container">
       <div magnific-popup
            zoom-enabled="true">
@@ -137,11 +138,12 @@
       </div>
     </div>
   </section>
-  <section id="relationships">
+  <section id="relationships" data-ng-show="relationships.length">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <div magnific-popup>
+          <div magnific-popup
+               zoom-enabled="true">
             <slick init-onload="true"
                    data="details"
                    dots="false"
@@ -207,7 +209,7 @@
       </div>
     </div>
   </section>
-  <section id="images">
+  <section id="images" data-ng-show="images.length">
     <div class="container">
       <div magnific-popup
            zoom-enabled="true">
@@ -228,19 +230,5 @@
         </div>
       </div>
     </div>
-    
-  </section>
-  <section id="footer">
-    <div class="logo">
-      <div class="container">
-        <img class="img-responsive" src="/modules/members/img/footer.png">
-      </div>
-    </div>
-    <footer>
-      
-    </footer>
   </section>
 </section>
-    <!-- <div class="alert alert-warning text-center" data-ng-hide="!members.$resolved || members.length">
-      No Members yet, why don't you <a href="/#!/members/create">create one</a>?
-    </div> -->

@@ -18,6 +18,7 @@
     "angular-slick": "~0.1.11",
     "angular-deckgrid": "~0.4.4",
     "magnific-popup": "~0.9.9",
-    "d3": "~3.4.12"
+    "d3": "~3.4.12",
+    "angular-loading-bar": "~0.6.0"
   }
 }

@@ -45,6 +45,9 @@
   transition-duration: 0s;
 }
 
+#members {
+  background-color: #1f1f1f;
+}
 #members .container .row .member {
   min-height: 200px;
 }
@@ -63,6 +66,7 @@
 }
 #member .info {
   background-color:#fff;
+  min-height: 390px;
 }
 #member .info .container .row .photo-wrapper a.photo-link {
   cursor: zoom-in;
@@ -73,6 +77,8 @@
   border-width: 10px;
   border-color: white;
   background-color: white;
+  min-width: 340px;
+  min-height: 340px;
 }
 #member .info .container .row .photo-wrapper .tooltip.in {
   filter: alpha(opacity=100);
@@ -277,19 +283,6 @@
 }
 #images .container {
   padding-top: 20px;
-}
-
-#footer .logo {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background: #1f1f1f url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
-}
-#footer footer {
-  min-height: 200px;
-  border-top-style: solid;
-  border-top-color: #d496a2;
-  border-top-width: 5px;
-  background: #EDA8B6 url('/modules/members/img/LightEffects3.png') no-repeat center top;
 }
 
 /* d3 */

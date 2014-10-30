@@ -16,7 +16,8 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/slick-carousel/slick/slick.css',
-				'public/lib/magnific-popup/dist/magnific-popup.css'
+				'public/lib/magnific-popup/dist/magnific-popup.css',
+				'public/lib/angular-loading-bar/build/loading-bar.css'
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.js',
@@ -34,7 +35,8 @@ module.exports = {
 				'public/lib/angular-slick/dist/slick.js',
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
 				'public/lib/magnific-popup/dist/jquery.magnific-popup.js',
-				'public/lib/d3/d3.js'
+				'public/lib/d3/d3.js',
+				'public/lib/angular-loading-bar/build/loading-bar.js'
 			]
 		},
 		css: [

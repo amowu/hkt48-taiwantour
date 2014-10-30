@@ -1,12 +1,26 @@
 'use strict';
 
 // Members controller
-angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication',
-  function($scope, $filter, $http, $stateParams, $location, Authentication) {
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication', 'cfpLoadingBar',
+  function($scope, $filter, $http, $stateParams, $location, Authentication, cfpLoadingBar) {
     $scope.authentication = Authentication;
+
+    $scope.isLoading = false;
+
+    var loadingStart = function() {
+      $scope.isLoading = true;
+      cfpLoadingBar.start();
+    };
+
+    var loadingComplete = function() {
+      $scope.isLoading = false;
+      cfpLoadingBar.complete();
+    };
 
     // Find a list of Members.
     $scope.find = function() {
+
+      loadingStart();
 
       $scope.canReverse = function(orderProp) {
         return !!~['year','height'].indexOf(orderProp);
@@ -22,11 +36,15 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
           member.zodiacsignorder = $filter('getZodiacSign')(member.birthday)[2];
         });
         $scope.members = data;
+
+        loadingComplete();
       });
     };
 
     // Find existing Member.
     $scope.findOne = function() {
+
+      loadingStart();
       
       // Initialize.
       $scope.members = null; // All members data.
@@ -113,6 +131,8 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
                 })
                 .start();
             });
+
+            loadingComplete();
           }
         });
       });
