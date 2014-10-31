@@ -11,7 +11,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
 		
 		cfpLoadingBarProvider.includeSpinner = false;
 	}
-]);
+]).value('duScrollOffset', 50);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {

@@ -28,7 +28,8 @@ module.exports = {
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
 				'public/lib/magnific-popup/dist/jquery.magnific-popup.min.js',
 				'public/lib/d3/d3.min.js',
-				'public/lib/angular-loading-bar/build/loading-bar.min.js'
+				'public/lib/angular-loading-bar/build/loading-bar.min.js',
+				'public/lib/angular-scroll/angular-scroll.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

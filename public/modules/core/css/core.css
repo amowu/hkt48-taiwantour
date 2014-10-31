@@ -9,7 +9,6 @@ body {
 }
 
 .content {
-  /*margin-top: 50px;*/
   min-height: 75%;
 }
 
@@ -59,6 +58,7 @@ body {
 }
 
 #loading-bar .bar {
+  z-index: 1031;
   height: 5px;
   background: #ecd078;
 }

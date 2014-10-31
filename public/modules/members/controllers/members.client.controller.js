@@ -1,11 +1,19 @@
 'use strict';
 
 // Members controller
-angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication', 'cfpLoadingBar',
-  function($scope, $filter, $http, $stateParams, $location, Authentication, cfpLoadingBar) {
-    $scope.authentication = Authentication;
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'cfpLoadingBar', '$document',
+  function($scope, $filter, $http, $stateParams, $location, cfpLoadingBar, $document) {
+
+    $scope.toTheTop = function() {
+      $document.scrollTopAnimated(0);
+    }
 
     $scope.isLoading = false;
+    $scope.isCollapsed = false;
+
+    $scope.toggleCollapsibleMenu = function() {
+      $scope.isCollapsed = !$scope.isCollapsed;
+    };
 
     var loadingStart = function() {
       $scope.isLoading = true;
@@ -48,6 +56,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
       
       // Initialize.
       $scope.members = null; // All members data.
+      $scope.member = null; // Current member's data.
       $scope.keywords = null; // Current member's keywords array.
       $scope.relationships = null; // Current member's relationships array.
       $scope.details = null; // Current member's relationship details array.
@@ -71,6 +80,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
         console.log('HTTP get members.json error.');
         console.log(data);
       }).success(function(members) {
+        $scope.members = members;
         // Find member object by fullname.
         var member = $filter('getMemberIdByFullName')(members, $stateParams.memberFullName);
         // Use tabletop to get member's data on google spreadsheet.
