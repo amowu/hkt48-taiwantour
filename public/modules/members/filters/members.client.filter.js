@@ -130,6 +130,18 @@ angular.module('members').filter('getMemberIdByFullName', [
       }
     };
   }
+]).filter('getTeamDescription', [
+  function() {
+    return function(team) {
+      if (team == 33) {
+        return '雖然現役隊員與出道至今，曾經代表過整個HKT48的那個經典Team H大不相同，這個隊伍仍然保有Team H才華洋溢，天賦多得幾近奢侈的風格。在大組閣的大換血之後留下的成員並不多，但Team H在美人、搞笑、舞蹈每一個位置上，都能保持一名前輩配上數名具有潛力的後輩，在保持競爭力的前提下仍有大量新星令人期待。而隊伍最大的看點，就是現今全團最受矚目的矢吹奈子、田中美久，以及前後兩代Center兒玉遥、田島芽瑠，配上支配人指原莉乃，星光濯濯的核心陣容。';
+      } else if (team == 34) {
+        return '與分班宣布前，眾人所預期的以二期生為主的隊伍完全相反，Team KIV事實上繼承了大量原H成員及一期生的天賦。Team KIV的陣容特色就宛如她們的劇場公演曲目一般──以數名守護劇場的「劇場的女神」為主，Team KIV的成員重團隊，彼此扶持，雖然是全48G最年幼的隊伍，卻一舉奪下了劇場公演競賽的后冠。而鎂光燈焦點的本村碧唯、森保まどか、朝長美桜，以及已經奪下關東Center的宮脇咲良，都與這個隊伍一樣，仍在持續成長，前途無可限量。';
+      } else {
+        return '在籍資歷最淺的她們，戰力並不容小覷。就算不提入團後立刻站c/w C，現已順利升格的奈子美久，三期研究生中也仍然有人進入選拔與劇場盤unit。研究生中有可愛蘿莉、有成熟美人、有人擅長舞蹈、有人立志綜藝；也許人數不多，但個個都是令人期待的，HKT可以倚靠的未來。';
+      }
+    };
+  }
 ]).filter('getJob', [
   function() {
     return function(job) {
@@ -154,7 +166,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       var data = {'nodes':[], 'links':[], 'details':[]};
       // Step 1: First add source member into nodes.
       var sourceMember = $filter('getMemberById')(members, sourceMemberId);
-      sourceMember.img2014120 = $filter('getImgURL')(sourceMemberId, 120, 2014);
+      sourceMember.img2014120 = $filter('getImgURL')(sourceMemberId, 120, 2014, true);
       data.nodes.push(sourceMember);
       // Step 2: Add all target member into nodes and links queue.
       var i=0, len=relationships.length;
@@ -162,7 +174,7 @@ angular.module('members').filter('getMemberIdByFullName', [
         // Add target member into nodes.
         var targetMemberId = relationships[i].targetmemberid;
         var targetMember = $filter('getMemberById')(members, targetMemberId);
-        targetMember.img2014120 = $filter('getImgURL')(relationships[i].targetmemberid, 120, 2014);
+        targetMember.img2014120 = $filter('getImgURL')(relationships[i].targetmemberid, 120, 2014, true);
         data.nodes.push(targetMember);
 
         // Add links.

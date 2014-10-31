@@ -52,6 +52,8 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
     // Find existing Member.
     $scope.findOne = function() {
 
+      $scope.canShowMember = true;
+
       loadingStart();
       
       // Initialize.
@@ -118,7 +120,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.d3Links = forceData.links;
               $scope.details = forceData.details;
               $scope.currentGroup = 0;
-              $scope.svgWidth = 555;
+              $scope.svgWidth = 585;
               $scope.svgHeight = 555;
               $scope.onTargetMemberHover = function($event) {
                 var targetMemberId = angular.element($event.target).scope().node.memberid;
@@ -133,8 +135,12 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               var force = d3.layout.force()
                 .nodes($scope.d3Nodes)
                 .links($scope.d3Links)
-                .charge(-1000)
-                .linkDistance(200)
+                .friction(0.9)
+                .distance(100)
+                .charge(-5000)
+                .gravity(0.1)
+                .theta(0.8)
+                .alpha(0.1)
                 .size([$scope.svgWidth, $scope.svgHeight])
                 .on('tick', function() {
                   $scope.$apply();
@@ -143,6 +149,9 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
             });
 
             loadingComplete();
+
+            $scope.canShowMember = $scope.member.enabled;
+            $scope.underConstructionText = '敬請期待♥';
           }
         });
       });

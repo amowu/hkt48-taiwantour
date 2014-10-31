@@ -1,6 +1,6 @@
 <section data-ng-controller="MembersController" 
          data-ng-init="findOne()">
-  <div ng-show="isLoading" class="loading">Loading&#8230;</div>
+  <div data-ng-show="isLoading" class="loading">Loading&#8230;</div>
   <header class="navbar navbar-fixed-top navbar-default">
     <div class="container">
       <div class="navbar-header">
@@ -40,22 +40,38 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li du-scrollspy="keywords" data-ng-show="keywords.length"><a href="#keywords" du-smooth-scroll>關鍵字</a></li>
-          <li du-scrollspy="relationships" data-ng-show="relationships.length"><a href="#relationships" du-smooth-scroll>互動關係</a></li>
-          <li du-scrollspy="images" data-ng-show="images.length"><a href="#images" du-smooth-scroll>可愛圖</a></li>
+          <li du-scrollspy="keywords"
+              data-ng-show="keywords.length && member.enabled">
+            <a href="#keywords"
+               du-smooth-scroll>關鍵字</a>
+          </li>
+          <li du-scrollspy="relationships"
+              data-ng-show="relationships.length && member.enabled">
+            <a href="#relationships"
+               du-smooth-scroll>互動關係</a>
+          </li>
+          <li du-scrollspy="images"
+              data-ng-show="images.length && member.enabled">
+            <a href="#images"
+               du-smooth-scroll>可愛圖</a>
+          </li>
           <li role="presentation" class="divider"></li>
-          <li><a ng-click="toTheTop()" style="cursor:pointer;">回頂部</a></li>
+          <li>
+            <a ng-click="toTheTop()"
+               style="cursor:pointer;">回頂部</a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
-  <section id="member">
+  <section id="member" data-ng-show="canShowMember">
     <div class="cover">
       <div class="container">
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-            <h1>{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen | capitalize }} {{ member.lastnameen | capitalize }}</small></h1>
+            <h1 class="visible-md visible-lg desktop">{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen | capitalize }} {{ member.lastnameen | capitalize }}</small></h1>
+            <h1 class="visible-sm visible-xs mobile">{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen | capitalize }} {{ member.lastnameen | capitalize }}</small></h1>
           </div>
         </div>
       </div>
@@ -64,6 +80,7 @@
       <div class="container">
         <div class="row">
           <div magnific-popup
+               zoom-enabled="false"
                class="col-md-4">
             <div class="photo-wrapper">
               <a class="photo-link"
@@ -152,10 +169,10 @@
       </div>
     </div>
   </section>
-  <section id="keywords" data-ng-show="keywords.length">
+  <section id="keywords" data-ng-show="keywords.length && member.enabled">
     <div class="container">
       <div magnific-popup
-           zoom-enabled="true">
+           zoom-enabled="false">
         <slick init-onload="true"
                data="keywords"
                dots="true"
@@ -176,8 +193,8 @@
               <div class="col-md-6">
                 <a data-ng-href="{{ keyword.imgurl }}" 
                    title="{{ keyword.content }}">
-                  <img class="img-responsive"
-                       data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
+                  <img class="img-responsive center-block"
+                       data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}"data-ng-show="keyword.imgurl">
                 </a>
               </div>
             </div>
@@ -186,18 +203,18 @@
       </div>
     </div>
   </section>
-  <section id="relationships" data-ng-show="relationships.length">
+  <section id="relationships" data-ng-show="relationships.length && member.enabled">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
           <div magnific-popup
-               zoom-enabled="true">
+               zoom-enabled="false">
             <slick init-onload="true"
                    data="details"
                    dots="false"
                    arrows="false"
                    infinite="false"
-                   draggable="false"
+                   draggable="true"
                    current-index="currentGroup">
               <div data-ng-repeat="detail in details">
                 <a class="photo-link"
@@ -221,8 +238,8 @@
             </slick>
           </div>
         </div>
-        <div class="col-md-6">
-          <svg ng-attr-width="{{ svgWidth }}"
+        <div class="col-md-6 visible-md visible-lg svg-container">
+          <svg width="100%"
                ng-attr-height="{{ svgHeight }}">
             <line ng-repeat="link in d3Links"
                   class="link"
@@ -236,14 +253,14 @@
               <clipPath id="cut-off-bottom">
                 <circle ng-attr-cx="{{ node.x }}"
                         ng-attr-cy="{{ node.y }}"
-                        r="60" />
+                        r="50" />
               </clipPath>
               <image xlink:href=""
                      ng-xlink-href="{{ node.img2014120 }}"
-                     ng-x="{{ node.x - 60 }}"
-                     ng-y="{{ node.y - 75 }}"
-                     width="120"
-                     height="150"
+                     ng-x="{{ node.x - 50 }}"
+                     ng-y="{{ node.y - 50 }}"
+                     width="100"
+                     height="100"
                      clip-path="url(#cut-off-bottom)"
                      ng-mouseover="onTargetMemberHover($event)"
                      ng-click="onTargetMemberClick($event)">
@@ -257,7 +274,7 @@
       </div>
     </div>
   </section>
-  <section id="images" data-ng-show="images.length">
+  <section id="images" data-ng-show="images.length && member.enabled">
     <div class="container">
       <div magnific-popup
            zoom-enabled="true">
@@ -276,6 +293,14 @@
             </div>
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+  <section id="under-construction" data-ng-hide="member.enabled">
+    <div class="container">
+      <div class="jumbotron">
+        <img class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+        <h1 class="text-center" data-ng-bind="underConstructionText"></h1>
       </div>
     </div>
   </section>

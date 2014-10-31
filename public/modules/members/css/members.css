@@ -4,15 +4,35 @@
 }
 
 #members {
-  background-color: #fff;
+  background-color: #1f1f1f;
   padding-top: 50px;
 }
-#members .container .row .member {
+#members .page-header {
+  border-bottom: 1px solid #777;
+}
+#members .page-header h1 {
+  color: #FFC95C;
+}
+#members .member {
   min-height: 200px;
 }
-#members .container .row .member a p {
+#members .member a {
+  color: #D6426C;
+  text-decoration: none;
+}
+#members .member a p {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+#under-construction {
+  padding-top: 50px;
+}
+#under-construction .jumbotron {
+  background-color: rgba(0,0,0,0);
+}
+#under-construction .jumbotron h1 {
+  color: #ECD078;
 }
 
 #member .cover {
@@ -23,6 +43,7 @@
 #member .cover h1 {
   margin-bottom: 0px;
 }
+
 #member .info {
   background-color:#fff;
   min-height: 390px;
@@ -36,8 +57,8 @@
   border-width: 10px;
   border-color: white;
   background-color: white;
-  min-width: 340px;
-  min-height: 340px;
+  min-width: 290px;
+  min-height: 290px;
 }
 #member .info .container .row .photo-wrapper .tooltip.in {
   filter: alpha(opacity=100);
@@ -75,12 +96,17 @@
 }
 #member .container .row h1 {
   position: absolute;
-  bottom: 0;
   color: #fff;
-  font-size: 63px;
+}
+#member .container .row h1.desktop {
+  bottom: 0;
+}
+#member .container .row h1.mobile {
+  margin-top: 50px;
+  padding-top: 10px;
 }
 #member .container .row h1 small {
-  font-style: 65%;
+  font-size: 65%;
   color: #777;
 }
 #member .container .row dl {
@@ -142,7 +168,7 @@
 #member .quote {
   background-color: #616365;
   color: #fff;
-  padding: 15px 15px 0px 15px;
+  /*padding: 15px 15px 0px 15px;*/
   text-align: center;
 }
 #member .quote .container h2 {
@@ -155,6 +181,7 @@
 #keywords {
   background-color: #393e42;
   padding-bottom: 20px;
+  overflow: hidden;
 }
 #keywords .container .row h1 {
   color: #2F3338;
@@ -219,6 +246,7 @@
   color: #fff;
   padding: 10px;
   background: rgba(60,60,59,.75) url('/modules/members/img/LightEffects3.png') no-repeat center top;
+  width: 100%;
 }
 #relationships .container .row .photo-description article {
 }
@@ -231,6 +259,10 @@
 }
 #relationships .container .row .photo-description blockquote footer {
   color: #ECD078;
+}
+#relationships .svg-container {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #images {
@@ -358,6 +390,15 @@
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
+  #member .container .row h1 {
+    font-size: 55px;
+  }
+  #member .info .container .row .photo-wrapper .photo {
+    min-width: 340px;
+    min-height: 340px;
+  }
+
   .deckgrid[deckgrid]::before {
     content: '3 .column.size-1-3';
   }
@@ -375,6 +416,15 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+
+  #member .container .row h1 {
+    font-size: 55px;
+  }
+  #member .info .container .row .photo-wrapper .photo {
+    min-width: 293px;
+    min-height: 293px;
+  }
+
   .deckgrid[deckgrid]::before {
     content: '4 .column.size-1-4';
   }
@@ -392,6 +442,15 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+
+  #member .container .row h1 {
+    font-size: 63px;
+  }
+  #member .info .container .row .photo-wrapper .photo {
+    min-width: 340px;
+    min-height: 340px;
+  }
+
   .deckgrid[deckgrid]::before {
     content: '5 .column.size-1-5';
   }
