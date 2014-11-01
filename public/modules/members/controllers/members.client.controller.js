@@ -1,22 +1,64 @@
 'use strict';
 
 // Members controller
-angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'Authentication',
-  function($scope, $filter, $http, $stateParams, $location, Authentication) {
-    $scope.authentication = Authentication;
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'cfpLoadingBar', '$document',
+  function($scope, $filter, $http, $stateParams, $location, cfpLoadingBar, $document) {
+
+    $scope.toTheTop = function() {
+      $document.scrollTopAnimated(0);
+    }
+
+    $scope.isLoading = false;
+    $scope.isCollapsed = false;
+
+    $scope.toggleCollapsibleMenu = function() {
+      $scope.isCollapsed = !$scope.isCollapsed;
+    };
+
+    var loadingStart = function() {
+      $scope.isLoading = true;
+      cfpLoadingBar.start();
+    };
+
+    var loadingComplete = function() {
+      $scope.isLoading = false;
+      cfpLoadingBar.complete();
+    };
 
     // Find a list of Members.
     $scope.find = function() {
+
+      loadingStart();
+
+      $scope.canReverse = function(orderProp) {
+        return !!~['year','height'].indexOf(orderProp);
+      };
+
       $http.get('modules/members/members.json').success(function(data) {
+        $scope.orderProp = 'team';
+        angular.forEach(data, function(member) {
+          member.year = $filter('getAge')(member.birthday);
+          member.catchphrase = member.catchphrase.replace('{0}', member.year);
+          member.zodiacsign = $filter('getZodiacSign')(member.birthday)[1];
+          member.zodiacsignsymbol = $filter('getZodiacSign')(member.birthday)[3];
+          member.zodiacsignorder = $filter('getZodiacSign')(member.birthday)[2];
+        });
         $scope.members = data;
+
+        loadingComplete();
       });
     };
 
     // Find existing Member.
     $scope.findOne = function() {
+
+      $scope.canShowMember = true;
+
+      loadingStart();
       
       // Initialize.
       $scope.members = null; // All members data.
+      $scope.member = null; // Current member's data.
       $scope.keywords = null; // Current member's keywords array.
       $scope.relationships = null; // Current member's relationships array.
       $scope.details = null; // Current member's relationship details array.
@@ -40,6 +82,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
         console.log('HTTP get members.json error.');
         console.log(data);
       }).success(function(members) {
+        $scope.members = members;
         // Find member object by fullname.
         var member = $filter('getMemberIdByFullName')(members, $stateParams.memberFullName);
         // Use tabletop to get member's data on google spreadsheet.
@@ -58,22 +101,27 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
               // Initialize member module.
+              $scope.member.year = $filter('getAge')($scope.member.birthday);
+              $scope.member.catchphrase = $scope.member.catchphrase.replace('{0}', $scope.member.year);
+              $scope.member.zodiacsign = $filter('getZodiacSign')($scope.member.birthday)[1];
+              $scope.member.zodiacsignsymbol = $filter('getZodiacSign')($scope.member.birthday)[3];
               $scope.member.img2014320 = $filter('getImgURL')($scope.member.memberid, 320, 2014);
-              $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
-              $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
-              $scope.member.img2011120 = $filter('getImgURL')($scope.member.memberid, 120, 2011);
-              $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);
-              $scope.member.img2012120 = $filter('getImgURL')($scope.member.memberid, 120, 2012);
               $scope.member.img2013320 = $filter('getImgURL')($scope.member.memberid, 320, 2013);
-              $scope.member.img2013120 = $filter('getImgURL')($scope.member.memberid, 120, 2013);
+              $scope.member.img2012320 = $filter('getImgURL')($scope.member.memberid, 320, 2012);
+              $scope.member.img2011320 = $filter('getImgURL')($scope.member.memberid, 320, 2011);
+              $scope.member.img2014320s = $filter('getImgURL')($scope.member.memberid, 320, 2014, true);
+              $scope.member.img2013120s = $filter('getImgURL')($scope.member.memberid, 120, 2013, true);
+              $scope.member.img2012120s = $filter('getImgURL')($scope.member.memberid, 120, 2012, true);
+              $scope.member.img2011120s = $filter('getImgURL')($scope.member.memberid, 120, 2011, true);
+              $scope.member.tooltip = $filter('getHistoryTooltipTemplate')($scope.member.memberid, $scope.member.generation);
               // Initialize D3 module.
               var forceData = $filter('getForceData')($scope.relationships, members, $scope.member.memberid);
               $scope.d3Nodes = forceData.nodes;
               $scope.d3Links = forceData.links;
               $scope.details = forceData.details;
               $scope.currentGroup = 0;
-              $scope.svgWidth = 555;
-              $scope.svgHeight = 600;
+              $scope.svgWidth = 585;
+              $scope.svgHeight = 555;
               $scope.onTargetMemberHover = function($event) {
                 var targetMemberId = angular.element($event.target).scope().node.memberid;
                 var group = $filter('getGroupByTartgetMemberId')($scope.d3Links, targetMemberId);
@@ -87,14 +135,23 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               var force = d3.layout.force()
                 .nodes($scope.d3Nodes)
                 .links($scope.d3Links)
-                .charge(-1000)
-                .linkDistance(200)
+                .friction(0.9)
+                .distance(100)
+                .charge(-5000)
+                .gravity(0.1)
+                .theta(0.8)
+                .alpha(0.1)
                 .size([$scope.svgWidth, $scope.svgHeight])
                 .on('tick', function() {
                   $scope.$apply();
                 })
                 .start();
             });
+
+            loadingComplete();
+
+            $scope.canShowMember = $scope.member.enabled;
+            $scope.underConstructionText = '敬請期待♥';
           }
         });
       });

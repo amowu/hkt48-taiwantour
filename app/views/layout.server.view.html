@@ -2,66 +2,112 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>{{title}}</title>
+  <title>HKT48 台灣應援網站</title>
 
-	<!-- General META -->
-	<meta charset="utf-8">
-	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- General META -->
+  <meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<!-- Semantic META -->
-	<meta name="keywords" content="{{keywords}}">
-	<meta name="description" content="{{description}}">
+  <!-- Semantic META -->
+  <meta name="keywords" content="HKT48">
+  <meta name="description" content="介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。">
 
-	<!-- Facebook META -->
-	<meta property="fb:app_id" content="{{facebookAppId}}">
-	<meta property="og:site_name" content="{{title}}">
-	<meta property="og:title" content="{{title}}">
-	<meta property="og:description" content="{{description}}">
-	<meta property="og:url" content="{{url}}">
-	<meta property="og:image" content="/img/brand/logo.png">
-	<meta property="og:type" content="website">
+  <!-- Facebook META -->
+  <meta property="og:site_name" content="HKT48 台灣應援網站">
+  <meta property="og:title" content="HKT48 台灣應援網站">
+  <meta property="og:description" content="介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。">
+  <meta property="og:url" content="http://www.tpe48.com.tw/hkt48/">
+  <meta property="og:image" content="/modules/core/img/brand/logo.png">
+  <meta property="og:type" content="website">
 
-	<!-- Twitter META -->
-	<meta name="twitter:title" content="{{title}}">
-	<meta name="twitter:description" content="{{description}}">
-	<meta name="twitter:url" content="{{url}}">
-	<meta name="twitter:image" content="/img/brand/logo.png">
+  <!-- Twitter META -->
+  <meta name="twitter:title" content="HKT48 台灣應援網站">
+  <meta name="twitter:description" content="介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。">
+  <meta name="twitter:url" content="http://www.tpe48.com.tw/hkt48/">
+  <meta name="twitter:image" content="/modules/core/img/brand/logo.png">
 
-	<!-- Fav Icon -->
-	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <!-- Fav Icon -->
+  <link href="/modules/core/img/brand/ico.ico" rel="shortcut icon" type="image/x-icon">
 
-	<!--Application CSS Files-->
-	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
-	{% endfor %}
+  <!--Application CSS Files-->
+  {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
+  {% endfor %}
 
-	<!-- HTML5 Shim -->
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+  <!-- HTML5 Shim -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 
 <body class="ng-cloak">
-	<!-- <header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header> -->
-	<section class="content">
-		{% block content %}{% endblock %}
-	</section>
+  <section class="content">
+    {% block content %}{% endblock %}
+  </section>
+  <section id="footer">
+    <div class="logo">
+      <div class="container">
+        <img class="img-responsive" src="/modules/members/img/footer.png">
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="about">
+              <p class="title text-center">ABOUT</p>
+              <p class="description text-center">本網站純為個人興趣產物，並非為營利行為所創作。建立者並無因此獲得任何利益。<br>本站所提供的所有文章與圖片之著作權/肖像權皆屬該權利所有人之物。<br>本站無任何侵害權利之目的。</p>
+              <p class="description-jp text-center">このサイトは、趣味によりものであり、営利的な目的のものではありません。<br>創設者その他が利益を得ることは一切ありません。<br>コンテンツとして提供する全ての文章、画像について著作権/肖像権等は各権利所有者に帰属します。
+                <br>権利を侵害する目的は一切ありません。</p>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="contact">
+              <p class="title text-center">CONTACT ME</p>
+              <p class="">
+                <a href="mailto:HKT48TWKawaii@gmail.com">HKT48來台應援對策委員會</a>
+              </p>
+              <p class="">
+                企劃：<a href="mailto:asukachikauru@gmail.com">AsukaCHikaru</a>
+              </p>
+              <p class="">
+                設計：<a href="mailto:amo@amowu.com">Amo Wu</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
 
-	<!--Embedding The User Object-->
-	<script type="text/javascript">
-		var user = {{ user | json | safe }};
-	</script>
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	<!--Application JavaScript Files-->
-	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
-	{% endfor %} 
+    ga('create', 'UA-8676193-16', 'auto');
+    ga('send', 'pageview');
 
-	{% if process.env.NODE_ENV === 'development' %}
-	<!--Livereload script rendered -->
-	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+  </script>
 
-	{% endif %}
+  <!--Embedding The User Object-->
+  <script type="text/javascript">
+    var user = {{ user | json | safe }};
+  </script>
+
+  <!--Application JavaScript Files-->
+  {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
+  {% endfor %} 
+
+  {% if process.env.NODE_ENV === 'development' %}
+  <!--Livereload script rendered -->
+  <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+
+  {% endif %}
 </body>
 
 </html>

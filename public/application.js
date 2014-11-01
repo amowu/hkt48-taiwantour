@@ -4,11 +4,14 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-	function($locationProvider) {
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', 'cfpLoadingBarProvider',
+	function($locationProvider, cfpLoadingBarProvider) {
+		
 		$locationProvider.hashPrefix('!');
+		
+		cfpLoadingBarProvider.includeSpinner = false;
 	}
-]);
+]).value('duScrollOffset', 50);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {

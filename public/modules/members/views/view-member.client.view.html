@@ -1,12 +1,77 @@
 <section data-ng-controller="MembersController" 
          data-ng-init="findOne()">
-  <section id="member">
+  <div data-ng-show="isLoading" class="loading">Loading&#8230;</div>
+  <header class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">HKT48</a>
+      </div>
+      <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Team H <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li data-ng-repeat="member in members | filter:{team:'33'}">
+                <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}">{{ member.firstname }} {{ member.lastname }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Team KIV <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li data-ng-repeat="member in members | filter:{team:'34'}">
+                <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}">{{ member.firstname }} {{ member.lastname }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">研究生 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li data-ng-repeat="member in members | filter:{team:'35'}">
+                <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}">{{ member.firstname }} {{ member.lastname }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li du-scrollspy="keywords"
+              data-ng-show="keywords.length && member.enabled">
+            <a href="#keywords"
+               du-smooth-scroll>關鍵字</a>
+          </li>
+          <li du-scrollspy="relationships"
+              data-ng-show="relationships.length && member.enabled">
+            <a href="#relationships"
+               du-smooth-scroll>互動關係</a>
+          </li>
+          <li du-scrollspy="images"
+              data-ng-show="images.length && member.enabled">
+            <a href="#images"
+               du-smooth-scroll>可愛圖</a>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li>
+            <a ng-click="toTheTop()"
+               style="cursor:pointer;">回頂部</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section id="member" data-ng-show="canShowMember">
     <div class="cover">
       <div class="container">
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-            <h1>{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen }} {{ member.lastnameen }}</small></h1>
+            <h1 class="visible-md visible-lg desktop">{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen | capitalize }} {{ member.lastnameen | capitalize }}</small></h1>
+            <h1 class="visible-sm visible-xs mobile">{{ member.firstname }} {{ member.lastname }} <small>{{ member.firstnameen | capitalize }} {{ member.lastnameen | capitalize }}</small></h1>
           </div>
         </div>
       </div>
@@ -14,18 +79,31 @@
     <div class="info">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <img class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+          <div magnific-popup
+               zoom-enabled="false"
+               class="col-md-4">
+            <div class="photo-wrapper">
+              <a class="photo-link"
+                 data-ng-href="{{ member.img2014320 }}" 
+                 title="2014"
+                 tooltip-placement="right"
+                 tooltip-html-unsafe="{{ member.tooltip }}">
+                <img class="photo center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+              </a>
+              <a data-ng-href="{{ member.img2013320 }}" title="2013"></a>
+              <a data-ng-href="{{ member.img2012320 }}" title="2012"></a>
+              <a data-ng-href="{{ member.img2011320 }}" title="2011"></a>
+            </div>
             <dl class="dl-horizontal">
               <dt>暱稱</dt>
               <dd data-ng-repeat="nickname in member.nicknames.split(';')"
                   data-ng-bind="nickname"></dd>
               <dt>生日</dt>
-              <dd data-ng-bind="member.birthday"></dd>
+              <dd>{{ member.birthday | date:'yyyy年M月d日' }} ({{ member.year }}) <span class="badge" tooltip="{{ member.zodiacsign }}">{{ member.zodiacsignsymbol }}</span></dd>
               <dt>血型</dt>
-              <dd data-ng-bind="member.bloodtype"></dd>
+              <dd>{{ member.bloodtype | getBloodType }}</dd>
               <dt>出生地</dt>
-              <dd data-ng-bind="member.birthplace"></dd>
+              <dd>{{ member.birthplace | getJapanPlace }}</dd>
               <dt>身高</dt>
               <dd data-ng-bind="member.height + 'cm'"></dd>
               <dt>興趣</dt>
@@ -47,11 +125,38 @@
             </h4>
             <article>
               <p ng-bind-html="member.description"></p>
-              <a ng-show="member.officialblogurl" data-ng-href="{{ member.officialblogurl }}" class="icon icon-official" target="_blank"></a>
-              <a ng-show="member.ameblourl" data-ng-href="{{ member.ameblourl }}" class="icon icon-ameblo" target="_blank"></a>
-              <a ng-show="member.twitterurl" data-ng-href="{{ member.twitterurl }}" class="icon icon-twitter" target="_blank"></a>
-              <a ng-show="member.googleplusurl" data-ng-href="{{ member.googleplusurl }}" class="icon icon-google" target="_blank"></a>
-              <a ng-show="member.nanagogourl" data-ng-href="{{ member.nanagogourl }}" class="icon icon-nanagogo" target="_blank"></a>
+              <ul>
+                <li ng-show="member.officialblogurl">
+                  <a data-ng-href="{{ member.officialblogurl }}"
+                     class="icon icon-official"
+                     target="_blank"
+                     tooltip="AKB48官方部落格"></a>
+                </li>
+                <li ng-show="member.ameblourl">
+                  <a data-ng-href="{{ member.ameblourl }}"
+                     class="icon icon-ameblo"
+                     target="_blank"
+                     tooltip="Ameblo"></a>
+                </li>
+                <li ng-show="member.twitterurl">
+                  <a data-ng-href="{{ member.twitterurl }}"
+                     class="icon icon-twitter"
+                     target="_blank"
+                     tooltip="Twitter"></a>
+                </li>
+                <li ng-show="member.googleplusurl">
+                  <a data-ng-href="{{ member.googleplusurl }}"
+                     class="icon icon-google"
+                     target="_blank"
+                     tooltip="Google+"></a>
+                </li>
+                <li ng-show="member.nanagogourl">
+                  <a data-ng-href="{{ member.nanagogourl }}"
+                     class="icon icon-nanagogo"
+                     target="_blank"
+                     tooltip="755"></a>
+                </li>
+              </ul>
             </article>
           </div>
         </div>
@@ -59,83 +164,82 @@
     </div>
     <div class="quote">
       <div class="container">
-        <h2>“{{ member.catchphrase }}”</h2>
-        <p class="lead text-right" data-ng-bind="member.credit"></p>
+        <h2>“<span ng-bind-html="member.catchphrase"></span>”</h2>
+        <p class="lead text-right"><span class="text-mute">written by</span> {{ member.credit }}</p>
       </div>
     </div>
   </section>
-  <section id="keywords">
+  <section id="keywords" data-ng-show="keywords.length && member.enabled">
     <div class="container">
-      <slick magnific-popup
-             init-onload="true"
-             data="keywords"
-             dots="true"
-             autoplay="true"
-             infinite="false"
-             autoplay-speed="6000"
-             pause-on-dots-hover="true">
-        <div data-ng-repeat="keyword in keywords">
-          <div class="row">
-            <div class="col-md-12">
-              <h1 class="text-center" data-ng-bind="keyword.title"></h1>
+      <div magnific-popup
+           zoom-enabled="false">
+        <slick init-onload="true"
+               data="keywords"
+               dots="true"
+               autoplay="true"
+               infinite="false"
+               autoplay-speed="10000"
+               pause-on-dots-hover="true">
+          <div data-ng-repeat="keyword in keywords">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="text-center" data-ng-bind="keyword.title"></h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <article ng-bind-html="keyword.content"></article>
+              </div>
+              <div class="col-md-6">
+                <a data-ng-href="{{ keyword.imgurl }}" 
+                   title="{{ keyword.content }}">
+                  <img class="img-responsive center-block"
+                       data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}"data-ng-show="keyword.imgurl">
+                </a>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <article ng-bind-html="keyword.content"></article>
-            </div>
-            <div class="col-md-6">
-              <a data-ng-href="{{ keyword.imgurl }}" 
-                 title="{{ keyword.content }}">
-                <img class="img-responsive"
-                     data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}">
-              </a>
-            </div>
-          </div>
-        </div>
-      </slick>
+        </slick>
+      </div>
     </div>
   </section>
-  <section id="relationships">
+  <section id="relationships" data-ng-show="relationships.length && member.enabled">
     <div class="container">
-      <slick init-onload="true"
-             data="details"
-             dots="false"
-             arrows="false"
-             infinite="false"
-             draggable="false"
-             current-index="currentGroup">
-        <div data-ng-repeat="detail in details">
-          <h1 class="text-center"
-            data-ng-bind="detail.keyword"></h1>
-        </div>
-      </slick>
       <div class="row">
         <div class="col-md-6">
-          <slick magnific-popup
-                 init-onload="true"
-                 data="details"
-                 dots="false"
-                 arrows="false"
-                 infinite="false"
-                 draggable="false"
-                 current-index="currentGroup">
-            <div data-ng-repeat="detail in details">
-              <a data-ng-href="{{ detail.imgurl }}"
-                 title="{{ detail.content }}">
-                <img class="img-responsive"
-                     data-ng-src="{{ detail.imgurl | thumbnail:'l' }}">
-              </a>
-              <article ng-bind-html="detail.content"></article>
-              <blockquote>
-                <p data-ng-bind="detail.introduction"></p>
-                <footer data-ng-bind="detail.introductionsource"></footer>
-              </blockquote>
-            </div>
-          </slick>
+          <div magnific-popup
+               zoom-enabled="false">
+            <slick init-onload="true"
+                   data="details"
+                   dots="false"
+                   arrows="false"
+                   infinite="false"
+                   draggable="true"
+                   current-index="currentGroup">
+              <div data-ng-repeat="detail in details">
+                <a class="photo-link"
+                   data-ng-href="{{ detail.imgurl }}"
+                   title="{{ detail.content }}">
+                  <div class="photo" ng-style="{'background-image':'url({{ detail.imgurl | thumbnail:'l' }})'}">
+                    <div class="photo-title">
+                      <h1 class="text-center"
+                          data-ng-bind="detail.keyword"></h1>
+                    </div>
+                    <div class="photo-description">
+                      <article ng-bind-html="detail.content"></article>
+                      <blockquote>
+                        <p data-ng-bind="detail.introduction"></p>
+                        <footer class="text-right" data-ng-bind="detail.introductionsource"></footer>
+                      </blockquote>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </slick>
+          </div>
         </div>
-        <div class="col-md-6">
-          <svg ng-attr-width="{{ svgWidth }}"
+        <div class="col-md-6 visible-md visible-lg svg-container">
+          <svg width="100%"
                ng-attr-height="{{ svgHeight }}">
             <line ng-repeat="link in d3Links"
                   class="link"
@@ -149,14 +253,14 @@
               <clipPath id="cut-off-bottom">
                 <circle ng-attr-cx="{{ node.x }}"
                         ng-attr-cy="{{ node.y }}"
-                        r="60" />
+                        r="50" />
               </clipPath>
               <image xlink:href=""
                      ng-xlink-href="{{ node.img2014120 }}"
-                     ng-x="{{ node.x - 60 }}"
-                     ng-y="{{ node.y - 75 }}"
-                     width="120"
-                     height="150"
+                     ng-x="{{ node.x - 50 }}"
+                     ng-y="{{ node.y - 50 }}"
+                     width="100"
+                     height="100"
                      clip-path="url(#cut-off-bottom)"
                      ng-mouseover="onTargetMemberHover($event)"
                      ng-click="onTargetMemberClick($event)">
@@ -170,30 +274,34 @@
       </div>
     </div>
   </section>
-  <section id="images">
+  <section id="images" data-ng-show="images.length && member.enabled">
     <div class="container">
-      <div deckgrid
-           magnific-popup
-           class="deckgrid gallery"
-           source="images">   
-        <a data-ng-href="{{ card.imgurl }}"
-           title="{{ card.description }}">
-          <div class="photo">
-            <div class="photo-wrapper fade">
-              <img imageload
-                   class="animation-fade"
-                   data-loadedclass="animation-faded"
-                   data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+      <div magnific-popup
+           zoom-enabled="true">
+         <div deckgrid
+             class="deckgrid gallery"
+             source="images">   
+          <a data-ng-href="{{ card.imgurl }}"
+             title="{{ card.description }}">
+            <div class="photo">
+              <div class="photo-wrapper fade">
+                <img imageload
+                     class="animation-fade"
+                     data-loadedclass="animation-faded"
+                     data-ng-src="{{ card.imgurl | thumbnail:'m' }}">
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="container footer">
-      <img class="img-responsive" src="/modules/members/img/footer.png">
-    </div>
   </section>
-  <section id="footer">
-    
+  <section id="under-construction" data-ng-hide="member.enabled">
+    <div class="container">
+      <div class="jumbotron">
+        <img class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
+        <h1 class="text-center" data-ng-bind="underConstructionText"></h1>
+      </div>
+    </div>
   </section>
 </section>

@@ -1,17 +1,89 @@
+.navbar-default {
+  background-image: none;
+  background-color: rgba(248,248,248,.95);
+}
+
+#members {
+  background-color: #1f1f1f;
+  padding-top: 50px;
+}
+#members .page-header {
+  border-bottom: 1px solid #777;
+}
+#members .page-header h1 {
+  color: #FFC95C;
+}
+#members .member {
+  min-height: 200px;
+}
+#members .member a {
+  color: #D6426C;
+  text-decoration: none;
+}
+#members .member a p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#under-construction {
+  padding-top: 50px;
+}
+#under-construction .jumbotron {
+  background-color: rgba(0,0,0,0);
+}
+#under-construction .jumbotron h1 {
+  color: #ECD078;
+}
+
 #member .cover {
-  height: 300px;
+  height: 350px;
   background: url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');
   background-size: cover;
 }
+#member .cover h1 {
+  margin-bottom: 0px;
+}
+
 #member .info {
   background-color:#fff;
+  min-height: 390px;
 }
-#member .info .container .row img {
+#member .info .container .row .photo-wrapper a.photo-link {
+  cursor: zoom-in;
+}
+#member .info .container .row .photo-wrapper .photo {
   margin-top: -160px;
   border-style: solid;
   border-width: 10px;
   border-color: white;
   background-color: white;
+  min-width: 290px;
+  min-height: 290px;
+}
+#member .info .container .row .photo-wrapper .tooltip.in {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+#member .info .container .row .photo-wrapper .tooltip ul {
+  margin: 0;
+  padding: 0; 
+  overflow: hidden;
+  white-space: nowrap;
+}
+#member .info .container .row .photo-wrapper .tooltip ul li {
+  display: inline;
+  padding-right: 10px;
+}
+#member .info .container .row .photo-wrapper .tooltip ul li div {
+  display: inline-block;
+}
+#member .info .container .row .photo-wrapper .tooltip-inner {
+  max-width: 400px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  background-color: rgba(0,0,0,0.9);
 }
 #member .container {
   height: 100%;
@@ -24,12 +96,17 @@
 }
 #member .container .row h1 {
   position: absolute;
-  bottom: 0;
   color: #fff;
-  font-size: 63px;
+}
+#member .container .row h1.desktop {
+  bottom: 0;
+}
+#member .container .row h1.mobile {
+  margin-top: 50px;
+  padding-top: 10px;
 }
 #member .container .row h1 small {
-  font-style: 65%;
+  font-size: 65%;
   color: #777;
 }
 #member .container .row dl {
@@ -42,16 +119,26 @@
   color: #393e42;
 }
 #member .container .row article {
-  line-height: 1.5;
+  color: #494749;
+  font-size: 17px;
+  line-height: 1.4;
 }
 #member .container .row article:first-letter {
   display: block;
   font-size: 200%;
   overflow: visible;
-  /*float: left;*/
   position: relative;
   color: #EC4D68;
   font-weight: bold;
+}
+#member .container .row article ul {
+  margin: 0;
+  padding: 0; 
+  overflow: hidden;
+  white-space: nowrap;
+}
+#member .container .row article ul li {
+  display: inline;
 }
 #member .container .row article .icon {
   width: 32px;
@@ -81,31 +168,39 @@
 #member .quote {
   background-color: #616365;
   color: #fff;
-  padding: 40px 15px 0px 15px;
+  /*padding: 15px 15px 0px 15px;*/
   text-align: center;
+}
+#member .quote .container h2 {
+  line-height: 1.5;
+}
+#member .quote .container p span.text-mute {
+  color: #AEAEAF;
 }
 
 #keywords {
   background-color: #393e42;
   padding-bottom: 20px;
-  /*border-bottom-style: solid;
-  border-bottom-color: #32373b;
-  border-bottom-width: 5px;*/
+  overflow: hidden;
 }
 #keywords .container .row h1 {
-  color: #fff;
+  color: #2F3338;
   margin-bottom: 20px;
+  font-weight: normal;
+  text-shadow: 
+    -1px -1px 1px rgba(0,0,0,.5),
+    1px 1px 1px rgba(255,255,255,.1);
 }
 #keywords .container .row article {
   color: #fff;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.4;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 #keywords .container .row article:first-letter {
   display: block;
-  font-size: 200%;
-  overflow: visible;
-  position: relative;
-  color: #fff;
+  font-size: 100%;
+  color: #ECD078;
   font-weight: bold;
 }
 #keywords .container .row a {
@@ -113,65 +208,119 @@
 }
 
 #relationships {
-  background: #EBB64E url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
+  background: #ECD078 url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
   border-bottom-style: solid;
-  border-bottom-color: #d2a245;
+  border-bottom-color: #d3ba6b;
   border-bottom-width: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 #relationships .container .slick-slider{
   margin-bottom: 0px;
 }
-#relationships .container h1 {
-  color: #393e42;
-  margin-bottom: 20px;
-}
-#relationships .container .row a {
+#relationships .container .row a.photo-link {
   cursor: zoom-in;
 }
-#relationships .container .row article {
-  line-height: 1.5;
-  color: #1B1A1A;
+#relationships .container .row .photo {
+  min-height: 555px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
 }
-#relationships .container .row article:first-letter {
-  display: block;
-  font-size: 200%;
-  overflow: visible;
-  position: relative;
+#relationships .container .row .photo-title {
+  position: absolute;
+}
+#relationships .container .row .photo-title h1 {
+  color: #fff;
+  font-size: 55px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 10px;
   font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
 }
-#relationships .container .row blockquote {
-  border-left: 5px solid #B17E4F;
-  color: #4E3811;
+#relationships .container .row .photo-description {
+  position: absolute;
+  bottom: 0px;
+  display: block;
+  color: #fff;
+  padding: 10px;
+  background: rgba(60,60,59,.75) url('/modules/members/img/LightEffects3.png') no-repeat center top;
+  width: 100%;
 }
-#relationships .container .row blockquote footer {
-  color: #886643;
+#relationships .container .row .photo-description article {
+}
+#relationships .container .row .photo-description article:first-letter {
+  color: #69D2E7;
+}
+#relationships .container .row .photo-description blockquote {
+  margin-bottom: 0px;
+  border-left: 5px solid #ECD078;
+}
+#relationships .container .row .photo-description blockquote footer {
+  color: #ECD078;
+}
+#relationships .svg-container {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #images {
-  min-height: 700px;
+  min-height: 400px;
+  -webkit-box-shadow: 0 2px rgba(0,0,0,.3) inset;
+  -moz-box-shadow: 0 2px rgba(0,0,0,.3) inset;
+  box-shadow: 0 2px rgba(0,0,0,.3) inset;
   background: #1f1f1f url('/modules/members/img/LightEffects.png') no-repeat center top;
 }
 #images .container {
-  padding-top: 200px;
-}
-#images .container h1 {
-  font-size: 63px;
-  margin-bottom: 60px;
-  color: #EEE;
-  text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
-}
-#images .footer {
-  padding-top: 200px;
-  padding-bottom: 50px;
-  background: url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
+  padding-top: 20px;
 }
 
-#footer {
-  min-height: 300px;
-  border-top-style: solid;
-  border-top-color: #d496a2;
-  border-top-width: 5px;
-  background: #EDA8B6 url('/modules/members/img/LightEffects3.png') no-repeat center top;
+.animate-repeat {
+  -webkit-transition: 1s linear all;
+  transition: 1s linear all;
+}
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+}
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+/**
+ * Stagger Leave (hide) animation
+ */
+.animate-repeat.ng-leave-stagger {
+  /* this will have a 100ms delay between each successive leave animation */
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+
+  /* in case the stagger doesn't work then these two values
+   must be set to 0 to avoid an accidental CSS inheritance */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}
+/**
+ * Stagger ENTER ANIMATION
+ */
+.animate-repeat.ng-enter-stagger {
+  /* this will have a 100ms delay between each successive enter animation */
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+
+  /* in case the stagger doesn't work then these two values
+   must be set to 0 to avoid an accidental CSS inheritance */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
 }
 
 /* d3 */
@@ -195,9 +344,6 @@
   float: left;
 }
 .deckgrid .column .photo {
-  /*background:#fff url(images/spinner.gif) center 30px no-repeat;*/
-  /*border: 1px solid rgba(0, 0, 0, .15);*/
-  /*border-radius: 10px;*/
   margin: 0 10px 10px 0;
   position: relative;
 }
@@ -233,7 +379,7 @@
 .deckgrid .column .photo .photo-wrapper {
   max-width: 295px;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 1px;
   cursor: zoom-in;
 }
 .deckgrid .column .photo .photo-wrapper img {
@@ -244,6 +390,15 @@
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
+  #member .container .row h1 {
+    font-size: 55px;
+  }
+  #member .info .container .row .photo-wrapper .photo {
+    min-width: 340px;
+    min-height: 340px;
+  }
+
   .deckgrid[deckgrid]::before {
     content: '3 .column.size-1-3';
   }
@@ -261,6 +416,15 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+
+  #member .container .row h1 {
+    font-size: 55px;
+  }
+  #member .info .container .row .photo-wrapper .photo {
+    min-width: 293px;
+    min-height: 293px;
+  }
+
   .deckgrid[deckgrid]::before {
     content: '4 .column.size-1-4';
   }
@@ -278,6 +442,15 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+
+  #member .container .row h1 {
+    font-size: 63px;
+  }
+  #member .info .container .row .photo-wrapper .photo {
+    min-width: 340px;
+    min-height: 340px;
+  }
+
   .deckgrid[deckgrid]::before {
     content: '5 .column.size-1-5';
   }

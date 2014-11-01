@@ -1,24 +1,64 @@
-<section data-ng-controller="MembersController" data-ng-init="find()">
-  <div class="page-header">
-    <h1>Members</h1>
+<section id="members" data-ng-controller="MembersController" data-ng-init="find()">
+  <div ng-show="isLoading" class="loading">Loading&#8230;</div>
+  <header class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">HKT48</a>
+      </div>
+      <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+        <ul class="nav navbar-nav navbar-right">
+          <form class="navbar-form">
+            <div class="btn-group">
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'team'">隊伍</label>
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'generation'">期數</label>
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'year'">年齡</label>
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'zodiacsignorder'">星座</label>
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'bloodtype'">血型</label>
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'birthplace'">出生地</label>
+              <label class="btn btn-default" ng-model="orderProp" btn-radio="'height'">身高</label>
+            </div>
+          </form>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <!--
+    <div class="row">
+      
+    </div>-->
+    <div class="row">
+      <div class=""
+           data-ng-repeat="member in members | orderBy:[orderProp,'memberid']:canReverse(orderProp) | groupBy:[orderProp]">
+        <div class="col-xs-12"
+             ng-show="member.groupByCHANGED">
+          <div class="page-header">
+            <h1 ng-show="orderProp === 'team'" style="margin-bottom:0px;">{{ member[orderProp] | getTeam }}</h1>
+            <small ng-show="orderProp === 'team'" style="color:#777;">{{ member[orderProp] | getTeamDescription }}</small>
+            <h1 ng-show="orderProp === 'generation'">{{ member[orderProp] | getGeneration }} <small>{{ member[orderProp] | getGenerationDate | date:'yyyy年M月d日' }}</small></h1>
+            <h1 ng-show="orderProp === 'year'">{{ member[orderProp] }}歲</h1>
+            <h1 ng-show="orderProp === 'zodiacsignorder'">{{ member.zodiacsign }} {{ member.zodiacsignsymbol }}</h1>
+            <h1 ng-show="orderProp === 'bloodtype'">{{ member[orderProp] | getBloodType }}</h1>
+            <h1 ng-show="orderProp === 'birthplace'">{{ member[orderProp] | getJapanPlace }} <small>{{ member[orderProp] | getJapanZone }}</small></h1>
+            <h1 ng-show="orderProp === 'height'">{{ member[orderProp] }}cm</h1>
+          </div>
+        </div>
+        <div class="member col-xs-6 col-sm-3 col-md-2">
+          <a data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}" tooltip-html-unsafe="{{ member.catchphrase }}">
+            <img class="img-circle center-block"
+                 data-ng-src="{{ member.memberid | getImgURL:120:2014:true }}">
+            <h4 class="text-center">{{ member.firstname }} {{ member.lastname }}</h4>
+            <p ng-show="member.job" class="text-muted text-center"><small>{{ member.job | getJob }}</small></p>
+            <p ng-show="member.concurrent" class="text-muted text-center"><small>{{ member.concurrent | getTeam }} 兼任</small></p>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="list-group">
-    <a data-ng-repeat="member in members" data-ng-href="#!/members/{{member.firstnameen}}-{{member.lastnameen}}" class="list-group-item">
-      <small class="list-group-item-text">
-        <span data-ng-bind="member.lastname"></span>
-      </small>
-    </a>
-    <!-- <a data-ng-repeat="member in members" data-ng-href="#!/members/{{member._id}}" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="member.created | date:'medium'"></span>
-        by
-        <span data-ng-bind="member.user.displayName"></span>
-      </small>
-    <h4 class="list-group-item-heading" data-ng-bind="member.name"></h4>
-    </a> -->
-  </div>
-  <!-- <div class="alert alert-warning text-center" data-ng-hide="!members.$resolved || members.length">
-    No Members yet, why don't you <a href="/#!/members/create">create one</a>?
-  </div> -->
 </section>
