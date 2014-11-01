@@ -1,8 +1,8 @@
 'use strict';
 
 // Members controller
-angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'cfpLoadingBar', '$document',
-  function($scope, $filter, $http, $stateParams, $location, cfpLoadingBar, $document) {
+angular.module('members').controller('MembersController', ['$scope', '$filter', '$http', '$stateParams', '$location', 'cfpLoadingBar', '$document', '$state',
+  function($scope, $filter, $http, $stateParams, $location, cfpLoadingBar, $document, $state) {
 
     $scope.toTheTop = function() {
       $document.scrollTopAnimated(0);
@@ -55,7 +55,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
       $scope.canShowMember = true;
 
       loadingStart();
-      
+
       // Initialize.
       $scope.members = null; // All members data.
       $scope.member = null; // Current member's data.
@@ -85,6 +85,8 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
         $scope.members = members;
         // Find member object by fullname.
         var member = $filter('getMemberIdByFullName')(members, $stateParams.memberFullName);
+        // Set page title to member fullname.
+        $state.current.title = member.firstname + member.lastname;
         // Use tabletop to get member's data on google spreadsheet.
         Tabletop.init({
           key: '1MlbQ8V-O2Q3vGmquuzqUV4whqtlTpzkKF6VFNTgsYx4', // Key for google spreadsheet.
