@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh-cmn-Hant" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
   <title>HKT48 台灣應援網站</title>
@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- Semantic META -->
+  <meta name="title" content="HKT48 台灣應援網站">
   <meta name="keywords" content="HKT48">
   <meta name="description" content="介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。">
 
@@ -19,14 +20,14 @@
   <meta property="og:title" content="HKT48 台灣應援網站">
   <meta property="og:description" content="介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。">
   <meta property="og:url" content="http://www.tpe48.com.tw/hkt48/">
-  <meta property="og:image" content="/modules/core/img/brand/logo.png">
+  <meta property="og:image" content="http://www.tpe48.com.tw/hkt48/modules/core/img/brand/logo.png">
   <meta property="og:type" content="website">
 
   <!-- Twitter META -->
   <meta name="twitter:title" content="HKT48 台灣應援網站">
   <meta name="twitter:description" content="介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。">
   <meta name="twitter:url" content="http://www.tpe48.com.tw/hkt48/">
-  <meta name="twitter:image" content="/modules/core/img/brand/logo.png">
+  <meta name="twitter:image" content="http://www.tpe48.com.tw/hkt48/modules/core/img/brand/logo.png">
 
   <!-- Fav Icon -->
   <link href="/modules/core/img/brand/ico.ico" rel="shortcut icon" type="image/x-icon">
@@ -90,7 +91,6 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-8676193-16', 'auto');
-    ga('send', 'pageview');
 
   </script>
 
@@ -101,7 +101,7 @@
 
   <!--Application JavaScript Files-->
   {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
-  {% endfor %} 
+  {% endfor %}
 
   {% if process.env.NODE_ENV === 'development' %}
   <!--Livereload script rendered -->

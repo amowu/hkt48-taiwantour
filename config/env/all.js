@@ -37,7 +37,9 @@ module.exports = {
 				'public/lib/magnific-popup/dist/jquery.magnific-popup.js',
 				'public/lib/d3/d3.js',
 				'public/lib/angular-loading-bar/build/loading-bar.js',
-				'public/lib/angular-scroll/angular-scroll.js'
+				'public/lib/angular-scroll/angular-scroll.js',
+				'public/lib/angulartics/dist/angulartics.min.js',
+				'public/lib/angulartics/dist/angulartics-ga.min.js'
 			]
 		},
 		css: [

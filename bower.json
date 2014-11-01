@@ -20,6 +20,7 @@
     "magnific-popup": "~0.9.9",
     "d3": "~3.4.12",
     "angular-loading-bar": "~0.6.0",
-    "angular-scroll": "~0.6.2"
+    "angular-scroll": "~0.6.2",
+    "angulartics": "~0.17.1"
   }
 }
