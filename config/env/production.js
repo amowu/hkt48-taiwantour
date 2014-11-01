@@ -14,11 +14,11 @@ module.exports = {
 			js: [
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/angular/angular.min.js',
-				'public/lib/angular-resource/angular-resource.js', 
-				'public/lib/angular-cookies/angular-cookies.js', 
-				'public/lib/angular-animate/angular-animate.js', 
-				'public/lib/angular-touch/angular-touch.js', 
-				'public/lib/angular-sanitize/angular-sanitize.js', 
+				'public/lib/angular-resource/angular-resource.js',
+				'public/lib/angular-cookies/angular-cookies.js',
+				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-touch/angular-touch.js',
+				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
 				'public/lib/angular-ui-utils/ui-utils.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
@@ -29,7 +29,9 @@ module.exports = {
 				'public/lib/magnific-popup/dist/jquery.magnific-popup.min.js',
 				'public/lib/d3/d3.min.js',
 				'public/lib/angular-loading-bar/build/loading-bar.min.js',
-				'public/lib/angular-scroll/angular-scroll.min.js'
+				'public/lib/angular-scroll/angular-scroll.min.js',
+				'public/lib/angulartics/dist/angulartics.min.js',
+				'public/lib/angulartics/dist/angulartics-ga.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

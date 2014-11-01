@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hant" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
   <title ng-bind="$state.current.title + ' - HKT48台灣應援網站'"></title>
@@ -30,11 +30,11 @@
   <meta name="twitter:image" content="http://www.tpe48.com.tw/hkt48/modules/core/img/brand/logo.png">
 
   <!-- Fav Icon -->
-  <link href="/modules/core/img/brand/ico.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="http://www.tpe48.com.tw/hkt48/modules/core/img/brand/ico.ico" rel="shortcut icon" type="image/x-icon">
 
   <!--Application CSS Files-->
-  {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
-  {% endfor %}
+  <link rel="stylesheet" href="dist/vendor.min.css">
+  <link rel="stylesheet" href="dist/application.min.css">
 
   <!-- HTML5 Shim -->
   <!--[if lt IE 9]>
@@ -44,12 +44,12 @@
 
 <body class="ng-cloak">
   <section class="content">
-    {% block content %}{% endblock %}
+    <section data-ui-view autoscroll="true"></section>
   </section>
   <section id="footer">
     <div class="logo">
       <div class="container">
-        <img class="img-responsive" src="/modules/members/img/footer.png">
+        <img class="img-responsive" src="./modules/members/img/footer.png">
       </div>
     </div>
     <footer>
@@ -94,20 +94,10 @@
 
   </script>
 
-  <!--Embedding The User Object-->
-  <script type="text/javascript">
-    var user = {{ user | json | safe }};
-  </script>
-
   <!--Application JavaScript Files-->
-  {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
-  {% endfor %}
-
-  {% if process.env.NODE_ENV === 'development' %}
-  <!--Livereload script rendered -->
-  <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
-
-  {% endif %}
+  <script type="text/javascript" src="dist/vendor.min.js"></script>
+  <script type="text/javascript" src="config.min.js"></script>
+  <script type="text/javascript" src="dist/application.min.js"></script>
 </body>
 
 </html>
