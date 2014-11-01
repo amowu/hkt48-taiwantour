@@ -6,6 +6,7 @@ angular.module('members').config(['$stateProvider',
 		// Members state routing
 		$stateProvider.
 		state('listMembers', {
+			title: '成員列表',
 			url: '/members',
 			templateUrl: 'modules/members/views/list-members.client.view.html'
 		}).
