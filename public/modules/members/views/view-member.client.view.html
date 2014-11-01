@@ -1,4 +1,4 @@
-<section data-ng-controller="MembersController" 
+<section data-ng-controller="MembersController"
          data-ng-init="findOne()">
   <div data-ng-show="isLoading" class="loading">Loading&#8230;</div>
   <header class="navbar navbar-fixed-top navbar-default">
@@ -84,7 +84,7 @@
                class="col-md-4">
             <div class="photo-wrapper">
               <a class="photo-link"
-                 data-ng-href="{{ member.img2014320 }}" 
+                 data-ng-href="{{ member.img2014320 }}"
                  title="2014"
                  tooltip-placement="right"
                  tooltip-html-unsafe="{{ member.tooltip }}">
@@ -165,7 +165,9 @@
     <div class="quote">
       <div class="container">
         <h2>“<span ng-bind-html="member.catchphrase"></span>”</h2>
-        <p class="lead text-right"><span class="text-mute">written by</span> {{ member.credit }}</p>
+        <p class="lead text-right" data-ng-show="member.credit">
+          <span class="text-mute">written by</span> {{ member.credit }}
+        </p>
       </div>
     </div>
   </section>
@@ -191,7 +193,7 @@
                 <article ng-bind-html="keyword.content"></article>
               </div>
               <div class="col-md-6">
-                <a data-ng-href="{{ keyword.imgurl }}" 
+                <a data-ng-href="{{ keyword.imgurl }}"
                    title="{{ keyword.content }}">
                   <img class="img-responsive center-block"
                        data-ng-src="{{ keyword.imgurl | thumbnail:'l' }}"data-ng-show="keyword.imgurl">
@@ -280,7 +282,7 @@
            zoom-enabled="true">
          <div deckgrid
              class="deckgrid gallery"
-             source="images">   
+             source="images">
           <a data-ng-href="{{ card.imgurl }}"
              title="{{ card.description }}">
             <div class="photo">
