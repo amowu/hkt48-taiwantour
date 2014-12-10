@@ -64,7 +64,7 @@
       </nav>
     </div>
   </header>
-  <section id="member" data-ng-show="canShowMember">
+  <section class="member" data-ng-show="canShowMember">
     <div class="cover">
       <div class="container">
         <div class="row">
@@ -171,7 +171,7 @@
       </div>
     </div>
   </section>
-  <section id="keywords" data-ng-show="keywords.length && member.enabled">
+  <section class="keywords" data-ng-show="keywords.length && member.enabled">
     <div class="container">
       <div magnific-popup
            zoom-enabled="false">
@@ -205,7 +205,7 @@
       </div>
     </div>
   </section>
-  <section id="relationships" data-ng-show="relationships.length && member.enabled">
+  <section class="relationships" data-ng-show="relationships.length && member.enabled">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -276,7 +276,7 @@
       </div>
     </div>
   </section>
-  <section id="images" data-ng-show="images.length && member.enabled">
+  <section class="images" data-ng-show="images.length && member.enabled">
     <div class="container">
       <div magnific-popup
            zoom-enabled="true">
@@ -298,7 +298,7 @@
       </div>
     </div>
   </section>
-  <section id="under-construction" data-ng-hide="member.enabled">
+  <section class="under-construction" data-ng-hide="member.enabled">
     <div class="container">
       <div class="jumbotron">
         <img class="center-block img-circle img-responsive" data-ng-src="{{ member.img2014320s }}">
