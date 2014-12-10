@@ -8,18 +8,15 @@ body {
   background-color: #1f1f1f;
 }
 a:focus {
-  outline: 0;
+  outline-style: none;
 }
 
-.content {
-}
-
-#footer .logo {
+.footer .logo {
   padding-top: 20px;
   padding-bottom: 20px;
   background: #1f1f1f url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
 }
-#footer footer {
+.footer footer {
   padding-top: 20px;
   min-height: 200px;
   border-top-style: solid;
@@ -27,22 +24,22 @@ a:focus {
   border-top-width: 5px;
   background: #E4B9C5 url('/modules/members/img/LightEffects3.png') no-repeat center top;
 }
-#footer footer p {
+.footer footer p {
   color: #262323;
   font-size: 10px;
 }
-#footer footer .title {
+.footer footer .title {
   font-weight: bold;
   text-shadow: 1px 1px 1px rgba(255,255,255,.5);
 }
-#footer footer .about .description-jp {
+.footer footer .about .description-jp {
   color: #504C4C;
 }
-#footer footer .contact a {
+.footer footer .contact a {
   color: #504C4C;
   border-bottom: 1px dashed #504C4C;
 }
-#footer footer .contact a:hover {
+.footer footer .contact a:hover {
   text-decoration: none;
 }
 
@@ -51,20 +48,4 @@ a:focus {
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
-}
-.ng-invalid.ng-dirty{
-}
-.ng-valid.ng-dirty{
-}
-
-#loading-bar .bar {
-  z-index: 1031;
-  height: 5px;
-  background: #ecd078;
-}
-#loading-bar .peg {
-  -moz-box-shadow: none;
-  -ms-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
