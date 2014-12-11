@@ -153,14 +153,14 @@ module.exports = function(grunt) {
     grunt.config.set('applicationCSSFiles', config.assets.css);
   });
 
+  // Lint task(s).
+  grunt.registerTask('lint', ['jshint', 'csslint']);
+
   // Default task(s).
   grunt.registerTask('default', ['lint', 'concurrent:default']);
 
   // Debug task.
   grunt.registerTask('debug', ['lint', 'concurrent:debug']);
-
-  // Lint task(s).
-  grunt.registerTask('lint', ['jshint', 'csslint']);
 
   // Build task(s).
   grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
