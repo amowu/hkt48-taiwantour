@@ -249,7 +249,7 @@
   background-image: url('/modules/members/img/LightEffects3.png');
   background-repeat: no-repeat;
   background-position: center top;
-  width: 100%;
+  width: 290px;
 }
 .relationships .container .row .photo-description article:first-letter {
   color: #69D2E7;
@@ -404,7 +404,11 @@
     min-width: 340px;
     min-height: 340px;
   }
-
+  
+  .relationships .container .row .photo-description {
+    width: 720px;
+  }
+  
   .deckgrid[deckgrid]::before {
     content: '3 .column.size-1-3';
   }
@@ -430,7 +434,11 @@
     min-width: 293px;
     min-height: 293px;
   }
-
+  
+  .relationships .container .row .photo-description {
+    width: 455px;
+  }
+  
   .deckgrid[deckgrid]::before {
     content: '4 .column.size-1-4';
   }
@@ -456,7 +464,11 @@
     min-width: 340px;
     min-height: 340px;
   }
-
+  
+  .relationships .container .row .photo-description {
+    width: 555px;
+  }
+  
   .deckgrid[deckgrid]::before {
     content: '5 .column.size-1-5';
   }
