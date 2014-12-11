@@ -14,7 +14,7 @@ a:focus {
 .footer .logo {
   padding-top: 20px;
   padding-bottom: 20px;
-  background: #1f1f1f url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
+  background: #1f1f1f url('modules/members/img/LightEffects2.png') no-repeat center bottom;
 }
 .footer footer {
   padding-top: 20px;
@@ -22,7 +22,7 @@ a:focus {
   border-top-style: solid;
   border-top-color: #cba5b0;
   border-top-width: 5px;
-  background: #E4B9C5 url('/modules/members/img/LightEffects3.png') no-repeat center top;
+  background: #E4B9C5 url('modules/members/img/LightEffects3.png') no-repeat center top;
 }
 .footer footer p {
   color: #262323;
