@@ -1,3 +1,4 @@
+/* global Tabletop:false, d3:false */
 'use strict';
 
 // Members controller
@@ -6,7 +7,7 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
 
     $scope.toTheTop = function() {
       $document.scrollTopAnimated(0);
-    }
+    };
 
     $scope.isLoading = false;
     $scope.isCollapsed = false;
@@ -103,6 +104,12 @@ angular.module('members').controller('MembersController', ['$scope', '$filter', 
               $scope.relationships = tabletop.sheets('relationship').all();
               $scope.images = $filter('shuffle')(tabletop.sheets('image').all());
               // Initialize member module.
+              $scope.member.bloodtype = parseInt($scope.member.bloodtype, 10);
+              $scope.member.birthplace = parseInt($scope.member.birthplace, 10);
+              $scope.member.job = parseInt($scope.member.job, 10);
+              $scope.member.team = parseInt($scope.member.team, 10);
+              $scope.member.concurrent = parseInt($scope.member.concurrent, 10);
+              $scope.member.generation = parseInt($scope.member.generation, 10);
               $scope.member.year = $filter('getAge')($scope.member.birthday);
               $scope.member.catchphrase = $scope.member.catchphrase.replace('{0}', $scope.member.year);
               $scope.member.zodiacsign = $filter('getZodiacSign')($scope.member.birthday)[1];

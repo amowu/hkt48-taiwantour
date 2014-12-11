@@ -25,9 +25,10 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getMemberById', [
   function () {
     return function(members, memberId) {
+      memberId = parseInt(memberId, 10);
       var i=0, len=members.length;
       for (; i<len; i++) {
-        if (members[i].memberid == memberId) {
+        if (parseInt(members[i].memberid, 10) === memberId) {
           return members[i];
         }
       }
@@ -63,19 +64,19 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getGeneration', [
   function() {
     return function(generation) {
-      if (generation == 4) {
+      if (generation === 4) {
         return 'AKB48 三期生';
-      } else if (generation == 6) {
+      } else if (generation === 6) {
         return 'AKB48 五期生';
-      } else if (generation == 16) {
+      } else if (generation === 16) {
         return 'SKE48 四期生';
-      } else if (generation == 20) {
+      } else if (generation === 20) {
         return 'HKT48 一期生';
-      } else if (generation == 25) {
+      } else if (generation === 25) {
         return 'HKT48 二期生';
-      } else if (generation == 29) {
+      } else if (generation === 29) {
         return 'HKT48 三期生';
-      } else if (generation == 30) {
+      } else if (generation === 30) {
         return 'HKT48 選秀生';
       } else {
         return '';
@@ -85,19 +86,19 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getGenerationDate', [
   function() {
     return function(generation) {
-      if (generation == 4) {
+      if (generation === 4) {
         return 1165075200000;
-      } else if (generation == 6) {
+      } else if (generation === 6) {
         return 1191600000000;
-      } else if (generation == 16) {
+      } else if (generation === 16) {
         return 1283270400000;
-      } else if (generation == 20) {
+      } else if (generation === 20) {
         return 1309449600000;
-      } else if (generation == 25) {
+      } else if (generation === 25) {
         return 1346428800000;
-      } else if (generation == 29) {
+      } else if (generation === 29) {
         return 1383235200000;
-      } else if (generation == 30) {
+      } else if (generation === 30) {
         return 1384012800000;
       } else {
         return '';
@@ -107,23 +108,23 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getTeam', [
   function() {
     return function(team) {
-      if (team == 23) {
+      if (team === 23) {
         return 'AKB48 Team A';
-      } else if (team == 24) {
+      } else if (team === 24) {
         return 'AKB48 Team K';
-      } else if (team == 25) {
+      } else if (team === 25) {
         return 'AKB48 Team B';
-      } else if (team == 27) {
+      } else if (team === 27) {
         return 'SKE48 Team S';
-      } else if (team == 29) {
+      } else if (team === 29) {
         return 'SKE48 Team E';
-      } else if (team == 30) {
+      } else if (team === 30) {
         return 'NMB48 Team N';
-      } else if (team == 33) {
+      } else if (team === 33) {
         return 'Team H';
-      } else if (team == 34) {
+      } else if (team === 34) {
         return 'Team KIV';
-      } else if (team == 35) {
+      } else if (team === 35) {
         return '研究生';
       } else {
         return '';
@@ -133,9 +134,9 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getTeamDescription', [
   function() {
     return function(team) {
-      if (team == 33) {
+      if (team === 33) {
         return '雖然現役隊員與出道至今，曾經代表過整個HKT48的那個經典Team H大不相同，這個隊伍仍然保有Team H才華洋溢，天賦多得幾近奢侈的風格。在大組閣的大換血之後留下的成員並不多，但Team H在美人、搞笑、舞蹈每一個位置上，都能保持一名前輩配上數名具有潛力的後輩，在保持競爭力的前提下仍有大量新星令人期待。而隊伍最大的看點，就是現今全團最受矚目的矢吹奈子、田中美久，以及前後兩代Center兒玉遥、田島芽瑠，配上支配人指原莉乃，星光濯濯的核心陣容。';
-      } else if (team == 34) {
+      } else if (team === 34) {
         return '與分班宣布前，眾人所預期的以二期生為主的隊伍完全相反，Team KIV事實上繼承了大量原H成員及一期生的天賦。Team KIV的陣容特色就宛如她們的劇場公演曲目一般──以數名守護劇場的「劇場的女神」為主，Team KIV的成員重團隊，彼此扶持，雖然是全48G最年幼的隊伍，卻一舉奪下了劇場公演競賽的后冠。而鎂光燈焦點的本村碧唯、森保まどか、朝長美桜，以及已經奪下關東Center的宮脇咲良，都與這個隊伍一樣，仍在持續成長，前途無可限量。';
       } else {
         return '在籍資歷最淺的她們，戰力並不容小覷。就算不提入團後立刻站c/w C，現已順利升格的奈子美久，三期研究生中也仍然有人進入選拔與劇場盤unit。研究生中有可愛蘿莉、有成熟美人、有人擅長舞蹈、有人立志綜藝；也許人數不多，但個個都是令人期待的，HKT可以倚靠的未來。';
@@ -145,15 +146,15 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getJob', [
   function() {
     return function(job) {
-      if (job == 1) {
+      if (job === 1) {
         return 'HKT48 劇場支配人兼務';
-      } else if (job == 2) {
+      } else if (job === 2) {
         return 'Team H 隊長';
-      } else if (job == 3) {
+      } else if (job === 3) {
         return 'Team KIV 隊長';
-      } else if (job == 4) {
+      } else if (job === 4) {
         return 'Team H 副隊長';
-      } else if (job == 5) {
+      } else if (job === 5) {
         return 'Team KIV 副隊長';
       } else {
         return '';
@@ -209,9 +210,10 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getGroupByTartgetMemberId', [
   function() {
     return function(links, targetMemberId) {
+      targetMemberId = parseInt(targetMemberId, 10);
       var i=0, len=links.length;
       for (; i<len; i++) {
-        if (links[i].targetmemberid == targetMemberId) {
+        if (parseInt(links[i].targetmemberid, 10) === targetMemberId) {
           return links[i].group;
         }
       }
@@ -320,13 +322,13 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getBloodType', [
   function () {
     return function(bloodType) {
-      if (bloodType == 1) {
+      if (bloodType === 1) {
         return 'A';
-      } else if (bloodType == 2) {
+      } else if (bloodType === 2) {
         return 'B';
-      } else if (bloodType == 3) {
+      } else if (bloodType === 3) {
         return 'AB';
-      } else if (bloodType == 4) {
+      } else if (bloodType === 4) {
         return 'O';
       } else {
         return '不明';
@@ -336,26 +338,26 @@ angular.module('members').filter('getMemberIdByFullName', [
 ]).filter('getJapanPlace', [
   function () {
     return function(place) {
-      if (place == 11) { return '埼玉縣'; }
-      else if (place == 13) { return '東京都'; }
-      else if (place == 23) { return '愛知縣'; }
-      else if (place == 35) { return '山口縣'; }
-      else if (place == 38) { return '愛媛縣'; }
-      else if (place == 40) { return '福岡縣'; }
-      else if (place == 41) { return '佐賀縣'; }
-      else if (place == 42) { return '長崎縣'; }
-      else if (place == 43) { return '熊本縣'; }
-      else if (place == 44) { return '大分縣'; }
-      else if (place == 45) { return '宮崎縣'; }
-      else if (place == 46) { return '鹿兒島縣'; }
+      if (place === 11) { return '埼玉縣'; }
+      else if (place === 13) { return '東京都'; }
+      else if (place === 23) { return '愛知縣'; }
+      else if (place === 35) { return '山口縣'; }
+      else if (place === 38) { return '愛媛縣'; }
+      else if (place === 40) { return '福岡縣'; }
+      else if (place === 41) { return '佐賀縣'; }
+      else if (place === 42) { return '長崎縣'; }
+      else if (place === 43) { return '熊本縣'; }
+      else if (place === 44) { return '大分縣'; }
+      else if (place === 45) { return '宮崎縣'; }
+      else if (place === 46) { return '鹿兒島縣'; }
       else { return '不明'; }
-    }
+    };
   }
 ]).filter('getJapanZone', [
   function () {
     return function(place) {
       var placeNum = parseInt(place);
-      if ( 1 == placeNum ) { return '北海道地方'; }
+      if ( 1 === placeNum ) { return '北海道地方'; }
       if ( 1 <= placeNum && placeNum < 8 ) { return '東北地方'; }
       if ( 8 <= placeNum && placeNum < 15 ) { return '關東地方'; }
       if ( 15 <= placeNum && placeNum < 24 ) { return '中部地方'; }
@@ -363,7 +365,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       if ( 31 <= placeNum && placeNum < 36 ) { return '中國地方'; }
       if ( 36 <= placeNum && placeNum < 40 ) { return '四國地方'; }
       if ( 40 <= placeNum && placeNum < 47 ) { return '九州地方'; }
-      if ( 47 == placeNum ) { return '沖繩地方'; }
+      if ( 47 === placeNum ) { return '沖繩地方'; }
       return '海外';
     };
   }
@@ -381,7 +383,7 @@ angular.module('members').filter('getMemberIdByFullName', [
   function($filter) {
     return function(memberId, generation) {
 
-      var li = "<li><div><img class='img-circle' src='{0}'><p class='text-center'>{1}</p></div></li>";
+      var li = '<li><div><img class="img-circle" src="{0}"><p class="text-center">{1}</p></div></li>';
 
       var regexp = function(str) {
         return new RegExp(str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');

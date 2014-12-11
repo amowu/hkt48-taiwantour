@@ -1,3 +1,4 @@
+/* global $:false */
 'use strict';
 
 angular.module('core').directive('bnLazySrc', [
@@ -83,7 +84,7 @@ angular.module('core').directive('bnLazySrc', [
       function checkImages() {    
 
         // Log here so we can see how often this gets called during page activity.
-        console.log( "Checking for visible images..." );
+        console.log( 'Checking for visible images...' );
 
         var visible = [];
         var hidden = [];
@@ -108,8 +109,8 @@ angular.module('core').directive('bnLazySrc', [
         }
 
         // Update the DOM with new image source values.
-        for (var i=0; i<visible.length; i++) {
-          visible[i].render();
+        for (var j=0; j<visible.length; j++) {
+          visible[j].render();
         }
 
         // Keep the still-hidden images as the new image queue to be monitored.
