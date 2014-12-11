@@ -162,9 +162,9 @@ module.exports = function(grunt) {
   // Debug task.
   grunt.registerTask('debug', ['lint', 'concurrent:debug']);
 
-  // Build task(s).
-  grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
-
   // Test task.
   grunt.registerTask('test', ['lint', 'env:test', 'mochaTest', 'karma:unit']);
+  
+  // Build task(s).
+  grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
 };
