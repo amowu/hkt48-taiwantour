@@ -71,14 +71,16 @@ module.exports = function(grunt) {
           mangle: false
         },
         files: {
-          'public/dist/application.min.js': 'public/dist/application.js'
+          'dist/application.min.js': 'dist/application.js',
+          'dist/vendor.min.js': 'dist/vendor.js'
         }
       }
     },
     cssmin: {
       combine: {
         files: {
-          'public/dist/application.min.css': '<%= applicationCSSFiles %>'
+          'dist/application.min.css': '<%= applicationCSSFiles %>',
+          'dist/vendor.min.css': '<%= vendorCSSFiles %>'
         }
       }
     },
@@ -108,7 +110,8 @@ module.exports = function(grunt) {
     ngmin: {
       production: {
         files: {
-          'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
+          'dist/application.js': '<%= applicationJavaScriptFiles %>',
+          'dist/vendor.js': '<%= vendorJavaScriptFiles %>'
         }
       }
     },
@@ -122,6 +125,9 @@ module.exports = function(grunt) {
     env: {
       test: {
         NODE_ENV: 'test'
+      },
+      production: {
+        NODE_ENV: 'production'
       }
     },
     mochaTest: {
@@ -134,6 +140,66 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js'
+      }
+    },
+    copy: {
+      main: {
+        files: [
+          {
+            expand: true,
+            cwd: 'public/modules/core/img/',
+            src: '**',
+            dest: 'dist/modules/core/img/'
+          },
+          {
+            expand: true,
+            cwd: 'public/modules/members/img/',
+            src: '**',
+            dest: 'dist/modules/members/img/'
+          },
+          {
+            expand: true,
+            cwd: 'public/modules/members/views/',
+            src: '**',
+            dest: 'dist/modules/members/views/'
+          },
+          {
+            expand: true,
+            cwd: 'public/modules/members/',
+            src: 'members.json',
+            dest: 'dist/modules/members/'
+          },
+          {
+            expand: true,
+            cwd: 'public/',
+            src: '*.txt',
+            dest: 'dist/'
+          },
+          {
+            expand: true,
+            cwd: 'public/',
+            src: '*.xml',
+            dest: 'dist/'
+          },
+          {
+            expand: true,
+            cwd: 'app/views/',
+            src: 'index.html',
+            dest: 'dist/'
+          },
+          {
+            expand: true,
+            cwd: 'public/lib/slick-carousel/slick/fonts',
+            src: '*',
+            dest: 'dist/fonts'
+          },
+          {
+            expand: true,
+            cwd: 'public/lib/slick-carousel/slick/',
+            src: 'ajax-loader.gif',
+            dest: 'dist/'
+          }
+        ]
       }
     }
   });
@@ -151,6 +217,12 @@ module.exports = function(grunt) {
 
     grunt.config.set('applicationJavaScriptFiles', config.assets.js);
     grunt.config.set('applicationCSSFiles', config.assets.css);
+    grunt.config.set('vendorJavaScriptFiles', config.assets.lib.js);
+    grunt.config.set('vendorCSSFiles', config.assets.lib.css);
+  });
+
+  grunt.task.registerTask('copyFiles', 'Task that copy the public files into a gdist.', function() {
+
   });
 
   // Lint task(s).
@@ -166,5 +238,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['lint', 'env:test', 'mochaTest', 'karma:unit']);
   
   // Build task(s).
-  grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin', 'copy']);
 };
