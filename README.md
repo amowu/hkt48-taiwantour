@@ -1,10 +1,12 @@
-[![Logo](https://raw.githubusercontent.com/amowu/hkt48-taiwantour/master/public/modules/core/img/brand/logo.png)](http://www.tpe48.com.tw/hkt48/)
+[![Cover](https://raw.githubusercontent.com/amowu/hkt48-taiwantour/fa05c5902cb46e93816b021425c39fe72c40501f/public/modules/core/img/brand/logo.png)
 
 [![Build Status](https://travis-ci.org/amowu/hkt48-taiwantour.svg)](https://travis-ci.org/amowu/hkt48-taiwantour)
 [![Dependencies Status](https://david-dm.org/amowu/hkt48-taiwantour.svg)](https://david-dm.org/amowu/hkt48-taiwantour)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/amowu/hkt48-taiwantour?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # HKT48台灣應援網站
+
+![Logo](https://raw.githubusercontent.com/amowu/hkt48-taiwantour/develop/public/modules/core/img/brand/64x64.png)
 
 介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。
 
