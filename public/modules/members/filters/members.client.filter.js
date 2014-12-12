@@ -54,7 +54,7 @@ angular.module('members').filter('getMemberIdByFullName', [
       var regexp = function(str) {
         return new RegExp(str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
       };
-      return 'modules/members/img/{2}/{1}{3}/{0}_{1}{3}_{2}.jpg'
+      return '/modules/members/img/{2}/{1}{3}/{0}_{1}{3}_{2}.jpg'
         .replace('{0}', ('0000' + memberId).slice(-4))
         .replace(regexp('{1}'), size)
         .replace(regexp('{2}'), year)

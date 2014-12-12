@@ -38,7 +38,7 @@
 
 .member .cover {
   height: 350px;
-  background: url('modules/members/img/Blurred backgrounds by Dreamstale.jpg');
+  background: url('/modules/members/img/Blurred backgrounds by Dreamstale.jpg');
   background-size: cover;
 }
 .member .cover h1 {
@@ -145,7 +145,7 @@
   display:inline-block;
   border: none;
   transition: all 0.1s ease;
-  background-image: url('modules/members/img/icon.png');
+  background-image: url('/modules/members/img/icon.png');
 }
 .member .container .row article .icon:hover {
   border-radius: 50%;
@@ -207,7 +207,7 @@
 }
 
 .relationships {
-  background: #ECD078 url('modules/members/img/LightEffects2.png') no-repeat center bottom;
+  background: #ECD078 url('/modules/members/img/LightEffects2.png') no-repeat center bottom;
   border-bottom-style: solid;
   border-bottom-color: #d3ba6b;
   border-bottom-width: 5px;
@@ -246,7 +246,7 @@
   padding: 10px;
   background-color: #3c3c3b;
   background-color: rgba(60,60,59,.75);
-  background-image: url('modules/members/img/LightEffects3.png');
+  background-image: url('/modules/members/img/LightEffects3.png');
   background-repeat: no-repeat;
   background-position: center top;
   width: 290px;
@@ -271,7 +271,7 @@
   -webkit-box-shadow: 0 2px rgba(0,0,0,.3) inset;
   -moz-box-shadow: 0 2px rgba(0,0,0,.3) inset;
   box-shadow: 0 2px rgba(0,0,0,.3) inset;
-  background: #1f1f1f url('modules/members/img/LightEffects.png') no-repeat center top;
+  background: #1f1f1f url('/modules/members/img/LightEffects.png') no-repeat center top;
 }
 .images .container {
   padding-top: 20px;
