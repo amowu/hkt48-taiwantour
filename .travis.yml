@@ -3,5 +3,10 @@ node_js:
   - "0.10"
 env:
   - NODE_ENV=travis
-services:
-  - mongodb
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/b1a4391a487d0fd05a29
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: true     # default: false
