@@ -1,4 +1,4 @@
-[![Cover](https://raw.githubusercontent.com/amowu/hkt48-taiwantour/fa05c5902cb46e93816b021425c39fe72c40501f/public/modules/core/img/brand/logo.png)
+![Cover](https://raw.githubusercontent.com/amowu/hkt48-taiwantour/fa05c5902cb46e93816b021425c39fe72c40501f/public/modules/core/img/brand/logo.png)
 
 [![Build Status](https://travis-ci.org/amowu/hkt48-taiwantour.svg)](https://travis-ci.org/amowu/hkt48-taiwantour)
 [![Dependencies Status](https://david-dm.org/amowu/hkt48-taiwantour.svg)](https://david-dm.org/amowu/hkt48-taiwantour)
