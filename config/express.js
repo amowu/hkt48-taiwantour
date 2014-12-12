@@ -11,10 +11,6 @@ var express = require('express'),
 	methodOverride = require('method-override'),
 	cookieParser = require('cookie-parser'),
 	helmet = require('helmet'),
-	passport = require('passport'),
-	mongoStore = require('connect-mongo')({
-		session: session
-	}),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
@@ -84,10 +80,6 @@ module.exports = function() {
 
 	// CookieParser should be above session
 	app.use(cookieParser());
-
-	// use passport session
-	app.use(passport.initialize());
-	app.use(passport.session());
 
 	// connect flash for flash messages
 	app.use(flash());
