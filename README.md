@@ -10,6 +10,10 @@
 
 介紹以福岡‧博多為根據地的日本少女偶像團體HKT48之成員的網站。
 
+* [PTT AKB48](https://www.ptt.cc/bbs/AKB48/M.1414858078.A.95E.html)
+* [2ch.net](http://mastiff.2ch.net/test/read.cgi/akb/1416641409/l50)
+* [Facebook AKB48-Taiwan Clubs](https://www.facebook.com/photo.php?fbid=1502732929978452)
+
 ## Before You Begin 
 
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application: 
